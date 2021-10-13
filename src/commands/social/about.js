@@ -22,7 +22,7 @@ module.exports = class About extends Command {
 				about: args.join(" "),
 			});
 
-			await message.reply("Successfully **updated** your personal bio.");
+			await message.reply("Successfully updated your personal bio.");
 		}
 	}
 };

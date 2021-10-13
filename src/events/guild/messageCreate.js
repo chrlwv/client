@@ -69,7 +69,7 @@ module.exports = class messageCreate extends Event {
 
 			if (!message.author.bot) {
 				const { user } = await this.client.getUserById(message.author.id);
-				const xp = Math.ceil(Math.random() * (5 * 10));
+				const xp = Math.ceil(Math.random() * (1 * 5));
 				const level = calculateUserXp(user.exp);
 				const newLevel = calculateUserXp(user.exp + xp);
 				const guild = await this.client.getGuildById(message.guild.id);

@@ -21,10 +21,12 @@
     "discord.js": "^13.1.0",
     "dotenv": "^10.0.0",
     "glob": "^7.1.7",
+    "hypixel-api-reborn": "^8.3.0",
     "moment": "^2.29.1",
     "mongoose": "^6.0.6",
     "nodemon": "^2.0.13",
     "number-abbreviate": "^2.0.0",
-    "short-string-number": "^1.0.1"
+    "short-string-number": "^1.0.1",
+    "twemoji-parser": "^13.1.0"
   }
 }

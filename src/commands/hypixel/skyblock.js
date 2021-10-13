@@ -10,9 +10,9 @@ module.exports = class Skyblock extends Command {
 	constructor() {
 		super({
 			name: "skyblock",
-			aliases: ["xp", "experience"],
+			aliases: ["sb"],
 			description:
-				"Featches hypixel skyblock informations for a argued minecraft username.",
+				"Featches hypixel skyblock informations for an argued minecraft username.",
 			usage: "<username>",
 			category: "Hypixel",
 			ownerOnly: false,
@@ -96,7 +96,7 @@ module.exports = class Skyblock extends Command {
                         );
                     emb.addField(
                         "**STATS:**",
-                        `<:Health_icon:852570156261834762> ${profileData.members[id].attributes.health} | <:Absorption_icon:852570156110184489> ${profileData.members[id].attributes.effective_health} \n<:Defense_icon:852570156211503109> ${profileData.members[id].attributes.defense} | <:Strength_icon:852570155966791692> ${profileData.members[id].attributes.strength}\n<:Speed_icon:852570156198133790> ${profileData.members[id].attributes.speed}% | <:Intelligence_icon:852570156239683594> ${profileData.members[id].attributes.intelligence}`,
+                        `<:Health_icon:852570156261834762> ${profileData.members[id].attributes.health.toLocaleString()} | <:Absorption_icon:852570156110184489> ${profileData.members[id].attributes.effective_health.toLocaleString()} \n<:Defense_icon:852570156211503109> ${profileData.members[id].attributes.defense.toLocaleString()} | <:Strength_icon:852570155966791692> ${profileData.members[id].attributes.strength.toLocaleString()}\n<:Speed_icon:852570156198133790> ${profileData.members[id].attributes.speed.toLocaleString()}% | <:Intelligence_icon:852570156239683594> ${profileData.members[id].attributes.intelligence.toLocaleString()}`,
                         true
                     );
 
@@ -129,10 +129,10 @@ module.exports = class Skyblock extends Command {
                         true
                     );
                     emb.addField(
-                        "**AVG SKILL LEVEL:**",
-                        'fetch api error:=?',
-                        true
-                    );
+											"**AVG SKILL LEVEL:**",
+											"fetch api error",
+											true
+										);
                     emb.addField(
                         "**FAIRY SOULS:**",
                         `${profileData.members[id].fairy_souls_collected}/227`,

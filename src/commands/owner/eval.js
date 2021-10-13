@@ -1,7 +1,6 @@
 /** @format */
 
-const { MessageEmbed } = require("discord.js");
-const { inspect } = require("util");
+const { embed } = require("../../utils/Utils");
 
 module.exports = class Eval extends Command {
 	constructor() {
@@ -17,33 +16,40 @@ module.exports = class Eval extends Command {
 			clientPerms: [],
 		});
 	}
-	async exec(message, args) {
-		const evaled = args.join(" ");
-		try {
-			if (evaled) {
-				const evaluated = await eval(evaled, { depth: 0 });
+	async exec(message, args, data) {
+		if (!args.join(" "))
+			return message.reply(
+				`Make sure to assign some input methods.\n\`e.g. ${data.guild?.prefix}eval this.client.users.cache.size\``
+			);
 
-				const msg = await message.reply("> Evaluating..");
-				const embed = new MessageEmbed()
-					.setColor(0x36393e)
-					.addField(
-						"Input:\n",
-						"```js\n" + `${evaled.substring(0, 1010)}` + "```",
-						false
-					)
-					.addField(
-						"Output:\n",
-						"```js\n" +
-							`${inspect(evaluated, { depth: 0 }).substring(0, 1010)}` +
-							"```",
-						false
-					);
-				return msg.edit({ content: null, embeds: [embed] });
-			} else {
-				return message.reply("You need to specify some code!");
-			}
-		} catch (err) {
-			return message.reply(`An error occured: ${err.message}`);
+		const toEval = args.join(" ");
+		try {
+			let emb;
+			let evaled = await eval(toEval);
+			const eevaled = typeof evaled;
+			evaled = require("util").inspect(evaled, {
+				depth: 0,
+				maxArrayLength: null,
+			});
+			const type = eevaled[0].toUpperCase() + eevaled.slice(1);
+
+			emb = embed()
+				.setColor(0x36393e)
+				.setTitle("Eval piece")
+				.setDescription(
+					`\`Type:\` ${type}
+        \`Input:\` \`\`\`js\n${toEval} \`\`\`
+        \`Output:\` \`\`\`js\n${evaled}\`\`\``
+				);
+
+			return message.reply({ embeds: [emb] });
+		} catch (error) {
+			let embError;
+			embError = embed()
+				.setColor(0x36393e)
+				.setTitle("Eval error")
+				.setDescription(`\`\`\`${error}\`\`\``);
+			return message.reply({ embeds: [emb] });
 		}
 	}
 };

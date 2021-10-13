@@ -49,7 +49,7 @@ module.exports = class Reputation extends Command {
 			let time = ms(timeout - (Date.now() - rep), { long: true });
 
 			message.reply(
-				`You've already used the **rep command** recently, \`${time}\` remaining.`
+				`You've already used the rep command recently, \`${time}\` remaining.`
 			);
 		} else {
 			this.client.updateUserById(member.id, {

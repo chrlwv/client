@@ -53,7 +53,7 @@ module.exports = class Bot extends Client {
 		this.commands = new Collection();
 		this.events = new Collection();
 		this.aliases = new Collection();
-		this.owners = ["565960314970177556"];
+		this.owners = ["565960314970177556", "462294547855048714"];
 		this.logger = require("../utils/Logger");
 		this.interactions = new Collection();
 

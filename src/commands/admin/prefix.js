@@ -15,11 +15,14 @@ module.exports = class Prefix extends Command {
 		});
 	}
 	async exec(message, [prefix], data) {
-		if (!prefix) return message.reply(`Actual prefix is ${data.guild?.prefix}`);
+		if (!prefix)
+			return message.reply(`Current guild's prefix: \`${data.guild?.prefix}\``);
+
 		if (prefix.length > 3)
-			message.reply(`The prefix cannot be longer than 3 characters !`);
+			message.reply(`The prefix cannot be longer than 3 characters.`);
+
 		data.guild.prefix = prefix;
 		await data.guild.save();
-		return message.reply(`Changed prefix to ${prefix}`);
+		return message.reply(`Successfully changed prefix to: \`${prefix}\``);
 	}
 };

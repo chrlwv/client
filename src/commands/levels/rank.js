@@ -1,12 +1,13 @@
 /** @format */
 
+var NumAbbr = require("number-abbreviate");
 const Canvas = require("canvas");
-const ssn = require("short-string-number");
 const fs = require("fs");
 const path = require("path");
 const Discord = require("discord.js");
 
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
+var numAbbr = new NumAbbr();
 
 module.exports = class Rank extends Command {
 	constructor() {
@@ -76,7 +77,11 @@ module.exports = class Rank extends Command {
 		ctx.font = "25px Arial";
 		ctx.textAlign = "center";
 		ctx.fillStyle = "#FFFFFF";
-		ctx.fillText(`${ssn(user.exp)}/${ssn(maxxp)}`, 780, 160);
+		ctx.fillText(
+			`${numAbbr.abbreviate(user.exp)}/${numAbbr.abbreviate(maxxp)}`,
+			780,
+			160
+		);
 
 		ctx.textAlign = "center";
 		ctx.font = "bold 25px Arial";
