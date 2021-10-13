@@ -26,10 +26,7 @@ module.exports = class SlashHelp extends Interaction {
 		let emb;
 		if (!cmd) {
 			emb = embed()
-				.setColor(
-					interaction.guild.members.cache.get(interaction.user.id)
-						.displayHexColor
-				)
+				.setColor(0x36393e)
 				.setTitle("Help panel")
 				.setThumbnail(interaction.guild.iconURL({ dynamic: true }));
 			const categories = removeDuplicates(
@@ -50,10 +47,7 @@ module.exports = class SlashHelp extends Interaction {
 			return interaction.reply({ ephemeral: true, embeds: [emb] });
 		} else {
 			emb = embed()
-				.setColor(
-					interaction.guild.members.cache.get(interaction.user.id)
-						.displayHexColor
-				)
+				.setColor(0x36393e)
 				.setTitle("Help panel")
 				.setThumbnail(interaction.guild.iconURL({ dynamic: true }))
 				.setDescription(

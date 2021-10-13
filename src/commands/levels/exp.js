@@ -5,7 +5,7 @@ module.exports = class Experience extends Command {
 		super({
 			name: "exp",
 			aliases: ["xp", "experience"],
-			description: "Get your current level.",
+			description: "Shows you how many experience points did a user earned.",
 			usage: "<user>",
 			category: "Levels",
 			ownerOnly: false,
@@ -34,9 +34,9 @@ module.exports = class Experience extends Command {
 		const { user } = await this.client.getUserById(member.id);
 
 		message.reply(
-			`<:charliewave_exp:771448234672521236> ${
+			`${
 				member.user.tag
-			} has earned **${user.exp.toLocaleString()}** xp points.`
+			} has earned **${user.exp.toLocaleString()}** exp points.`
 		);
 	}
 };

@@ -1,17 +1,17 @@
 /** @format */
 
-module.exports = class Ban extends Command {
+module.exports = class Kick extends Command {
 	constructor() {
 		super({
-			name: "ban",
-			aliases: ["tempban"],
-			description: "Ban a user from the current guild.",
+			name: "kick",
+			aliases: [],
+			description: "Kick a user from the current guild.",
 			usage: "<user>",
 			category: "Moderator",
 			ownerOnly: false,
 			cooldown: 3000,
-			memberPerms: ["BAN_MEMBERS"],
-			clientPerms: ["BAN_MEMBERS"],
+			memberPerms: ["KICK_MEMBERS"],
+			clientPerms: ["KICK_MEMBERS"],
 		});
 	}
 	async exec(message, args, data) {
@@ -24,12 +24,11 @@ module.exports = class Ban extends Command {
 					m.user.tag.toLowerCase().includes(args[0])
 			);
 
-		let reason = args.slice(2).join(" ");
-		let days = args[1];
+		let reason = args.slice(1).join(" ");
 
 		if (!args.length) {
 			return message.reply(
-				`Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}ban <user> <days> <reason>\``
+				`Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}kick <user> <reason>\``
 			);
 		}
 
@@ -38,16 +37,15 @@ module.exports = class Ban extends Command {
 		}
 
 		if (!reason) reason = "no reason";
-		if (!days) days = 7;
 
-		if (!member.bannable) {
+		if (!member.kickable) {
 			return message.reply("I am not able to ban this user.");
 		}
 
-		await message.guild.members.ban(member, { days: days, reason: reason });
+		await message.guild.members.kick(member, { reason: reason });
 
 		message.reply(
-			`${message.author.tag} banned ${member.user.tag} for ${days} days, reason: ${reason}`
+			`${message.author.tag} kick ${member.user.tag}, reason: ${reason}`
 		);
 	}
 };
