@@ -65,6 +65,19 @@ module.exports = class Server extends Command {
             TIER_3: "3"
         }
 
+		const mfaLeveled = {
+			NONE: "<:charliewave_decline:771454968473190410>",
+			ELEVATED: "Elevated"
+		}
+
+		const verificationLevel = {
+			NONE: "<:charliewave_decline:771454968473190410>",
+			LOW: "Low",
+			MEDIUM: "Medium",
+			HIGH: "High", 
+			VERY_HIGH: "Very High"
+		}
+
         let emb;
 		emb = embed()
         .setColor(0x36393e)
@@ -94,12 +107,12 @@ module.exports = class Server extends Command {
 			)
 			.addField(
 				`**MFALEVEL:**`,
-				`${guild.mfaLevel}`,
+				`${mfaLeveled[guild.mfaLevel]}`,
 				true
 			)
 			.addField(
 				`**VERIFICATION LEVEL:**`,
-				message.guild.verificationLevel.toString(),
+				verificationLevel[message.guild.verificationLevel.toString()],
 				true
 			)
 			.addField(
