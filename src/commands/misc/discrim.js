@@ -8,7 +8,7 @@ module.exports = class Discriminator extends Command {
 			description:
 				"Searches for users with the specified discriminator. (or your own if not specified)",
 			usage: "<user>",
-			category: "Misc",
+			category: "<:charliewave_general:771633361340727336> Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

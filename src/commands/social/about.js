@@ -7,7 +7,7 @@ module.exports = class About extends Command {
 			aliases: ["aboutme", "bio", "setbio"],
 			description: "Customize your profile, by setting a new about me text.",
 			usage: "<text>",
-			category: "Social",
+			category: "<:charliewave_rep:778610398928568330> Social",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

@@ -14,7 +14,7 @@ module.exports = class Skyblock extends Command {
 			description:
 				"Featches hypixel skyblock informations for an argued minecraft username.",
 			usage: "<username>",
-			category: "Hypixel",
+			category: "<:charliewave_hypixel:771634768777445406> Hypixel",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

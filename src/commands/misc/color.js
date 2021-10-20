@@ -9,7 +9,7 @@ module.exports = class Color extends Command {
 			aliases: ["randomcolor"],
 			description: "Raffle a rancom color.",
 			usage: "",
-			category: "Misc",
+			category: "<:charliewave_general:771633361340727336> Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

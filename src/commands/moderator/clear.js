@@ -9,7 +9,7 @@ module.exports = class Clear extends Command {
 			aliases: ["purge", "clean", "prune", "cls"],
 			description: "Deletes a bulk of specified messages.",
 			usage: "<limit> <option>",
-			category: "Moderator",
+			category: "<:charliewave_advanced_moderator:857930973715103775> Moderator",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: ["MANAGE_MESSAGES"],

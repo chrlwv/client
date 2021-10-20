@@ -9,7 +9,7 @@ module.exports = class Emoji extends Command {
 			aliases: ["emojiadd"],
 			description: "Create an emoji from a different server.",
 			usage: "<emoji> <emoji_name>",
-			category: "Moderator",
+			category: "<:charliewave_advanced_moderator:857930973715103775> Moderator",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: ["MANAGE_GUILD"],

@@ -9,7 +9,7 @@ module.exports = class Vote extends Command {
 			aliases: ["topgg"],
 			description: "<:topggvote:806573769485320312> Vote Charliewave on top.gg website.",
 			usage: "",
-			category: "Misc",
+			category: "<:charliewave_general:771633361340727336> Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

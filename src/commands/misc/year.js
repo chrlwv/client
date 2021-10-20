@@ -7,7 +7,7 @@ module.exports = class Year extends Command {
 			aliases: ["year-progress"],
 			description: "Responds with the progress of the current year.",
 			usage: "",
-			category: "Misc",
+			category: "<:charliewave_general:771633361340727336> Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

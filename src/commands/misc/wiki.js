@@ -10,7 +10,7 @@ module.exports = class Wikipedia extends Command {
 			aliases: ["wikipedia"],
 			description: "Search queries on Wikipedia website.",
 			usage: "<query>",
-			category: "Misc",
+			category: "<:charliewave_general:771633361340727336> Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

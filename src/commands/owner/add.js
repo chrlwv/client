@@ -7,7 +7,7 @@ module.exports = class Add extends Command {
 			aliases: ["set"],
 			description: "Add command",
 			usage: "<user> <type> <value>",
-			category: "Owner",
+			category: "<:charliewave_ownership:771637500967124994> Owner",
 			ownerOnly: true,
 			cooldown: 3000,
 			memberPerms: [],

@@ -10,7 +10,7 @@ module.exports = class Minecraft extends Command {
 			aliases: ["mc", "mcserv", "minecraftserver", "mcserver"],
 			description: "Fetches public informations about a third-party rminecraft server.",
 			usage: "<ip_address>",
-			category: "Misc",
+			category: "<:charliewave_general:771633361340727336> Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

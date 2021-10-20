@@ -10,7 +10,7 @@ module.exports = class Weather extends Command {
 			aliases: ["meteo"],
 			description: "Meteo informations about a submitted location.",
 			usage: "<location>",
-			category: "Misc",
+			category: "<:charliewave_general:771633361340727336> Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

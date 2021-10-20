@@ -16,7 +16,7 @@ module.exports = class Rank extends Command {
 			aliases: ["level", "lvl"],
 			description: "Get your current level.",
 			usage: "<user>",
-			category: "Levels",
+			category: "<:charliewave_exp:771448234672521236> Levels",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

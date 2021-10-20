@@ -10,7 +10,7 @@ module.exports = class Help extends Command {
 			description:
 				"Generating help commands tab. (specify a command name for more informations for the selected item)",
 			usage: "<command>",
-			category: "Misc",
+			category: "<:charliewave_general:771633361340727336> Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -25,17 +25,17 @@ module.exports = class Help extends Command {
 		if (!cmd) {
 			emb = embed()
 				.setColor(0x36393e)
-				.setTitle("Help panel")
+				.setDescription(`Prefix: \`${data.guild?.prefix}\``)
 				.setThumbnail(message.guild.iconURL({ dynamic: true }));
 			const categories = removeDuplicates(
 				this.client.commands.map((cmd) => cmd.category)
 			);
 			for (const category of categories) {
-				const dir = this.client.commands.filter(
+			/*	const dir = this.client.commands.filter(
 					(cmd) => cmd.category === category
-				);
+				); */
 				await emb.addField(
-					`__${category}__ [${dir.size}]`,
+					`**${category}**`,
 					`${this.client.commands
 						.filter((cmd) => cmd.category === category)
 						.map((cmd) => `\`${cmd.name}\``)
@@ -46,7 +46,6 @@ module.exports = class Help extends Command {
 		} else {
 			emb = embed()
 				.setColor(0x36393e)
-				.setTitle("Help panel")
 				.setThumbnail(message.guild.iconURL({ dynamic: true }))
 				.setDescription(
 					[

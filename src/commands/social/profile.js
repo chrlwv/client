@@ -16,7 +16,7 @@ module.exports = class Profile extends Command {
 			description:
 				"Create the canva profile statistics for the exp & coins ecosystem.",
 			usage: "<user>",
-			category: "Social",
+			category: "<:charliewave_rep:778610398928568330> Social",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

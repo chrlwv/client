@@ -9,7 +9,7 @@ module.exports = class Reputation extends Command {
 			aliases: ["reputation"],
 			description: "Give a reputation point to a mentioned user.",
 			usage: "<user>",
-			category: "Social",
+			category: "<:charliewave_rep:778610398928568330> Social",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

@@ -7,7 +7,7 @@ module.exports = class Experience extends Command {
 			aliases: ["xp", "experience"],
 			description: "Shows you how many experience points did a user earned.",
 			usage: "<user>",
-			category: "Levels",
+			category: "<:charliewave_exp:771448234672521236> Levels",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

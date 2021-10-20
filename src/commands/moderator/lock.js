@@ -7,7 +7,7 @@ module.exports = class Lock extends Command {
 			aliases: ["lockchannel"],
 			description: "Lock a channel.",
 			usage: "<channel> <reason>",
-			category: "Moderator",
+			category: "<:charliewave_advanced_moderator:857930973715103775> Moderator",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: ["MANAGE_CHANNELS"],

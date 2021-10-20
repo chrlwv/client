@@ -9,7 +9,7 @@ module.exports = class Eval extends Command {
 			aliases: ["e"],
 			description: "Eval command",
 			usage: "<code>",
-			category: "Owner",
+			category: "<:charliewave_ownership:771637500967124994> Owner",
 			ownerOnly: true,
 			cooldown: 3000,
 			memberPerms: [],

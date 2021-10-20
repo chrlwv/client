@@ -9,7 +9,7 @@ module.exports = class Avatar extends Command {
 			aliases: ["av", "pic", "picture"],
 			description: "Provide your pfp (profile pic.) or mentioned user.",
 			usage: "<user>",
-			category: "Misc",
+			category: "<:charliewave_general:771633361340727336> Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
