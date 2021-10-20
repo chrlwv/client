@@ -25,6 +25,7 @@
     "dotenv": "^10.0.0",
     "figlet": "^1.5.2",
     "glob": "^7.1.7",
+    "hypixel-api-nodejs": "^0.1.5",
     "hypixel-api-reborn": "^8.3.0",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
