@@ -41,7 +41,7 @@ module.exports = class Server extends Command {
 					.join(" ")
 					.substring(0, 1024)
 					.replace(/\s\S+[^>]$/, "")
-			: "N/A";
+			: "<:charliewave_decline:771454968473190410>";
 
 		const guildRoles = message.guild.roles.cache
 			.map((role) => role.toString())
@@ -106,14 +106,14 @@ module.exports = class Server extends Command {
 				`**BOOSTS:**`,
 				message.guild.premiumSubscriptionCount +
 					` (Level: ${guildLevel[message.guild.premiumTier]})` ||
-					"n/a",
+					"<:charliewave_decline:771454968473190410>",
 				true
 			)
 			.addField(
 				`**AFK CHANNEL:**`,
 				message.guild.afkChannel
 					? `<:charliewave_text:771637634572222475> ${message.guild.afkChannel.name}`
-					: "n/a",
+					: "<:charliewave_decline:771454968473190410>",
 				true
 			)
 			.addField(

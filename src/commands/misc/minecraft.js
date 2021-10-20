@@ -43,7 +43,7 @@ module.exports = class Minecraft extends Command {
 			.addField(
 				`**PLAYERS:**`, json.players.online + "/" + json.players.max, true
 			)
-			.addField(`**VERSION:**`, json.version || "n/a", true)
+			.addField(`**VERSION:**`, json.version || "<:charliewave_decline:771454968473190410>", true)
             
             let serverMotd = json.motd.clean.slice(0, 100);
 

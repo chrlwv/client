@@ -34,7 +34,13 @@ module.exports = class Avatar extends Command {
 		let emb;
 		emb = embed()
 			.setColor(0x36393e)
-			.setTitle(`${member.user.tag}`)
+			.setTitle(
+				`${member.user.tag} ${this.constructor.getTargetEmojiByStatus(
+					member.presence.status,
+					member.presence.clientStatus != undefined &&
+						member.presence.clientStatus.mobile
+				)}`
+			)
 			.setDescription(`[.webp](${webp}) - [.png](${png}) - [.jpg](${jpg})`)
 			.setImage(`${webp}`);
 		return message.reply({ embeds: [emb] });
@@ -47,4 +53,17 @@ module.exports = class Avatar extends Command {
 			format,
 		});
 	}
+
+	static getTargetEmojiByStatus(status, mobile) {
+        switch (status) {
+            case "dnd":
+                return "<:charliewave_dnd:771635335486111744>";
+            case "idle":
+                return "<:charliewave_idle:771635289839501333>";
+            case "online":
+                return mobile === "online"
+                    ? "<:charliewave_mobile:771635443698499584>"
+                    : "<:charliewave_online:771635233384693791>";
+        }
+    }
 };
