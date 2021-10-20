@@ -17,5 +17,6 @@ module.exports = model(
 		hunt_cooldown: { type: Number, default: null },
 		rep_cooldown: { type: Number, default: null },
 		rob_cooldown: { type: Number, default: null },
+		report_cooldown: { type: Number, default: null },
 	})
 );
