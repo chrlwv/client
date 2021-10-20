@@ -6,7 +6,7 @@ module.exports = class Clear extends Command {
 	constructor() {
 		super({
 			name: "clear",
-			aliases: ["purge", "clean", "prunde"],
+			aliases: ["purge", "clean", "prune", "cls"],
 			description: "Deletes a bulk of specified messages.",
 			usage: "<limit> <option>",
 			category: "Moderator",

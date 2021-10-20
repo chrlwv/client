@@ -1,8 +1,6 @@
 /** @format */
 
-const { embed } = require("../../utils/Utils");
-
-module.exports = class Discrim extends Command {
+module.exports = class Discriminator extends Command {
 	constructor() {
 		super({
 			name: "discrim",

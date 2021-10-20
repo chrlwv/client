@@ -54,6 +54,7 @@ module.exports = class Bot extends Client {
 		this.events = new Collection();
 		this.aliases = new Collection();
 		this.owners = ["565960314970177556", "462294547855048714"];
+		this.openWeatherMapKey = "ed251da67188d62057cd640eda4fdc77";
 		this.logger = require("../utils/Logger");
 		this.interactions = new Collection();
 
