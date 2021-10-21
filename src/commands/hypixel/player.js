@@ -262,10 +262,10 @@ module.exports = class Player extends Command {
 						true
 					)
 					.setThumbnail(
-						`https://crafatar.com/avatars/${user.player.uuid}`
+						`https://visage.surgeplay.com/head/512/${user.player.uuid}`
 					)
 					.setImage(
-						`https://crafatar.com/renders/body${user.player.uuid}`
+						`https://visage.surgeplay.com/full/512/${user.player.uuid}`
 					);
 
 				if (

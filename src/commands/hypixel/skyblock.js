@@ -51,7 +51,7 @@ module.exports = class Skyblock extends Command {
                         .setColor(0x36393e)
                         .setTitle(`${name}`)
                         .setURL(`https://sky.shiiyu.moe/stats/${playerUUIDData.id}`)
-                        .setThumbnail(`https://crafatar.com/avatars/${playerUUIDData.id}`)
+                        .setThumbnail(`https://visage.surgeplay.com/head/512/${playerUUIDData.id}`)
                         .setDescription(profileData.cute_name);
 
                     if (

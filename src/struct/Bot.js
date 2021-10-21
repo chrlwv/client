@@ -58,6 +58,7 @@ module.exports = class Bot extends Client {
 		this.hypixelKey = "733544fa-d61b-4d31-9531-5aaff48e9624";
 		this.logger = require("../utils/Logger");
 		this.interactions = new Collection();
+		this.games = new Collection();
 
 		this.database = {};
 		this.guildsData = require("../models/Guilds");
