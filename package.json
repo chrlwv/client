@@ -1,19 +1,22 @@
 {
-  "name": "discord-template-v13",
+  "name": "beta",
   "version": "1.0.0",
-  "description": "Discord bot template using djs v13, including slash commands, context menus and database",
+  "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node .",
-    "test": "node ."
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/gonzyui/Discord-Template-V13"
+    "url": "git+https://github.com/charliewave-me/beta.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/charliewave-me/beta/issues"
+  },
+  "homepage": "https://github.com/charliewave-me/beta#readme",
   "dependencies": {
     "@top-gg/sdk": "^3.1.2",
     "canvas": "^2.8.0",
@@ -21,19 +24,16 @@
     "common-tags": "^1.8.0",
     "cross-fetch": "^3.1.4",
     "discord-image-generation": "^1.4.9",
-    "discord.js": "^13.1.0",
+    "discord.js": "^13.2.0",
     "dotenv": "^10.0.0",
     "figlet": "^1.5.2",
-    "glob": "^7.1.7",
     "hypixel-api-nodejs": "^0.1.5",
-    "hypixel-api-reborn": "^8.3.0",
+    "hypixel-api-reborn": "^9.0.3",
     "moment": "^2.29.1",
     "moment-duration-format": "^2.3.2",
-    "mongoose": "^6.0.6",
+    "mongoose": "^6.0.12",
     "node-superfetch": "^0.2.3",
-    "nodemon": "^2.0.14",
     "number-abbreviate": "^2.0.0",
-    "short-string-number": "^1.0.1",
     "twemoji-parser": "^13.1.0",
     "wikijs": "^6.3.2"
   }
