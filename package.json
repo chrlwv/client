@@ -1,22 +1,28 @@
 {
-  "name": "beta",
-  "version": "1.0.0",
-  "description": "",
+  "name": "charliewave",
+  "version": "1.9.3",
+  "description": "A multipurpose discord bot written in javascript, that can be used by users to enjoy discord community server by help of our bot.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/charliewave-me/beta.git"
+    "url": "git+https://github.com/charliewave-me/client.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "chrlwv",
+    "charliewave",
+    "charlie-me",
+    "charliewave-me"
+  ],
+  "author": "skillzl <user@skillzl.me>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/charliewave-me/beta/issues"
+    "url": "https://github.com/charliewave-me/client/issues"
   },
-  "homepage": "https://github.com/charliewave-me/beta#readme",
+  "homepage": "https://github.com/charliewave-me/client#readme",
   "dependencies": {
     "@top-gg/sdk": "^3.1.2",
     "canvas": "^2.8.0",
