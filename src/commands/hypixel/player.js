@@ -6,17 +6,17 @@ const { embed } = require("../../utils/Utils");
 module.exports = class Player extends Command {
 	constructor() {
 		super({
-			name: "player",
-			aliases: ["hypixelprofile", "hypixelme"],
-			description:
-				"Featches hypixel skyblock informations for an argued minecraft username.",
-			usage: "<username>",
-			category: "<:charliewave_hypixel:771634768777445406> Hypixel",
-			ownerOnly: false,
-			cooldown: 3000,
-			memberPerms: [],
-			clientPerms: [],
-		});
+      name: "player",
+      aliases: ["hypixelprofile", "hypixelme"],
+      description:
+        "Featches hypixel skyblock informations for an argued minecraft username.",
+      usage: "<username>",
+      category: "<:charliewave_hypixel:771634768777445406> Hypixel",
+      ownerOnly: false,
+      cooldown: 20000,
+      memberPerms: [],
+      clientPerms: [],
+    });
 	}
     async exec(message, args, data) {
         String.prototype.toCleanGameType = function () {

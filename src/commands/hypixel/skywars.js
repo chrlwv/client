@@ -6,17 +6,16 @@ const HypixelAPIReborn = require("hypixel-api-reborn");
 module.exports = class Skywars extends Command {
 	constructor() {
 		super({
-			name: "skywars",
-			aliases: ["sw"],
-			description:
-				"Hypixel Network Skywars statistics.",
-			usage: "<username>",
-			category: "<:charliewave_hypixel:771634768777445406> Hypixel",
-			ownerOnly: false,
-			cooldown: 3000,
-			memberPerms: [],
-			clientPerms: [],
-		});
+      name: "skywars",
+      aliases: ["sw"],
+      description: "Hypixel Network Skywars statistics.",
+      usage: "<username>",
+      category: "<:charliewave_hypixel:771634768777445406> Hypixel",
+      ownerOnly: false,
+      cooldown: 20000,
+      memberPerms: [],
+      clientPerms: [],
+    });
 	}
     async exec(message, args, data) {
         if (!args.length)

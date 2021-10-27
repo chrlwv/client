@@ -9,17 +9,17 @@ var numAbbr = new NumAbbr();
 module.exports = class Skyblock extends Command {
 	constructor() {
 		super({
-			name: "skyblock",
-			aliases: ["sb"],
-			description:
-				"Featches hypixel skyblock informations for an argued minecraft username.",
-			usage: "<username>",
-			category: "<:charliewave_hypixel:771634768777445406> Hypixel",
-			ownerOnly: false,
-			cooldown: 3000,
-			memberPerms: [],
-			clientPerms: [],
-		});
+      name: "skyblock",
+      aliases: ["sb"],
+      description:
+        "Featches hypixel skyblock informations for an argued minecraft username.",
+      usage: "<username>",
+      category: "<:charliewave_hypixel:771634768777445406> Hypixel",
+      ownerOnly: false,
+      cooldown: 20000,
+      memberPerms: [],
+      clientPerms: [],
+    });
 	}
     async exec(message, args, data) {
         if (!args.length)

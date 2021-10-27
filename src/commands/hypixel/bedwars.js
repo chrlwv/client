@@ -6,17 +6,16 @@ const HypixelAPIReborn = require("hypixel-api-reborn");
 module.exports = class Bedwars extends Command {
 	constructor() {
 		super({
-			name: "bedwars",
-			aliases: ["bw"],
-			description:
-				"Hypixel Network Bedwars statistics.",
-			usage: "<username>",
-			category: "<:charliewave_hypixel:771634768777445406> Hypixel",
-			ownerOnly: false,
-			cooldown: 3000,
-			memberPerms: [],
-			clientPerms: [],
-		});
+      name: "bedwars",
+      aliases: ["bw"],
+      description: "Hypixel Network Bedwars statistics.",
+      usage: "<username>",
+      category: "<:charliewave_hypixel:771634768777445406> Hypixel",
+      ownerOnly: false,
+      cooldown: 20000,
+      memberPerms: [],
+      clientPerms: [],
+    });
 	}
     async exec(message, args, data) {
         if (!args.length)
