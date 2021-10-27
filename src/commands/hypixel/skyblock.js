@@ -139,9 +139,11 @@ module.exports = class Skyblock extends Command {
                         true
                     );
                     emb.addField(
-                        "**HIGHEST DELT DMG:**",
-                        numAbbr.abbreviate(profileData.members[id].stats.highest_critical_damage),
-                        true
+                      "**HIGHEST DELT DMG:**",
+                      `${numAbbr.abbreviate(
+                        profileData.members[id].stats.highest_critical_damage
+                      )}`,
+                      true
                     );
                     emb.addField(
                         "**GIFTS:**",
