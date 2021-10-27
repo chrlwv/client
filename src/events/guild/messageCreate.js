@@ -68,78 +68,103 @@ module.exports = class messageCreate extends Event {
 			}
 
 			if (!message.author.bot) {
-				const { user } = await this.client.getUserById(message.author.id);
-				const xp = Math.ceil(Math.random() * (1 * 5));
-				const level = calculateUserXp(user.exp);
-				const newLevel = calculateUserXp(user.exp + xp);
-				const guild = await this.client.getGuildById(message.guild.id);
+        const { user } = await this.client.getUserById(message.author.id);
+        const xp = Math.ceil(Math.random() * (1 * 5));
+        const level = calculateUserXp(user.exp);
+        const newLevel = calculateUserXp(user.exp + xp);
+        const guild = await this.client.getGuildById(message.guild.id);
 
-				if (newLevel > level) {
-					if (guild.level_msg_module === true) {
-						const msg = await message.reply(
-							`${message.author.username}, leved up to level ${newLevel}`
-						);
-						setTimeout(() => {
-							msg?.delete();
-						}, 10000);
-					}
-				}
+        if (newLevel > level) {
+          if (guild.level_msg_module === true) {
+            const msg = await message.reply(
+              `<:charliewave_party:781439232895483904> Congratulations, you leveled up to level \`${newLevel}\`!`
+            );
+            setTimeout(() => {
+              msg?.delete();
+            }, 10000);
+          }
+        }
 
-				await this.client.updateUserById(message.author.id, {
-					exp: user.exp + xp,
-				});
-			}
+        await this.client.updateUserById(message.author.id, {
+          exp: user.exp + xp,
+        });
+      }
 
-			const now = Date.now();
-			const timestamps = this.client.cooldowns.set(command.name);
-			const cdAmount = command.cooldown;
-			if (timestamps.has(message.author.id)) {
-				const expirationTime = timestamps.get(message.author.id) + cdAmount;
-				if (now < expirationTime) {
-					const timeLeft = (expirationTime - now) / 1000;
-					return message.reply(
-						`You need to wait **${timeLeft.toFixed(2)}** seconds!`
-					);
-				}
-			}
-			timestamps.set(message.author.id, now);
-			setTimeout(() => timestamps.delete(message.author.id), cdAmount);
-			try {
-				await command.exec(message, args, data);
-			} catch (err) {
-				const webhookIntegration = new WebhookClient({
-					id: "795321440735461396",
-					token:
-						"CS9iXmXJTx-zLGiGONJaoUh-S8pfHsrHi24ERQQUZSD63ODXhpScCENIhbngE2Bdz1Ws",
-				});
-				if (!webhookIntegration) {
-					return this.client.logger.error(`UNHANDLED ERROR\n\n${err}`, {
-						tag: "WebhookIntegration",
-					});
-				}
+      if (guild.uri_blocker_module === true) {
+        function is_url(str) {
+          let regexp =
+            /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+          if (regexp.test(str)) {
+            return true;
+          } else {
+            return false;
+          }
+        }
 
-				const stack = err.stack || err;
+        if (is_url(message.content) === true) {
+          if (message.member.hasPermission("MANAGE_MESSAGES")) return;
+          message.delete();
 
-				const embed = new MessageEmbed()
-					.setTitle("An error occurred")
-					.setDescription(`\`\`\`js\n${stack}\`\`\` `)
-					.setColor(0x36393e);
+          return message
+            .reply(`Denied, you cannot send links on this server.`)
+            .then((msg) => {
+              setTimeout(() => {
+                msg.delete();
+              }, 2000);
+            });
+        }
+      }
 
-				webhookIntegration.send({
-					username: "Charliewave",
-					avatarURL:
-						"https://cdn.discordapp.com/avatars/772497789561208872/fbdd13287474020008179c89886add56.png?size=1024",
-					embeds: [embed],
-				});
+      const now = Date.now();
+      const timestamps = this.client.cooldowns.set(command.name);
+      const cdAmount = command.cooldown;
+      if (timestamps.has(message.author.id)) {
+        const expirationTime = timestamps.get(message.author.id) + cdAmount;
+        if (now < expirationTime) {
+          const timeLeft = (expirationTime - now) / 1000;
+          return message.reply(
+            `You need to wait **${timeLeft.toFixed(2)}** seconds!`
+          );
+        }
+      }
+      timestamps.set(message.author.id, now);
+      setTimeout(() => timestamps.delete(message.author.id), cdAmount);
+      try {
+        await command.exec(message, args, data);
+      } catch (err) {
+        const webhookIntegration = new WebhookClient({
+          id: "795321440735461396",
+          token:
+            "CS9iXmXJTx-zLGiGONJaoUh-S8pfHsrHi24ERQQUZSD63ODXhpScCENIhbngE2Bdz1Ws",
+        });
+        if (!webhookIntegration) {
+          return this.client.logger.error(`UNHANDLED ERROR\n\n${err}`, {
+            tag: "WebhookIntegration",
+          });
+        }
 
-				this.client.logger.error(
-					`An error occurred when trying to trigger MessageCreate event.\n\n${err}`,
-					{ tag: "MessageError" }
-				);
-				return message.reply(
-					`Oops, run into a critical error, please wait for a fix.`
-				);
-			}
+        const stack = err.stack || err;
+
+        const embed = new MessageEmbed()
+          .setTitle("An error occurred")
+          .setDescription(`\`\`\`js\n${stack}\`\`\` `)
+          .setColor(0x36393e);
+
+        webhookIntegration.send({
+          username: "chrlwv",
+          avatarURL:
+            "https://cdn.discordapp.com/avatars/782183368195702815/6f794821a5f0807c56ae9f9b3c0548f9.png?size=1024",
+          embeds: [embed],
+        });
+
+        this.client.logger.error(
+          `An error occurred when trying to trigger MessageCreate event.\n\n${err}`,
+          { tag: "MessageError" }
+        );
+        return message.reply(
+          `Oops, run into a critical error, please wait for a fix.`
+        );
+      }
 		}
 	}
 };
