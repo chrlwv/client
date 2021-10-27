@@ -11,9 +11,9 @@ module.exports = class guildMemberRemove extends Event {
       once: false,
     });
   }
-  async exec(guild) {
-    const guild = await this.client.getGuildById(member.guild.id);
-    const leaveChannel = guild?.leave_event_module;
+  async exec(member) {
+    const mongoGuild = await this.client.getGuildById(member.guild.id);
+    const leaveChannel = mongoGuild?.leave_event_module;
 
     const applyText = (canvas, text) => {
       const ctx = canvas.getContext("2d");
@@ -21,7 +21,7 @@ module.exports = class guildMemberRemove extends Event {
       let fontSize = 70;
 
       do {
-        ctx.font = `${(fontSize -= 10)}px Roboto-Light`;
+        ctx.font = `${(fontSize -= 10)}px Sans`;
       } while (ctx.measureText(text).width > canvas.width - 256);
 
       return ctx.font;
@@ -72,10 +72,11 @@ module.exports = class guildMemberRemove extends Event {
         "left-image.png"
       );
 
-      this.client.channels.cache.get(leaveChannel).send(attachment);
+      this.client.channels.cache
+        .get(leaveChannel)
+        .send({ conent: "guildMemberRemove", files: [attachment] });
 
       await this.client.removeUser(member.user.id, member.guild.id);
-      await this.client.removeUserWarnings(member.user.id, member.guild.id);
     }
   }
 };

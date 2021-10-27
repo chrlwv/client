@@ -89,7 +89,9 @@ module.exports = class messageCreate extends Event {
           exp: user.exp + xp,
         });
       }
-
+      
+      const guild = await this.client.getGuildById(message.guild.id);
+      
       if (guild.uri_blocker_module === true) {
         function is_url(str) {
           let regexp =

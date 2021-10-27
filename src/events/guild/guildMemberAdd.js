@@ -12,24 +12,22 @@ module.exports = class guildMemberAdd extends Event {
       once: false,
     });
   }
-  async exec(guild) {
-    if (!member.guild.me.hasPermission("MANAGE_WEBHOOKS")) return;
-
+  async exec(member) {
     const applyText = (canvas, text) => {
       const ctx = canvas.getContext("2d");
 
       let fontSize = 70;
 
       do {
-        ctx.font = `${(fontSize -= 10)}px Roboto-Light`;
+        ctx.font = `${(fontSize -= 10)}px Sans`;
       } while (ctx.measureText(text).width > canvas.width - 256);
 
       return ctx.font;
     };
 
-    const guild = await this.client.getGuildById(member.guild.id);
-    const welcomeChannel = guild?.welcome_event_module;
-    const autoRole = guild?.auto_role_module;
+    const mongoGuild = await this.client.getGuildById(member.guild.id);
+    const welcomeChannel = mongoGuild?.welcome_event_module;
+    const autoRole = mongoGuild?.auto_role_module;
 
     if (welcomeChannel) {
       if (!member.guild.channels.cache.find((ch) => ch.id === welcomeChannel))
@@ -76,11 +74,12 @@ module.exports = class guildMemberAdd extends Event {
         "welcome-image.png"
       );
 
-      this.client.channels.cache.get(welcomeChannel).send(attachment);
+      this.client.channels.cache
+        .get(welcomeChannel)
+        .send({ conent: "guildMemberAdd", files: [attachment] });
     }
 
     if (autoRole) {
-      if (!member.guild.me.hasPermission("MANAGE_ROLES")) return;
       member.roles.add(autoRole);
     }
   }
