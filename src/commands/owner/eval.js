@@ -49,7 +49,7 @@ module.exports = class Eval extends Command {
 				.setColor(0x36393e)
 				.setTitle("Eval error")
 				.setDescription(`\`\`\`${error}\`\`\``);
-			return message.reply({ embeds: [emb] });
+			return message.reply({ embeds: [embError] });
 		}
 	}
 };
