@@ -6,7 +6,7 @@ module.exports = class Settings extends Command {
   constructor() {
     super({
       name: "settings",
-      aliases: ["conf", "config", "servconfig", "servconf"],
+      aliases: ["conf", "config", "servconfig", "servconf", "cfg"],
       description: "Define per-guild settings.",
       usage: "",
       category: "<:charliewave_settings:771462923855069204> Admin",
@@ -18,20 +18,13 @@ module.exports = class Settings extends Command {
   }
   async exec(message) {
     const guild = await this.client.getGuildById(message.guild.id);
-
     const prefix = guild.prefix;
     const levelMsgs = guild?.level_msg_module;
-    const antiLinks = guild?.uri_blocker_module;
+    const uriBlocker = guild?.uri_blocker_module;
     const welcomeCh = guild?.welcome_event_module;
     const leaveCh = guild?.leave_event_module;
     const autoRole = guild?.auto_role_module;
     const arole = message.guild.roles.cache.get(autoRole);
-
-    levelMsgs ? "true" : "enabled";
-    levelMsgs ? "false" : "disabled";
-
-    antiLinks ? "true" : "enabled";
-    antiLinks ? "false" : "disabled";
 
     let emb;
     emb = embed()
@@ -40,23 +33,21 @@ module.exports = class Settings extends Command {
         `${message.guild.name}`,
         message.guild.iconURL({ dynamic: true, size: 2048 })
       )
-      .setDescription("description settings")
-      .setThumbnail(message.guild.iconURL({ dynamic: true, size: 2048 }))
-      .addField("autorole:", autoRole !== null ? `${arole}` : "disabled", true)
       .addField(
-        "welcome channel:",
-        welcomeCh !== null ? `<#${welcomeCh}>` : "disabled",
-        true
+        "**WELCOMER:**",
+        `welcome channel: ${
+          welcomeCh !== null ? `<#${welcomeCh}>` : "disabled"
+        } \nleave channel: ${
+          leaveCh !== null ? `<#${leaveCh}>` : "disabled"
+        }`
       )
       .addField(
-        "leave channel:",
-        leaveCh !== null ? `<#${leaveCh}>` : "disabled",
-        true
+        "**GENERAL:**",
+        `autorole: ${
+          autoRole !== null ? `${arole}` : "disabled"
+        }\nsystem alerts: ${levelMsgs}\nuri blocker: ${uriBlocker}\nprefix: ${prefix}`
       )
-      .addField("level up messages:", `${levelMsgs}`, true)
-      .addField("anti links:", `${antiLinks}`, true)
-      .addField("prefix:", `${prefix}`, true);
-
+      .setThumbnail(message.guild.iconURL({ dynamic: true, size: 2048 }));
     return message.reply({ embeds: [emb] });
   }
 };
