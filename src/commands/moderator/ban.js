@@ -33,6 +33,10 @@ module.exports = class Ban extends Command {
 			);
 		}
 
+		if (days > 7) {
+      return message.reply("Sorry, but the maximum number of days is 7.");
+    }
+
 		if (!member) {
 			return message.reply("This user is no longer on this guild.");
 		}
