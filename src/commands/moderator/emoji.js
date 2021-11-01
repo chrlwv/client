@@ -5,16 +5,17 @@ const { parse } = require("twemoji-parser");
 module.exports = class Emoji extends Command {
 	constructor() {
 		super({
-			name: "emoji",
-			aliases: ["emojiadd"],
-			description: "Create an emoji from a different server.",
-			usage: "<emoji> <emoji_name>",
-			category: "<:charliewave_advanced_moderator:857930973715103775> Moderator",
-			ownerOnly: false,
-			cooldown: 3000,
-			memberPerms: ["MANAGE_GUILD"],
-			clientPerms: ["MANAGE_GUILD"],
-		});
+      name: "emoji",
+      aliases: ["emojiadd"],
+      description: "Create an emoji from a different server.",
+      usage: "<emoji> <emoji_name>",
+      category:
+        "<:charliewave_advanced_moderator:857930973715103775> Moderator",
+      ownerOnly: false,
+      cooldown: 3000,
+      memberPerms: ["MANAGE_EMOJIS_AND_STICKERS"],
+      clientPerms: ["MANAGE_EMOJIS_AND_STICKERS"],
+    });
 	}
 	async exec(message, args, data) {
 		const emoji = args[0];

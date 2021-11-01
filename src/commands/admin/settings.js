@@ -12,7 +12,7 @@ module.exports = class Settings extends Command {
       category: "<:charliewave_settings:771462923855069204> Admin",
       ownerOnly: false,
       cooldown: 3000,
-      memberPerms: ["ADMINISTRATOR"],
+      memberPerms: ["MANAGE_GUILD"],
       clientPerms: [],
     });
   }
