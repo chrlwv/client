@@ -3,9 +3,9 @@
 module.exports = class SlashPing extends Interaction {
 	constructor() {
 		super({
-			name: "ping",
-			description: "Ping command",
-		});
+      name: "ping",
+      description: "Latency, API response and database ping times.",
+    });
 	}
 	async exec(interaction) {
 		interaction.reply({
@@ -14,7 +14,7 @@ module.exports = class SlashPing extends Interaction {
 				`latency: **${Math.round(
 					interaction.createdTimestamp - Date.now()
 				)}**ms`,
-				`dsc latency: **${Math.round(this.client.ws.ping)}**ms`,
+				`api response: **${Math.round(this.client.ws.ping)}**ms`,
 				`database latency: **${Math.round(
 					await this.client.databasePing()
 				)}**ms`,

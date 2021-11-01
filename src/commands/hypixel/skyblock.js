@@ -17,7 +17,7 @@ module.exports = class Skyblock extends Command {
       usage: "<username>",
       category: "<:charliewave_hypixel:771634768777445406> Hypixel",
       ownerOnly: false,
-      cooldown: 20000,
+      cooldown: 200,
       memberPerms: [],
       clientPerms: [],
     });
@@ -28,6 +28,7 @@ module.exports = class Skyblock extends Command {
         `Also, provide your Minecraft username.\n\`e.g. ${data.guild?.prefix}skyblock Steve\``
       );
     let emb;
+    let skills;
     try {
       fetch(`https://api.mojang.com/users/profiles/minecraft/${args[0]}`)
         .then((result) => result.json())
@@ -41,10 +42,7 @@ module.exports = class Skyblock extends Command {
           const playerUUIDData = await playerUUIDFetch.json();
           const profileData = await fetchProf.json();
 
-          if (
-            !playerUUIDData.name &&
-            !profileData.members[id].attributes.health
-          ) {
+          if (!playerUUIDData || !profileData) {
             return message.reply(
               "Could not fetch provided Mineacraft username."
             );
@@ -151,7 +149,11 @@ module.exports = class Skyblock extends Command {
             )}`,
             true
           );
-          emb.addField("**AVG SKILL LEVEL:**", "fetch api error", true);
+          emb.addField(
+            "**AVG SKILL LEVEL:**",
+            `${profileData.members[id].average_skill_level}`,
+            true
+          );
           emb.addField(
             "**FAIRY SOULS:**",
             `${profileData.members[id].fairy_souls_collected}/227`,
@@ -196,7 +198,110 @@ module.exports = class Skyblock extends Command {
             true
           );
 
-          return message.reply({ embeds: [emb], components: [row]});
+          skills = embed()
+            .setColor(0x36393e)
+            .setTitle("SKILLS:")
+            .addField(
+              "**RUNECRAFTING:**",
+              `${
+                profileData.members[id].skills.runecrafting.level
+              } (${profileData.members[
+                id
+              ].skills.runecrafting.xpCurrent.toLocaleString()}/${profileData.members[
+                id
+              ].skills.runecrafting.xpForNext.toLocaleString()})`,
+              true
+            )
+            .addField(
+              "**MINING:**",
+              `${
+                profileData.members[id].skills.mining.level
+              } (${profileData.members[
+                id
+              ].skills.mining.xpCurrent.toLocaleString()}/${profileData.members[
+                id
+              ].skills.mining.xpForNext.toLocaleString()})`,
+              true
+            )
+            .addField(
+              "**ALCHEMY:**",
+              `${
+                profileData.members[id].skills.alchemy.level
+              } (${profileData.members[
+                id
+              ].skills.alchemy.xpCurrent.toLocaleString()}/${profileData.members[
+                id
+              ].skills.alchemy.xpForNext.toLocaleString()})`,
+              true
+            )
+            .addField(
+              "**TAMING:**",
+              `${
+                profileData.members[id].skills.taming.level
+              } (${profileData.members[
+                id
+              ].skills.taming.xpCurrent.toLocaleString()}/${profileData.members[
+                id
+              ].skills.taming.xpForNext.toLocaleString()})`,
+              true
+            )
+            .addField(
+              "**COMBAT:**",
+              `${
+                profileData.members[id].skills.combat.level
+              } (${profileData.members[
+                id
+              ].skills.combat.xpCurrent.toLocaleString()}/${profileData.members[
+                id
+              ].skills.combat.xpForNext.toLocaleString()})`,
+              true
+            )
+            .addField(
+              "**FARMING:**",
+              `${
+                profileData.members[id].skills.farming.level
+              } (${profileData.members[
+                id
+              ].skills.farming.xpCurrent.toLocaleString()}/${profileData.members[
+                id
+              ].skills.farming.xpForNext.toLocaleString()})`,
+              true
+            )
+            .addField(
+              "**ENCHANTING:**",
+              `${
+                profileData.members[id].skills.enchanting.level
+              } (${profileData.members[
+                id
+              ].skills.enchanting.xpCurrent.toLocaleString()}/${profileData.members[
+                id
+              ].skills.enchanting.xpForNext.toLocaleString()})`,
+              true
+            )
+            .addField(
+              "**FISHING:**",
+              `${
+                profileData.members[id].skills.fishing.level
+              } (${profileData.members[
+                id
+              ].skills.fishing.xpCurrent.toLocaleString()}/${profileData.members[
+                id
+              ].skills.fishing.xpForNext.toLocaleString()})`,
+              true
+            )
+            .addField(
+              "**FORAGING:**",
+              `${
+                profileData.members[id].skills.foraging.level
+              } (${profileData.members[
+                id
+              ].skills.foraging.xpCurrent.toLocaleString()}/${profileData.members[
+                id
+              ].skills.foraging.xpForNext.toLocaleString()})`,
+              true
+            );
+
+          return message.reply({ embeds: [emb, skills], components: [row]});
         });
     } catch (error) {
       console.log(error);

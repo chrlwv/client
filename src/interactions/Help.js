@@ -5,17 +5,17 @@ const { embed, removeDuplicates, formatPerms } = require("../utils/Utils");
 module.exports = class SlashHelp extends Interaction {
 	constructor() {
 		super({
-			name: "help",
-			description: "Help command",
-			options: [
-				{
-					name: "command",
-					description: "Name of command you want to show informations",
-					type: "STRING",
-					required: false,
-				},
-			],
-		});
+      name: "help",
+      description: "Shows you the help center.",
+      options: [
+        {
+          name: "command",
+          description: "Name of command you want to show informations.",
+          type: "STRING",
+          required: false,
+        },
+      ],
+    });
 	}
 	async exec(interaction, data) {
 		const cmd =
