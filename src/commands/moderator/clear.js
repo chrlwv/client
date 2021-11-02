@@ -17,6 +17,7 @@ module.exports = class Clear extends Command {
 		});
 	}
 	async exec(message, args) {
+		try {
 		Collection.prototype.array = function () {
 			return [...this.values()];
 		};
@@ -31,7 +32,34 @@ module.exports = class Clear extends Command {
 
 		let messages = await message.channel.messages.fetch({ limit: 100 });
 
-		function getFilter(message, filter, user) {
+		if (filter) {
+			const user = typeof filter !== "string" ? filter : null;
+			const type = typeof filter === "string" ? filter : "user";
+
+			messages = messages.filter(this.constructor.getFilter(message, type, user));
+		}
+
+		messages = messages.array().slice(0, limit);
+		await message.channel.bulkDelete(messages).then(
+			message.channel
+				.send(
+					`found ${
+						messages.length
+					} messages from ${filter === null ? "everyone" : filter}.`
+				)
+				.then((msg) => {
+					setTimeout(() => {
+						msg.delete();
+					}, 2000);
+				})
+		);
+
+		} catch (err) {
+			return message.reply('You cannot bulk messages that are 14 days old.')
+     }
+	}
+
+	static getFilter(message, filter, user) {
 			switch (filter) {
 				case "link": {
 					return (mes) => /https?:\/\/[^ /.]+\.[^ /.]+/.test(mes.content);
@@ -69,27 +97,4 @@ module.exports = class Clear extends Command {
 				}
 			}
 		}
-
-		if (filter) {
-			const user = typeof filter !== "string" ? filter : null;
-			const type = typeof filter === "string" ? filter : "user";
-
-			messages = messages.filter(getFilter(message, type, user));
-		}
-
-		messages = messages.array().slice(0, limit);
-		await message.channel.bulkDelete(messages).then(
-			message.channel
-				.send(
-					`<:charliewave_approve:771455713494040586> found ${
-						messages.length
-					} messages from ${filter === null ? "everyone" : filter}.`
-				)
-				.then((msg) => {
-					setTimeout(() => {
-						msg.delete();
-					}, 2000);
-				})
-		);
-	}
 };
