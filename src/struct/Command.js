@@ -7,7 +7,7 @@ global.Command = module.exports = class Command {
         this.aliases = options.aliases || [];
         this.description = options.description || "";
         this.usage = options.usage || "";
-        this.category = options.category || "Misc";
+        this.category = options.category || "Test";
         this.ownerOnly = Boolean(options.ownerOnly) || false;
         this.cooldown = Number(options.cooldown) || 3000;
         this.memberPerms = new Permissions(options.memberPerms).freeze();
