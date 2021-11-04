@@ -117,6 +117,18 @@ module.exports = class messageCreate extends Event {
         }
       }
 
+      const blacklistedUsers = await this.client.blacklistedData.find();
+
+      if (blacklistedUsers) {
+        const isBlacklisted = blacklistedUsers.find(
+          (u) => u.userId === message.author.id
+        );
+
+        if (isBlacklisted) {
+          return message.reply("You've been blacklisted from using this bot.");
+        }
+      }
+      
       const now = Date.now();
       const timestamps = this.client.cooldowns.set(command.name);
       const cdAmount = command.cooldown;

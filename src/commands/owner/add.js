@@ -16,14 +16,13 @@ module.exports = class Add extends Command {
 	}
 	async exec(message, args, data) {
 		const member =
-			message.mentions.members.first() ||
-			message.guild.members.cache.get(args[0]) ||
-			message.guild.members.cache.find(
-				(m) =>
-					m.displayName.toLowerCase().includes(args[0]) ||
-					m.user.tag.toLowerCase().includes(args[0])
-			) ||
-			message.member;
+      message.mentions.members.first() ||
+      message.guild.members.cache.get(args[0]) ||
+      message.guild.members.cache.find(
+        (m) =>
+          m.displayName.toLowerCase().includes(args[0]) ||
+          m.user.tag.toLowerCase().includes(args[0])
+      );
 
 		if (member.bot) {
 			return message.reply("You cannot give value for Discord applications.");
