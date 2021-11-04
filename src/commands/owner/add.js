@@ -24,18 +24,18 @@ module.exports = class Add extends Command {
           m.user.tag.toLowerCase().includes(args[0])
       );
 
-		if (member.bot) {
-			return message.reply("You cannot give value for Discord applications.");
-		}
+     const value = args[2];
+     const type = args[1];
 
-		const value = args[2];
-		const type = args[1];
+     if (!value) {
+       return message.reply(
+         `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}add <user> <type> <value>\``
+       );
+     }
 
-		if (!value) {
-			return message.reply(
-				`Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}add <user> <type> <value>\``
-			);
-		}
+     if (member.bot) {
+       return message.reply("You cannot give value for Discord applications.");
+     }
 
 		switch (type) {
 			case "exp": {
