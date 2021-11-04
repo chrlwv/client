@@ -73,9 +73,7 @@ module.exports = class Process extends Command {
         stripIndents`**Users:**: ${this.client.users.cache.size.toLocaleString()}\n\
                 **Guilds:** ${this.client.guilds.cache.size.toLocaleString()}\n\
                 **Channels:** ${this.client.channels.cache.size.toLocaleString()}\n\
-            **Database:** [mongoDb](https://www.mongodb.com/), ping: ${Math.round(
-              await this.client.databasePing()
-            )}ms`,
+            **Commands:** ${this.client.commands.size.toLocaleString()}`,
         true
       )
       .setThumbnail(

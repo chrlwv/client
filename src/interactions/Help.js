@@ -33,9 +33,7 @@ module.exports = class SlashHelp extends Interaction {
 				this.client.commands.map((cmd) => cmd.category)
 			);
 			for (const category of categories) {
-	        /*	const dir = this.client.commands.filter(
-					(cmd) => cmd.category === category
-				); */
+
 				await emb.addField(
 					`**${category}:**`,
 					`${this.client.commands

@@ -31,17 +31,14 @@ module.exports = class Help extends Command {
 				this.client.commands.map((cmd) => cmd.category)
 			);
 			for (const category of categories) {
-			/*	const dir = this.client.commands.filter(
-					(cmd) => cmd.category === category
-				); */
-				await emb.addField(
-					`**${category}**`,
-					`${this.client.commands
-						.filter((cmd) => cmd.category === category)
-						.map((cmd) => `\`${cmd.name}\``)
-						.join(" ")}`
-				);
-			}
+        await emb.addField(
+          `**${category}**`,
+          `${this.client.commands
+            .filter((cmd) => cmd.category === category)
+            .map((cmd) => `\`${cmd.name}\``)
+            .join(" ")}`
+        );
+      }
 			return message.channel.send({ embeds: [emb] });
 		} else {
 			emb = embed()
