@@ -3,16 +3,17 @@
 module.exports = class Lock extends Command {
 	constructor() {
 		super({
-			name: "lock",
-			aliases: ["lockchannel"],
-			description: "Lock a channel.",
-			usage: "<channel> <reason>",
-			category: "<:charliewave_advanced_moderator:857930973715103775> Moderator",
-			ownerOnly: false,
-			cooldown: 3000,
-			memberPerms: ["MANAGE_CHANNELS"],
-			clientPerms: ["MANAGE_CHANNELS"],
-		});
+      name: "lock",
+      aliases: ["lockchannel"],
+      description: "Lock a channel.",
+      usage: "<channel> <reason>",
+      category:
+        "<:charliewave_advanced_moderator:857930973715103775> Moderator",
+      ownerOnly: false,
+      cooldown: 3000,
+      memberPerms: ["MANAGE_ROLES"],
+      clientPerms: ["MANAGE_ROLES"],
+    });
 	}
 	async exec(message, args) {
 		let reason = args.join(" ");
