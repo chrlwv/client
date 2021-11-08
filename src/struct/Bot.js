@@ -5,40 +5,39 @@ const { connect, connection: db } = require("mongoose");
 const { resolve } = require("path");
 const { sync } = require("glob");
 
-require("./Interaction");
 require("./Command");
 require("./Event");
 
 const yes = [
-	"yes",
-	"y",
-	"ye",
-	"yeah",
-	"yup",
-	"yea",
-	"ya",
-	"hai",
-	"da",
-	"dai",
-	"si",
-	"sí",
-	"oui",
-	"はい",
-	"correct",
-	"davai",
+  "yes",
+  "y",
+  "ye",
+  "yeah",
+  "yup",
+  "yea",
+  "ya",
+  "hai",
+  "da",
+  "dai",
+  "si",
+  "sí",
+  "oui",
+  "はい",
+  "correct",
+  "davai",
 ];
 const no = [
-	"no",
-	"n",
-	"nah",
-	"nope",
-	"nu",
-	"nop",
-	"iie",
-	"いいえ",
-	"non",
-	"fuck off",
-	"ne",
+  "no",
+  "n",
+  "nah",
+  "nope",
+  "nu",
+  "nop",
+  "iie",
+  "いいえ",
+  "non",
+  "fuck off",
+  "ne",
 ];
 
 module.exports = class Bot extends Client {
@@ -57,7 +56,6 @@ module.exports = class Bot extends Client {
     this.openWeatherMapKey = "ed251da67188d62057cd640eda4fdc77";
     this.hypixelKey = "733544fa-d61b-4d31-9531-5aaff48e9624";
     this.logger = require("../utils/Logger");
-    this.interactions = new Collection();
     this.games = new Collection();
 
     this.database = {};
@@ -129,22 +127,6 @@ module.exports = class Bot extends Client {
     await db.db.command({ ping: 1 });
     const time = process.hrtime(cNano);
     return (time[0] * 1e9 + time[1]) * 1e-6;
-  }
-
-  async loadInteractions(guildId) {
-    const intFile = await sync(resolve("./src/interactions/**/*.js"));
-    intFile.forEach((filepath) => {
-      const File = require(filepath);
-      if (!(File.prototype instanceof Interaction)) return;
-      const interaction = new File();
-      interaction.client = this;
-      this.interactions.set(interaction.name, interaction);
-      this.guilds.cache
-        .map((x) => x.id)
-        .forEach((id) => {
-          this.guilds.cache.get(guildId || id)?.commands.create(interaction);
-        });
-    });
   }
 
   async loadCommands() {

@@ -23,6 +23,5 @@ module.exports = class Ready extends Event {
     this.client.user.setActivity(`@${this.client.user.username} help`, {
       type: "WATCHING",
     });
-    await this.client.loadInteractions();
   }
 };
