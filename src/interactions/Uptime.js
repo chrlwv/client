@@ -9,21 +9,28 @@ module.exports = class SlashUptime extends Interaction {
     });
   }
   async exec(interaction) {
-    const buttonSupport = new MessageButton()
-      .setURL("https://discord.gg/RPRfpnM6MZ")
-      .setLabel("Support")
-      .setStyle("LINK");
+    try {
+      const buttonSupport = new MessageButton()
+        .setURL("https://discord.gg/RPRfpnM6MZ")
+        .setLabel("Support")
+        .setStyle("LINK");
 
-    const row = new MessageActionRow().addComponents(buttonSupport);
+      const row = new MessageActionRow().addComponents(buttonSupport);
 
-    return interaction.reply({
-      components: [row],
-      ephemeral: true,
-      content: [
-        `client uptime: ${this.constructor.uptime()}`,
-        `client status: <:charliewave_online:771635233384693791> online.`,
-      ].join("\n"),
-    });
+      return interaction.reply({
+        components: [row],
+        ephemeral: true,
+        content: [
+          `client uptime: ${this.constructor.uptime()}`,
+          `client status: <:charliewave_online:771635233384693791> online.`,
+        ].join("\n"),
+      });
+    } catch (err) {
+      interaction.reply({ ephemeral: true, content: "I got an error!" });
+      return this.client.logger.error(`An error occured: ${err.message}`, {
+        tag: "Interaction",
+      });
+    }
   }
 
   static uptime() {
