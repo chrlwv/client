@@ -53,7 +53,7 @@ module.exports = class Invite extends Command {
         )}`
       )
       .setDescription(
-        `Click on the bottom \`Invite button\` to invite ${this.client.user.username} on your own server.\n\nMake sure you assign \`applications.commands\` if you want to use the slash-commands.`
+        `Click on the bottom \`Invite button\` to invite ${this.client.user.username} on your own server.`
       )
       .setThumbnail(
         this.client.user.avatarURL({ dynamic: true, size: 2048, format: "png" })
