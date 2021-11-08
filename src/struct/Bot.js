@@ -132,24 +132,19 @@ module.exports = class Bot extends Client {
   }
 
   async loadInteractions(guildId) {
-    try {
-      const intFile = await sync(resolve("./src/interactions/**/*.js"));
-      intFile.forEach((filepath) => {
-        const File = require(filepath);
-        if (!(File.prototype instanceof Interaction)) return;
-        const interaction = new File();
-        interaction.client = this;
-        this.interactions.set(interaction.name, interaction);
-        this.guilds.cache
-          .map((x) => x.id)
-          .forEach((id) => {
-            this.guilds.cache.get(guildId || id)?.commands.create(interaction);
-          });
-      });
-    } catch (error) {
-      message.reply(error.message);
-      this.logger.error(error.message, { tag: "slashCommands" });
-    }
+    const intFile = await sync(resolve("./src/interactions/**/*.js"));
+    intFile.forEach((filepath) => {
+      const File = require(filepath);
+      if (!(File.prototype instanceof Interaction)) return;
+      const interaction = new File();
+      interaction.client = this;
+      this.interactions.set(interaction.name, interaction);
+      this.guilds.cache
+        .map((x) => x.id)
+        .forEach((id) => {
+          this.guilds.cache.get(guildId || id)?.commands.create(interaction);
+        });
+    });
   }
 
   async loadCommands() {
