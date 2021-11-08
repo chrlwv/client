@@ -19,8 +19,10 @@ module.exports = class Vote extends Command {
     });
   }
   async exec(message) {
-    const api = new Topgg.Api("apiKey");
-    /*
+    const api = new Topgg.Api(
+      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjkwMjkzNzAxMDEwMzI3NTU4MSIsImJvdCI6dHJ1ZSwiaWF0IjoxNjM2NDA2NjkxfQ.MRmkBLYUg7OtbDNQ42TqVthvx-EIlCJ1-8n89pP7noo"
+    );
+
     const buttonVote = new MessageButton()
       .setURL(`https://top.gg/bot/${this.client.user.id}}/vote`)
       .setLabel("Vote")
@@ -40,7 +42,5 @@ module.exports = class Vote extends Command {
         );
       }
     });
-	*/
-    return message.reply("This command is disabled for a while.");
   }
 };

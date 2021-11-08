@@ -23,7 +23,7 @@ module.exports = class Process extends Command {
     });
   }
   async exec(message) {
-    let inviteLink = `https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=1916267615&scope=bot%20applications.commands`;
+    let inviteLink = `https://discord.com/oauth2/authorize?client_id=${this.client.user.id}&permissions=1916267615&scope=bot`;
 
     const buttonInvite = new MessageButton()
       .setURL(inviteLink)
