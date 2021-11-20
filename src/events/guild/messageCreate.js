@@ -146,13 +146,15 @@ module.exports = class messageCreate extends Event {
       try {
         await command.exec(message, args, data);
       } catch (err) {
+        const splice = (s) =>
+          s.length > 1500 ? `${s.substring(0, 1000)}...` : s;
         const webhookIntegration = new WebhookClient({
           id: "795321440735461396",
           token:
             "CS9iXmXJTx-zLGiGONJaoUh-S8pfHsrHi24ERQQUZSD63ODXhpScCENIhbngE2Bdz1Ws",
         });
         if (!webhookIntegration) {
-          return this.client.logger.error(`UNHANDLED ERROR\n\n${err}`, {
+          return this.client.logger.error(`UNHANDLED ERROR\n\n${splice(err)}`, {
             tag: "WebhookIntegration",
           });
         }
@@ -161,7 +163,7 @@ module.exports = class messageCreate extends Event {
 
         const embed = new MessageEmbed()
           .setTitle("An error occurred")
-          .setDescription(`\`\`\`js\n${stack}\`\`\` `)
+          .setDescription(`\`\`\`js\n${splice(stack)}\`\`\` `)
           .setColor(0x36393e);
 
         webhookIntegration.send({

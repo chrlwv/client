@@ -126,7 +126,7 @@ module.exports = class Whois extends Command {
 			);
 
 		const TARGET_PRESENCE_LAST =
-			member.presence.activities.length > 1 ? "\n――――――――" : "";
+      member.presence.activities.length > 1 ? "\n**――――――――**\n" : "\n";
 
 		if (
 			member.presence != undefined &&

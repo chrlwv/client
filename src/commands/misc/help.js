@@ -24,9 +24,12 @@ module.exports = class Help extends Command {
 		let emb;
 		if (!cmd) {
 			emb = embed()
-				.setColor(0x36393e)
-				.setDescription(`Prefix: \`${data.guild?.prefix}\``)
-				.setThumbnail(message.guild.iconURL({ dynamic: true }));
+        .setColor(0x36393e)
+        .setDescription(`Prefix: \`${data.guild?.prefix}\``)
+        .setFooter(
+          `To get info of each command type ${data.guild?.prefix}help [command]`
+        )
+        .setThumbnail(message.guild.iconURL({ dynamic: true }));
 			const categories = removeDuplicates(
 				this.client.commands.map((cmd) => cmd.category)
 			);
