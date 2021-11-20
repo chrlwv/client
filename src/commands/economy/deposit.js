@@ -37,10 +37,10 @@ module.exports = class Deposit extends Command {
 
 		amount = Number(args[0]);
 
-		if (typeof amount !== "number" || isNaN(amount)) {
-			return message.reply('Make sure you enter a valid number.');
-		}
-
+    if (typeof amount !== "number" || isNaN(amount)) {
+      return message.reply("Make sure you enter a valid number.");
+    }
+		
 		if (message.content.includes("-")) {
 			return message.reply('Make sure you enter a valid number.');
 		}

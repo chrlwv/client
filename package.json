@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/charliewave-me/client#readme",
   "dependencies": {
+    "@sentry/node": "^6.15.0",
+    "@sentry/tracing": "^6.15.0",
     "@top-gg/sdk": "^3.1.2",
     "canvas": "^2.8.0",
     "chalk": "^4.1.2",
