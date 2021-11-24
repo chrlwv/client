@@ -1,6 +1,7 @@
 /** @format */
 
 const { parse } = require("twemoji-parser");
+const Discord = require("discord.js");
 
 module.exports = class Emoji extends Command {
 	constructor() {

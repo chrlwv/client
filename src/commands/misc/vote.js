@@ -24,7 +24,7 @@ module.exports = class Vote extends Command {
     );
 
     const buttonVote = new MessageButton()
-      .setURL(`https://top.gg/bot/${this.client.user.id}}/vote`)
+      .setURL(`https://top.gg/bot/${this.client.user.id}/vote`)
       .setLabel("Vote")
       .setStyle("LINK");
 
@@ -32,13 +32,14 @@ module.exports = class Vote extends Command {
 
     api.hasVoted(message.author.id).then((votes) => {
       if (votes == false) {
-        message.reply(
-          `It looks like you didn't vote today. Click down below on the button to vote now.`,
-          { components: [row] }
-        );
+        message.reply({
+          content:
+            "<:upvote_chrlwv:913091920614535248> It looks like you didn't vote today. Click down below on the button to vote now.",
+          components: [row],
+        });
       } else {
         message.reply(
-          "You've already submitted a vote today. Try again later."
+          "<:upvote_chrlwv:913091920614535248> You've already submitted a vote today. Try again later. "
         );
       }
     });

@@ -14,9 +14,12 @@ All the sessions are running on `heroku-service` and it's well maintained with h
 ## Widgets
 
 <center>
-<img src="https://top.gg/api/widget/status/679710920334639115.svg?noavatar=true&leftcolor=1A191A&lefttextcolor=00CDCD&righttextcolor=1A191A&rightcolor=1A191A"/>
-<img src="https://top.gg/api/widget/servers/772497789561208872.svg?noavatar=true&leftcolor=1A191A&lefttextcolor=00CDCD&righttextcolor=1A191A&rightcolor=43b581" />
-<img src="https://top.gg/api/widget/upvotes/772497789561208872.svg?noavatar=true&leftcolor=1A191A&lefttextcolor=00CDCD&righttextcolor=1A191A&rightcolor=43b581" />
+<a href="https://top.gg/bot/902937010103275581">
+  <img src="https://top.gg/api/widget/owner/902937010103275581.svg">
+</a>
+<a href="https://top.gg/bot/902937010103275581">
+  <img src="https://top.gg/api/widget/upvotes/902937010103275581.svg">
+</a>
 <br />
 <a href="https://charliewave.me/" ><img src="https://cdn.discordapp.com/attachments/789862793846325248/857918055731167253/Black__Yellow_Social_Media_Day_Banner.png" width="456"/><a/>
 <center/>
