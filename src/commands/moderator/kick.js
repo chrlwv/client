@@ -27,7 +27,7 @@ module.exports = class Kick extends Command {
           m.user.tag.toLowerCase().includes(args[0])
       );
 
-    const guildSettings = await this.client.getGuildById(member.guild.id);
+    const guildSettings = await this.client.getGuildById(message.guild.id);
 
     let reason = args.slice(1).join(" ");
 

@@ -27,7 +27,7 @@ module.exports = class Unban extends Command {
       );
     }
 
-    const guildSettings = await this.client.getGuildById(member.guild.id);
+    const guildSettings = await this.client.getGuildById(message.guild.id);
 
     if (!reason) reason = "no reason";
 

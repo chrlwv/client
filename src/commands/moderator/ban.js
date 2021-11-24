@@ -27,7 +27,7 @@ module.exports = class Ban extends Command {
           m.user.tag.toLowerCase().includes(args[0])
       );
 
-    const guildSettings = await this.client.getGuildById(member.guild.id);
+    const guildSettings = await this.client.getGuildById(message.guild.id);
 
     let reason = args.slice(2).join(" ");
     let days = args[1];
