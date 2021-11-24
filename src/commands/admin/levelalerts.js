@@ -2,13 +2,13 @@
 
 const guildsData = require("../../models/Guilds");
 
-module.exports = class MogLogChannel extends Command {
+module.exports = class LevelUpAlerts extends Command {
   constructor() {
     super({
-      name: "modlogchannel",
-      aliases: ["logchannel"],
-      description: "Provide the moderator logs channel.",
-      usage: "<channel>",
+      name: "levelalerts",
+      aliases: ["lvlalerts", "lvlalert"],
+      description: "Enabled or disabled the level-up alerts.",
+      usage: "<option>",
       category: "<:charliewave_settings:771462923855069204> Admin",
       ownerOnly: false,
       cooldown: 3000,
@@ -17,19 +17,27 @@ module.exports = class MogLogChannel extends Command {
     });
   }
   async exec(message, args, data) {
-    const item = message.mentions.channels.first();
+    const option = args[0];
     const guildId = message.guild.id;
 
-    if (!item) {
+    if (!option) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}modlogchannel <channel>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}levelalerts <enable / disable>\``
       );
     }
 
-    updateItem("modLogging.channel", item, guildId);
-    message.reply(
-      `Successfully changed the \`modlogchannel\`, channel: ${item}.`
-    );
+    switch (option.toLowerCase()) {
+      case "enable":
+        updateItem("level_msg_module", true, guildId);
+        message.reply(
+          `Successfully enabled \`level-up alerts\ for this guild.`
+        );
+        break;
+
+      case "disable":
+        updateItem("level_msg_module", false, guildId);
+        message.channel.send(`Disabled \`level-up alerts\` for this guild.`);
+    }
   }
 };
 
@@ -55,7 +63,6 @@ async function getGuildById(guildId) {
   }
   return guild;
 }
-
 async function updateItem(type, item, guildId) {
   await updateGuildById(guildId, {
     [type]: item,

@@ -22,7 +22,7 @@ module.exports = class UriBlocker extends Command {
 
     if (!args[0]) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}uriblocker <option>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}uriblocker <enable / disable>\``
       );
     }
 
@@ -30,15 +30,13 @@ module.exports = class UriBlocker extends Command {
       case "enable":
         updateItem("uri_blocker_module", true, guildId);
         message.channel.send(
-          `Successfully enabled the \`uri blocker\` module.`
+          `Successfully enabled \`uri blocker\` monitor for this guild.`
         );
         break;
 
       case "disable":
         updateItem("uri_blocker_module", false, guildId);
-        message.channel.send(
-          `Successfully disabled the \`uri blocker\` module.`
-        );
+        message.channel.send(`Disabled \`uri blocker\` monitor for now.`);
     }
   }
 };

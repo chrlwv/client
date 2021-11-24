@@ -6,7 +6,7 @@ module.exports = class Autorole extends Command {
   constructor() {
     super({
       name: "autorole",
-      aliases: ["arole"],
+      aliases: ["arole", "newcomer", "newbie"],
       description: "Enabled or disabled the auto role module.",
       usage: "<option> <role>",
       category: "<:charliewave_settings:771462923855069204> Admin",
@@ -23,7 +23,7 @@ module.exports = class Autorole extends Command {
 
     if (!option) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}autorole <option> <role>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}autorole <enable / disable> <role>\``
       );
     }
 
@@ -34,12 +34,12 @@ module.exports = class Autorole extends Command {
         }
 
         updateItem("auto_role_module", item, guildId);
-        message.reply(`Successfully updated \`autorole\` to ${item}.`);
+        message.reply(`Successfully updated \`newcomer\` role, role: ${item}.`);
         break;
 
       case "disable":
         updateItem("auto_role_module", false, guildId);
-        message.channel.send(`Successfully disabled the \`autorole\` module.`);
+        message.channel.send(`Disabled \`newcomer\` module.`);
     }
   }
 };

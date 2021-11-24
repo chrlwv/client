@@ -23,7 +23,7 @@ module.exports = class JoinChannel extends Command {
 
     if (!option) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}joinchannel <option> <channel>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}joinchannel <enable / disable> <channel>\``
       );
     }
 
@@ -34,12 +34,14 @@ module.exports = class JoinChannel extends Command {
         }
 
         updateItem("welcome_event_module", item, guildId);
-        message.reply(`Successfully enabled \`welcomer\`, channel: ${item}.`);
+        message.reply(
+          `Successfully enabled \`welcome\` module, channel: ${item}.`
+        );
         break;
 
       case "disable":
         updateItem("welcome_event_module", false, guildId);
-        message.channel.send(`Successfully disabled the \`welcomer\` module.`);
+        message.channel.send(`Disabled \`welcome\` module.`);
     }
   }
 };

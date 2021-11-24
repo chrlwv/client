@@ -59,15 +59,15 @@ module.exports = class Ban extends Command {
       `${message.author.tag} banned ${member.user.tag} for ${days} days, reason: ${reason}`
     );
 
-    if (guildSettings.modLogging.enable === true) {
+    if (guildSettings.client_logging.enable === true) {
       await this.client.updateGuildById(member.guild.id, {
-        "modLogging.case": guildSettings.modLogging.case + 1,
+        "client_logging.case": guildSettings.client_logging.case + 1,
       });
 
-      if (guildSettings.modLogging.channel) {
+      if (guildSettings.client_logging.channel) {
         if (
           !member.guild.channels.cache.find(
-            (ch) => ch.id === guildSettings.modLogging.channel
+            (ch) => ch.id === guildSettings.client_logging.channel
           )
         )
           return;
@@ -76,7 +76,7 @@ module.exports = class Ban extends Command {
         emb = embed()
           .setColor(0x36393e)
           .setTitle(
-            `ACTION: \`BAN\` CASE: \`${guildSettings.modLogging.case}\``
+            `ACTION: \`BAN\` CASE: \`${guildSettings.client_logging.case}\``
           )
           .setDescription(
             `\`\`\`js\nUser: ${member.user.tag} (ID: ${member.user.id})\nModerator: ${message.author.tag} (${message.author.id})\nReason: ${reason}\nDays: ${days}\n\`\`\``
@@ -85,7 +85,7 @@ module.exports = class Ban extends Command {
           .setTimestamp();
 
         this.client.channels.cache
-          .get(guildSettings.modLogging.channel)
+          .get(guildSettings.client_logging.channel)
           .send({ conent: "guildBanAdd", embeds: [emb] });
       }
     }

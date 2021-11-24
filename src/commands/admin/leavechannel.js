@@ -23,7 +23,7 @@ module.exports = class LeaveChannel extends Command {
 
     if (!option) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}leavechannel <option> <channel>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}leavechannel <enable / disable> <channel>\``
       );
     }
 
@@ -41,7 +41,7 @@ module.exports = class LeaveChannel extends Command {
 
       case "disable":
         updateItem("leave_event_module", false, guildId);
-        message.channel.send(`Successfully disabled the \`goodbye\` module.`);
+        message.channel.send(`Disabled \`goodbye\` module.`);
     }
   }
 };

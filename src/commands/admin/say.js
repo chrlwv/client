@@ -23,7 +23,7 @@ module.exports = class Says extends Command {
 
     if (!msg) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}say <type> <text>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}say <!embed> <text>\``
       );
     }
 

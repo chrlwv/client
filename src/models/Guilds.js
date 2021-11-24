@@ -12,8 +12,8 @@ module.exports = model(
     auto_role_module: { type: String, default: null },
     welcome_event_module: { type: String, default: null },
     leave_event_module: { type: String, default: null },
-    modLogging: {
-      enable: { type: Boolean, default: false },
+    client_logging: {
+      enable: { type: Boolean, default: true },
       channel: { type: String, default: null },
       case: { type: Number, default: 1 },
     },

@@ -2,13 +2,13 @@
 
 const guildsData = require("../../models/Guilds");
 
-module.exports = class SystemAlerts extends Command {
+module.exports = class LogChannel extends Command {
   constructor() {
     super({
-      name: "systemalerts",
-      aliases: ["sysalerts", "alerts"],
-      description: "Enabled or disabled system alerts.",
-      usage: "<option>",
+      name: "logchannel",
+      aliases: ["modlog"],
+      description: "Provide the moderator logs channel.",
+      usage: "<channel>",
       category: "<:charliewave_settings:771462923855069204> Admin",
       ownerOnly: false,
       cooldown: 3000,
@@ -17,27 +17,17 @@ module.exports = class SystemAlerts extends Command {
     });
   }
   async exec(message, args, data) {
-    const option = args[0];
+    const item = message.mentions.channels.first();
     const guildId = message.guild.id;
 
-    if (!option) {
+    if (!item) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}systemalerts <option>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}logchannel <channel>\``
       );
     }
 
-    switch (option.toLowerCase()) {
-      case "enable":
-        updateItem("level_msg_module", true, guildId);
-        message.reply(`Successfully enabled \`system alerts\` helper.`);
-        break;
-
-      case "disable":
-        updateItem("level_msg_module", false, guildId);
-        message.channel.send(
-          `Successfully disabled the \`system alerts\` helper.`
-        );
-    }
+    updateItem("client_logging.channel", item, guildId);
+    message.reply(`Successfully changed \`log channel\`, channel: ${item}.`);
   }
 };
 
@@ -63,6 +53,7 @@ async function getGuildById(guildId) {
   }
   return guild;
 }
+
 async function updateItem(type, item, guildId) {
   await updateGuildById(guildId, {
     [type]: item,
