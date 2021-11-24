@@ -25,6 +25,7 @@ module.exports = class Settings extends Command {
     const leaveCh = guild?.leave_event_module;
     const autoRole = guild?.auto_role_module;
     const arole = message.guild.roles.cache.get(autoRole);
+    const caseLogging = guild?.modLogging.enable;
 
     let emb;
     emb = embed()
@@ -37,15 +38,13 @@ module.exports = class Settings extends Command {
         "**WELCOMER:**",
         `welcome channel: ${
           welcomeCh !== null ? `<#${welcomeCh}>` : "disabled"
-        } \nleave channel: ${
-          leaveCh !== null ? `<#${leaveCh}>` : "disabled"
-        }`
+        } \nleave channel: ${leaveCh !== null ? `<#${leaveCh}>` : "disabled"}`
       )
       .addField(
         "**GENERAL:**",
         `autorole: ${
           autoRole !== null ? `${arole}` : "disabled"
-        }\nsystem alerts: ${levelMsgs}\nuri blocker: ${uriBlocker}\nprefix: ${prefix}`
+        }\nsystem alerts: ${levelMsgs}\nuri blocker: ${uriBlocker}\ncase logging: ${caseLogging}\nprefix: ${prefix}`
       )
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 2048 }));
     return message.reply({ embeds: [emb] });

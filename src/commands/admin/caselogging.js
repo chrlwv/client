@@ -2,13 +2,13 @@
 
 const guildsData = require("../../models/Guilds");
 
-module.exports = class LeaveChannel extends Command {
+module.exports = class CaseLogger extends Command {
   constructor() {
     super({
-      name: "leavechannel",
-      aliases: ["leftchannel"],
-      description: "Enabled or disabled the goodbye module.",
-      usage: "<option>",
+      name: "caselogging",
+      aliases: ["caselogs", "logs"],
+      description: "Enabled or disabled the case logger module.",
+      usage: "<option> <channel>",
       category: "<:charliewave_settings:771462923855069204> Admin",
       ownerOnly: false,
       cooldown: 3000,
@@ -18,30 +18,25 @@ module.exports = class LeaveChannel extends Command {
   }
   async exec(message, args, data) {
     const option = args[0];
-    const item = message.mentions.channels.first();
     const guildId = message.guild.id;
 
     if (!option) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}leavechannel <option> <channel>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}caselogging <option>\``
       );
     }
 
     switch (option.toLowerCase()) {
       case "enable":
-        if (!item) {
-          return message.reply("Make sure you mention a channel.");
-        }
-
-        updateItem("leave_event_module", item, guildId);
-        message.reply(
-          `Successfully enabled \`goodbye\` module, channel: ${item}.`
-        );
+        updateItem("modLogging.enable", true, guildId);
+        message.reply(`Successfully enabled the  \`caseLogging\` module.`);
         break;
 
       case "disable":
-        updateItem("leave_event_module", false, guildId);
-        message.channel.send(`Successfully disabled the \`goodbye\` module.`);
+        updateItem("modLogging.enable", false, guildId);
+        message.channel.send(
+          `Successfully disabled the \`caseLogging\` module.`
+        );
     }
   }
 };
@@ -72,5 +67,11 @@ async function getGuildById(guildId) {
 async function updateItem(type, item, guildId) {
   await updateGuildById(guildId, {
     [type]: item,
+  });
+}
+
+async function updateItemDisable(type, guildId) {
+  await updateGuildById(guildId, {
+    [type]: null,
   });
 }

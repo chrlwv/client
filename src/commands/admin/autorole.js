@@ -72,9 +72,3 @@ async function updateItem(type, item, guildId) {
     [type]: item,
   });
 }
-
-async function updateItemDisable(type, guildId) {
-  await updateGuildById(guildId, {
-    [type]: null,
-  });
-}

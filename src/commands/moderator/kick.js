@@ -1,51 +1,87 @@
 /** @format */
 
+const { embed } = require("../../utils/Utils");
+
 module.exports = class Kick extends Command {
-	constructor() {
-		super({
-			name: "kick",
-			aliases: [],
-			description: "Kick a user from the current guild.",
-			usage: "<user> <reason>",
-			category: "<:charliewave_advanced_moderator:857930973715103775> Moderator",
-			ownerOnly: false,
-			cooldown: 3000,
-			memberPerms: ["KICK_MEMBERS"],
-			clientPerms: ["KICK_MEMBERS"],
-		});
-	}
-	async exec(message, args, data) {
-		const member =
-			message.mentions.members.first() ||
-			message.guild.members.cache.get(args[0]) ||
-			message.guild.members.cache.find(
-				(m) =>
-					m.displayName.toLowerCase().includes(args[0]) ||
-					m.user.tag.toLowerCase().includes(args[0])
-			);
+  constructor() {
+    super({
+      name: "kick",
+      aliases: [],
+      description: "Kick a user from the current guild.",
+      usage: "<user> <reason>",
+      category:
+        "<:charliewave_advanced_moderator:857930973715103775> Moderator",
+      ownerOnly: false,
+      cooldown: 3000,
+      memberPerms: ["KICK_MEMBERS"],
+      clientPerms: ["KICK_MEMBERS"],
+    });
+  }
+  async exec(message, args, data) {
+    const member =
+      message.mentions.members.first() ||
+      message.guild.members.cache.get(args[0]) ||
+      message.guild.members.cache.find(
+        (m) =>
+          m.displayName.toLowerCase().includes(args[0]) ||
+          m.user.tag.toLowerCase().includes(args[0])
+      );
 
-		let reason = args.slice(1).join(" ");
+    const guildSettings = await this.client.getGuildById(member.guild.id);
 
-		if (!args.length) {
-			return message.reply(
-				`Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}kick <user> <reason>\``
-			);
-		}
+    let reason = args.slice(1).join(" ");
 
-		if (!member) {
-			return message.reply("This user is no longer on this guild.");
-		}
+    if (!args.length) {
+      return message.reply(
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}kick <user> <reason>\``
+      );
+    }
 
-		if (!reason) reason = "no reason";
+    if (!member) {
+      return message.reply("This user is no longer on this guild.");
+    }
 
-		if (!member.kickable) {
-			return message.reply("I am not able to ban this user.");
-		}
+    if (!reason) reason = "no reason";
 
-		await message.guild.members.kick(member, { reason: reason });
+    if (!member.kickable) {
+      return message.reply("I am not able to ban this user.");
+    }
 
-		message.reply(
-			`${message.author.tag} kick ${member.user.tag}, reason: ${reason}`
-		);
-	}
+    await message.guild.members.kick(member, { reason: reason });
+
+    message.reply(
+      `${message.author.tag} kick ${member.user.tag}, reason: ${reason}`
+    );
+
+    if (guildSettings.modLogging.enable === true) {
+      await this.client.updateGuildById(member.guild.id, {
+        "modLogging.case": guildSettings.modLogging.case + 1,
+      });
+
+      if (guildSettings.modLogging.channel) {
+        if (
+          !member.guild.channels.cache.find(
+            (ch) => ch.id === guildSettings.modLogging.channel
+          )
+        )
+          return;
+
+        let emb;
+        emb = embed()
+          .setColor(0x36393e)
+          .setTitle(
+            `ACTION: \`KICK\` CASE: \`${guildSettings.modLogging.case}\``
+          )
+          .setDescription(
+            `\`\`\`js\nUser: ${member.user.tag} (ID: ${member.user.id})\nModerator: ${message.author.tag} (${message.author.id})\nReason: ${reason}\n\`\`\``
+          )
+          .setThumbnail(member.displayAvatarURL)
+          .setTimestamp();
+
+        this.client.channels.cache
+          .get(guildSettings.modLogging.channel)
+          .send({ conent: "guildKickAdd", embeds: [emb] });
+      }
+    }
+  }
 };

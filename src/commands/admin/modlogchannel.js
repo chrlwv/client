@@ -2,13 +2,13 @@
 
 const guildsData = require("../../models/Guilds");
 
-module.exports = class LeaveChannel extends Command {
+module.exports = class MogLogChannel extends Command {
   constructor() {
     super({
-      name: "leavechannel",
-      aliases: ["leftchannel"],
-      description: "Enabled or disabled the goodbye module.",
-      usage: "<option>",
+      name: "modlogchannel",
+      aliases: ["logchannel"],
+      description: "Provide the moderator logs channel.",
+      usage: "<channel>",
       category: "<:charliewave_settings:771462923855069204> Admin",
       ownerOnly: false,
       cooldown: 3000,
@@ -17,32 +17,19 @@ module.exports = class LeaveChannel extends Command {
     });
   }
   async exec(message, args, data) {
-    const option = args[0];
     const item = message.mentions.channels.first();
     const guildId = message.guild.id;
 
-    if (!option) {
+    if (!item) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}leavechannel <option> <channel>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}modlogchannel <channel>\``
       );
     }
 
-    switch (option.toLowerCase()) {
-      case "enable":
-        if (!item) {
-          return message.reply("Make sure you mention a channel.");
-        }
-
-        updateItem("leave_event_module", item, guildId);
-        message.reply(
-          `Successfully enabled \`goodbye\` module, channel: ${item}.`
-        );
-        break;
-
-      case "disable":
-        updateItem("leave_event_module", false, guildId);
-        message.channel.send(`Successfully disabled the \`goodbye\` module.`);
-    }
+    updateItem("modLogging.channel", item, guildId);
+    message.reply(
+      `Successfully changed the \`modlogchannel\`, channel: ${item}.`
+    );
   }
 };
 
