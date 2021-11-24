@@ -29,7 +29,7 @@ module.exports = class CaseLogger extends Command {
     switch (option.toLowerCase()) {
       case "enable":
         updateItem("modLogging.enable", true, guildId);
-        message.reply(`Successfully enabled the  \`caseLogging\` module.`);
+        message.reply(`Successfully enabled the \`caseLogging\` module.`);
         break;
 
       case "disable":
