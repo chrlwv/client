@@ -2,11 +2,11 @@
 
 const guildsData = require("../../models/Guilds");
 
-module.exports = class CaseLogger extends Command {
+module.exports = class Logger extends Command {
   constructor() {
     super({
-      name: "caselogging",
-      aliases: ["caselogs", "logs"],
+      name: "logger",
+      aliases: ["caselogs", "logs", "caselogging"],
       description: "Enabled or disabled the case logger module.",
       usage: "<option> <channel>",
       category: "<:charliewave_settings:771462923855069204> Admin",
@@ -22,21 +22,19 @@ module.exports = class CaseLogger extends Command {
 
     if (!option) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}caselogging <option>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}logger <enable / disable>\``
       );
     }
 
     switch (option.toLowerCase()) {
       case "enable":
         updateItem("modLogging.enable", true, guildId);
-        message.reply(`Successfully enabled the \`caseLogging\` module.`);
+        message.reply(`Successfully enabled \`logger\` module.`);
         break;
 
       case "disable":
         updateItem("modLogging.enable", false, guildId);
-        message.channel.send(
-          `Successfully disabled the \`caseLogging\` module.`
-        );
+        message.channel.send(`Disabled \`logger\` module.`);
     }
   }
 };

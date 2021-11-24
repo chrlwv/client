@@ -49,44 +49,22 @@ module.exports = class Settings extends Command {
       .addField(
         "**WELCOMER:**",
         `welcome channel: ${
-          welcome_module !== null
-            ? `<a:toggle_on:913075299871248485> <#${welcome_module}>`
-            : "<a:toggle_off:913075299359551539>"
+          welcome_module !== null ? `<#${welcome_module}>` : "disabled"
         } \nleave channel: ${
-          leave_module !== null
-            ? `<a:toggle_on:913075299871248485> <#${leave_module}>`
-            : "<a:toggle_off:913075299359551539>"
+          leave_module !== null ? `<#${leave_module}>` : "disabled"
         }`,
         true
       )
       .addField(
         "**SYSTEM:**",
-        `level-up alerts: ${
-          level_module !== null
-            ? `<a:toggle_on:913075299871248485>`
-            : `<a:toggle_off:913075299359551539>`
-        }\nuri blocker: ${
-          uri_module !== null
-            ? `<a:toggle_on:913075299871248485>`
-            : `<a:toggle_off:913075299359551539>`
-        }`,
+        `level-up alerts: ${level_module}\nuri blocker: ${uri_module}`,
         true
       )
       .addField(
         "**GUILD:**",
         `autorole: ${
-          auto_role_module !== null
-            ? `<a:toggle_on:913075299871248485> ${auto_role}`
-            : "<a:toggle_off:913075299359551539>"
-        }\ncase logger: ${
-          case_logger !== null
-            ? `<a:toggle_on:913075299871248485>`
-            : "<a:toggle_off:913075299359551539>"
-        } ${
-          logger_channel !== null
-            ? `<#${logger_channel}>`
-            : `no channel established`
-        }`,
+          auto_role_module !== null ? `${auto_role}` : "disabled"
+        }\ncase logger: ${case_logger}\nlogger channel: ${logger_channel}`,
         true
       )
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 2048 }));
