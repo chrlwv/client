@@ -19,6 +19,9 @@ All the sessions are running on `heroku-service` and it's well maintained with h
 <a href="https://top.gg/bot/902937010103275581">
   <img src="https://top.gg/api/widget/upvotes/902937010103275581.svg">
 </a>
+<a href="https://top.gg/bot/902937010103275581">
+  <img src="https://top.gg/api/widget/servers/902937010103275581.svg">
+</a>
 <br />
 <a href="https://skillzl.me/chrlwv" ><img src="https://media.discordapp.net/attachments/903053243167428608/917474800782442547/chrlwv.jpg?width=960&height=360" width="456"/><a/>
 <center/>
