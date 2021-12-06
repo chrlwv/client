@@ -1,5 +1,5 @@
 
-> <img src="https://camo.githubusercontent.com/1d7a0b94a9c6d42ae6d3828a41e2b607528d343b4559a0c048638cd8050e0b0e/68747470733a2f2f692e696d6775722e636f6d2f5030534a6742382e706e67" width="20"/> Charliewave<strong>#7382</strong><br/> charliewave-me/client run-source repo.
+> <img src="https://camo.githubusercontent.com/1d7a0b94a9c6d42ae6d3828a41e2b607528d343b4559a0c048638cd8050e0b0e/68747470733a2f2f692e696d6775722e636f6d2f5030534a6742382e706e67" width="20"/> Charliewave<strong>#1754</strong><br/> charliewave-me/client run-source repo.
 
 A multipurpose discord bot written in **javascript**, that can be used by users to enjoy discord community server by help of our bot.
 
@@ -9,8 +9,7 @@ Charliewave provides **new-feature** activities with hard worked **backend** whi
 
 All the sessions are running on `heroku-service` and it's well maintained with help by the *Client Developer <skillzl.me>*. In the near future we might use **Azure VM** to provide unlimited sessions for our client.
 
-> **Tip:** Make sure you check frequently the `changelog` command for new upcoming updates or improvments.
-
+> **Tip:** Always use the lastest release for better experience.
 ## Widgets
 
 <center>
@@ -21,7 +20,7 @@ All the sessions are running on `heroku-service` and it's well maintained with h
   <img src="https://top.gg/api/widget/upvotes/902937010103275581.svg">
 </a>
 <br />
-<a href="https://charliewave.me/" ><img src="https://cdn.discordapp.com/attachments/789862793846325248/857918055731167253/Black__Yellow_Social_Media_Day_Banner.png" width="456"/><a/>
+<a href="https://skillzl.me/chrlwv" ><img src="https://media.discordapp.net/attachments/903053243167428608/917474800782442547/chrlwv.jpg?width=960&height=360" width="456"/><a/>
 <center/>
 
 ## Available config VARS
