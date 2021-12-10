@@ -70,9 +70,11 @@ module.exports = class Guilds extends Command {
     });
 
     let currentIndex = 0;
-    collector.on("collect", async () => {
-      message.customId === backId ? (currentIndex -= 10) : (currentIndex += 10);
-      await message.update({
+    collector.on("collect", async (interaction) => {
+      interaction.customId === backId
+        ? (currentIndex -= 10)
+        : (currentIndex += 10);
+      await interaction.update({
         embeds: [await generateEmbed(currentIndex)],
         components: [
           new MessageActionRow({
