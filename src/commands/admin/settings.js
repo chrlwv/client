@@ -34,7 +34,7 @@ module.exports = class Settings extends Command {
 
     const btnGithub = new MessageButton()
       .setURL("https://github.com/charliewave-me/issues")
-      .setLabel("Info")
+      .setLabel("Issues")
       .setStyle("LINK");
 
     const row = new MessageActionRow().addComponents(btnGithub);
