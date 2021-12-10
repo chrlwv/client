@@ -26,7 +26,7 @@ module.exports = class Workout extends Command {
       .setTitle("Workout Plan")
       .addField(
         `Monday`,
-        `*triceps 'n biceps day*\n\n10x4 - [dumbbell curls](https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/bicep-curl.gif?resize=480:*)\n10x4 - [dumbbell x2 curls](https://i.gifer.com/7hh1.gif)\n10x4 - [dumbbell hummer curls](https://thumbs.gfycat.com/AlarmingVeneratedFawn-size_restricted.gif)\n\n----------------\n10x4 - [overhead triceps](https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-do-the-single-arm-dumbbell-tricep-extension.gif?crop=0.5732484076433121xw:1xh;center,top&resize=480:*)\n10x3 - [bench dip](https://thumbs.gfycat.com/FittingImpassionedAmethystinepython-max-1mb.gif)`,
+        `*triceps 'n biceps day*\n\n12x3 - [dumbbell curls](https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/bicep-curl.gif?resize=480:*)\n12x3 - [dumbbell x2 curls](https://i.gifer.com/7hh1.gif)\n12x3 - [dumbbell hummer curls](https://thumbs.gfycat.com/AlarmingVeneratedFawn-size_restricted.gif)\n\n----------------\n12x3 - [overhead triceps](https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/how-to-do-the-single-arm-dumbbell-tricep-extension.gif?crop=0.5732484076433121xw:1xh;center,top&resize=480:*)\n12x3 - [bench dip](https://thumbs.gfycat.com/FittingImpassionedAmethystinepython-max-1mb.gif)`,
         true
       )
       .addField(
