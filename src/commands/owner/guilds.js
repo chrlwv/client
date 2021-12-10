@@ -22,13 +22,11 @@ module.exports = class Guilds extends Command {
     const backButton = new MessageButton({
       style: "SECONDARY",
       label: "Back",
-      emoji: "⬅️",
       customId: backId,
     });
     const forwardButton = new MessageButton({
       style: "SECONDARY",
       label: "Forward",
-      emoji: "➡️",
       customId: forwardId,
     });
 

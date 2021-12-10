@@ -2,11 +2,11 @@
 
 const { embed } = require("../../utils/Utils");
 
-module.exports = class Workout extends Command {
+module.exports = class Plan extends Command {
   constructor() {
     super({
-      name: "workout",
-      aliases: ["gym"],
+      name: "plan",
+      aliases: ["gym", "workout"],
       description: "Workout command",
       usage: "",
       category: "<:charliewave_ownership:771637500967124994> Owner",
