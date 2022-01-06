@@ -1,6 +1,6 @@
 {
   "name": "charliewave",
-  "version": "1.9.3",
+  "version": "1.9.4",
   "description": "A multipurpose discord bot written in javascript, that can be used by users to enjoy discord community server by help of our bot.",
   "main": "index.js",
   "scripts": {
