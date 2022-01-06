@@ -1,37 +1,34 @@
-# head
-
-*chrlwv-project* 
-**developing process**
+# chrlwv-project
+*developing process*
 
 
-|    |               A                |                                           B                                            |
+|    |               FEATURE          |                                           STATUS                                       |
 |----|--------------------------------|----------------------------------------------------------------------------------------|
-|  1 | Feature                        |  Status                                                                                |
-|  2 | Moderation                     | done                                                                                   |
-|  3 | Economy                        | done                                                                                   |
-|  4 | Case Logging                   | done                                                                                   |
-|  5 | Welcomer                       | done                                                                                   |
-|  6 | Custom Commands                | removed {available to build}                                                           |
-|  7 | Server Statistics              | none                                                                                   |
-|  8 | Economy                        | done                                                                                   |
-|  9 | Socials                        | done                                                                                   |
-| 10 | Slowmode                       | done                                                                                   |
-| 11 | Giveaways                      | removed {available to build}                                                           |
-| 12 | Gambling                       | done                                                                                   |
-| 13 | Search Engines                 | none                                                                                   |
-| 14 | Music                          | none                                                                                   |
-| 15 | Suggestions                    | ownerOnly                                                                              |
-| 16 | Ignore Channels                | removed {available to build}                                                           |
-| 17 | Reaction Role                  | not in plan {maybe in future}                                                          |
-| 18 | Reminders / Timers             | not in plan {maybe in future}                                                          |
-| 19 | Utilities                      | done                                                                                   |
-| 20 | Weather                        | done                                                                                   |
-| 21 | Hypixel Statistics             | done {could be more implemented for better experience}                                 |
-| 22 | i18n {multilingual} system     | removed {available to build}                                                           |
-| 23 | Birthdays {for socials update} | not in plan {maybe in future}                                                          |
-| 24 | Starboard                      | not in plan {maybe in future}                                                          |
-| 25 | Slash Commands                 | removed {due to some guild errors, maybe new improvements later}                       |
-| 26 | Sync Bot Settings              | done                                                                                   |
-| 27 | Dashboard                      | removed {due to rebuild, maybe new over all server init} / new OAuth2 with nextAuth.js |
-| 28 | Tickets System                 | removed {available to build}                                                           |
+|  1 | Moderation                     | done                                                                                   |
+|  2 | Economy                        | done                                                                                   |
+|  3 | Case Logging                   | done                                                                                   |
+|  4 | Welcomer                       | done                                                                                   |
+|  5 | Custom Commands                | removed {available to build}                                                           |
+|  6 | Server Statistics              | none                                                                                   |
+|  7 | Economy                        | done                                                                                   |
+|  8 | Socials                        | done                                                                                   |
+|  9 | Slowmode                       | done                                                                                   |
+| 10 | Giveaways                      | removed {available to build}                                                           |
+| 11 | Gambling                       | done                                                                                   |
+| 12 | Search Engines                 | none                                                                                   |
+| 13 | Music                          | none                                                                                   |
+| 14 | Suggestions                    | ownerOnly                                                                              |
+| 15 | Ignore Channels                | removed {available to build}                                                           |
+| 16 | Reaction Role                  | not in plan {maybe in future}                                                          |
+| 17 | Reminders / Timers             | not in plan {maybe in future}                                                          |
+| 18 | Utilities                      | done                                                                                   |
+| 19 | Weather                        | done                                                                                   |
+| 20 | Hypixel Statistics             | done {could be more implemented for better experience}                                 |
+| 21 | i18n {multilingual} system     | removed {available to build}                                                           |
+| 22 | Birthdays {for socials update} | not in plan {maybe in future}                                                          |
+| 23 | Starboard                      | not in plan {maybe in future}                                                          |
+| 24 | Slash Commands                 | removed {due to some guild errors, maybe new improvements later}                       |
+| 25 | Sync Bot Settings              | done                                                                                   |
+| 26 | Dashboard                      | removed {due to rebuild, maybe new over all server init} / new OAuth2 with nextAuth.js |
+| 27 | Tickets System                 | removed {available to build}                                                           |
 
