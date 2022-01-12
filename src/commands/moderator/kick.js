@@ -49,6 +49,13 @@ module.exports = class Kick extends Command {
 
     await message.guild.members.kick(member, { reason: reason });
 
+    
+    this.client.users.fetch(member.user.id, false).then((user) => {
+      user.send(
+        `You were kicked from \`${message.guild.name}\` guild by ${message.author.tag}, reason: ${reason}`
+      );
+    });
+
     message.reply(
       `${message.author.tag} kick ${member.user.tag}, reason: ${reason}`
     );

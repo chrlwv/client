@@ -38,18 +38,13 @@ module.exports = class Unban extends Command {
     );
 
     if (guildSettings.client_logging.enable === true) {
-      await this.client.updateGuildById(member.guild.id, {
+      await this.client.updateGuildById(message.guild.id, {
         "client_logging.case": guildSettings.client_logging.case + 1,
       });
 
-      if (!guildSettings.client_logging.channel)
-        return message.reply(
-          `In case you forgot, use ${guildSettings.prefix}logchannel to set a channel for the logger.`
-        );
-
       if (guildSettings.client_logging.channel) {
         if (
-          !member.guild.channels.cache.find(
+          !message.guild.channels.cache.find(
             (ch) => ch.id === guildSettings.client_logging.channel
           )
         )

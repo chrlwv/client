@@ -55,6 +55,12 @@ module.exports = class Ban extends Command {
 
     await message.guild.members.ban(member, { days: days, reason: reason });
 
+    this.client.users.fetch(member.user.id, false).then((user) => {
+      user.send(
+        `You were banned from \`${message.guild.name}\` guild by ${message.author.tag} for ${days} days, reason: ${reason}`
+      );
+    });
+
     message.reply(
       `${message.author.tag} banned ${member.user.tag} for ${days} days, reason: ${reason}`
     );
