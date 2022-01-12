@@ -57,7 +57,7 @@ module.exports = class Unban extends Command {
             `ACTION: \`UNBAN\` CASE: \`${guildSettings.client_logging.case}\``
           )
           .setDescription(
-            `\`\`\`js\nUser: ${member.user.tag} (ID: ${member.user.id})\nModerator: ${message.author.tag} (${message.author.id})\nReason: ${reason}\n\`\`\``
+            `\`\`\`js\nUser: ${bannedUser.tag} (ID: ${member})\nModerator: ${message.author.tag} (${message.author.id})\nReason: ${reason}\n\`\`\``
           )
           .setThumbnail(member.displayAvatarURL)
           .setTimestamp();
