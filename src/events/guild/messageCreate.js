@@ -12,7 +12,12 @@ module.exports = class messageCreate extends Event {
 		});
 	}
 	async exec(message) {
-		const mentionRegPrefix = RegExp(`^<@!?${this.client.user.id}> `);
+    const mentionRegPrefix = RegExp(`^<@!?${this.client.user.id}> `);
+
+    const guild = await this.client.getGuildById(message.guild.id);
+
+    const ignored_channels_const = guild?.ignored_channels;
+    if (ignored_channels_const.includes(message.channel.id)) return;
 
 		if (message.author.bot || !message.guild) return;
 		const data = {};

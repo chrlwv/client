@@ -17,5 +17,6 @@ module.exports = model(
       channel: { type: String, default: null },
       case: { type: Number, default: 1 },
     },
+    ignored_channels: { type: Array, default: [] },
   })
 );
