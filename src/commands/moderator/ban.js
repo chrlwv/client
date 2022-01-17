@@ -1,7 +1,5 @@
 /** @format */
 
-const { embed } = require("../../utils/Utils");
-
 module.exports = class Ban extends Command {
   constructor() {
     super({
@@ -85,7 +83,7 @@ module.exports = class Ban extends Command {
             `ACTION: \`BAN\` CASE: \`${guildSettings.client_logging.case}\``
           )
           .setDescription(
-            `\`\`\`js\nUser: ${member.user.tag} (ID: ${member.user.id})\nModerator: ${message.author.tag} (${message.author.id})\nReason: ${reason}\nDays: ${days}\n\`\`\``
+            `\`\`\`js\nUser: ${member.user.tag} (ID: ${member.user.id})\nModerator: ${message.author.tag} (${message.author.id})\nReason: ${reason}\n\`\`\``
           )
           .setThumbnail(member.displayAvatarURL)
           .setTimestamp();

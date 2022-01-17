@@ -2,7 +2,7 @@
 |----|--------------------------------|----------------------------------------------------------------------------------------|
 |  1 | Custom Commands                | wip, already done before                                                               |
 |  2 | Giveaways                      | wip, already done before                                                               |
-|  3 | Search Engines                 | not yet                                                                                |
+|  3 | Search Engines                 | in process                                                                             |
 |  4 | Music                          | not yet                                                                                |
 |  5 | Suggestions                    | wip, already done for client's purposes, not done for public                           |
 |  6 | Reaction Role                  | not in plan { maybe in future }                                                        |
