@@ -7,7 +7,7 @@ module.exports = class LogChannel extends Command {
     super({
       name: "logchannel",
       aliases: ["modlog"],
-      description: "Provide the moderator logs channel.",
+      description: "Provide the case log channel.",
       usage: "<channel>",
       category: "<:charliewave_settings:771462923855069204> Admin",
       ownerOnly: false,
