@@ -1,6 +1,6 @@
 |    |               FEATURE          |                                           STATUS                                       |
 |----|--------------------------------|----------------------------------------------------------------------------------------|
-|  1 | Custom Commands                | wip, already done before                                                               |
+|  1 | Custom Commands                | upcoming update with better functionality                                              |
 |  2 | Giveaways                      | wip, already done before                                                               |
 |  3 | Search Engines                 | in process                                                                             |
 |  4 | Music                          | not yet                                                                                |
