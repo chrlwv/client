@@ -1,5 +1,5 @@
 {
-  "name": "charliewave",
+  "name": "client",
   "version": "1.9.4",
   "description": "A multipurpose discord bot written in javascript, that can be used by users to enjoy discord community server by help of our bot.",
   "main": "index.js",
@@ -12,20 +12,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/charliewave-me/client.git"
+    "url": "git+https://github.com/chrlwv/client.git"
   },
   "keywords": [
     "chrlwv",
-    "charliewave",
-    "charlie-me",
-    "charliewave-me"
+    "chrlwv-tech"
   ],
   "author": "skillzl <user@skillzl.me>",
-  "license": "ISC",
+  "license": "SEE LICENSE IN <LICENSE>",
   "bugs": {
-    "url": "https://github.com/charliewave-me/issues"
+    "url": "https://github.com/chrlwv/issues"
   },
-  "homepage": "https://github.com/charliewave-me/client#readme",
+  "homepage": "https://github.com/chrlwv/client#readme",
   "dependencies": {
     "@sentry/node": "^6.15.0",
     "@sentry/tracing": "^6.15.0",

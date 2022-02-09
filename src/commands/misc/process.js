@@ -36,10 +36,9 @@ module.exports = class Process extends Command {
       .setStyle("LINK");
 
     const buttonWebsite = new MessageButton()
-      .setURL("https://skillzl.me/chrlwv")
+      .setURL("https://chrlwv.tech")
       .setLabel("Website")
-      .setStyle("LINK")
-      .setDisabled(true);
+      .setStyle("LINK");
 
     const row = new MessageActionRow().addComponents(
       buttonInvite,

@@ -33,7 +33,7 @@ module.exports = class Settings extends Command {
     const case_logger = guild?.client_logging.enable;
 
     const btnGithub = new MessageButton()
-      .setURL("https://github.com/charliewave-me/issues")
+      .setURL("https://github.com/chrlwv/issues")
       .setLabel("Issues")
       .setStyle("LINK");
 

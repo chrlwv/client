@@ -23,7 +23,7 @@ module.exports = class Informations extends Command {
     }
 
     const buttonGithub = new MessageButton()
-      .setURL("https://github.com/charliewave-me")
+      .setURL("https://github.com/chrlwv")
       .setLabel("GitHub")
       .setStyle("LINK");
 
@@ -33,10 +33,9 @@ module.exports = class Informations extends Command {
       .setStyle("LINK");
 
     const buttonWebsite = new MessageButton()
-      .setURL("https://skillzl.me/chrlwv")
+      .setURL("https://chrlwv.tech")
       .setLabel("Website")
-      .setStyle("LINK")
-      .setDisabled(true); 
+      .setStyle("LINK");
 
     const row = new MessageActionRow().addComponents(
       buttonGithub,
@@ -55,7 +54,7 @@ module.exports = class Informations extends Command {
         )}`
       )
       .setDescription(
-        `${this.client.user.username} is an experienced multipurpose bot that has a ton of features you will enjoy using.\n\nUse \`${data.guild?.prefix}help\` so you can interact with <@${this.client.user.id}> and make sure you understand all of it's features.`
+        `${this.client.user.username} is an experienced multipurpose bot that has a ton of features you will enjoy using.\n\nBy using \`${data.guild?.prefix}help\` you can learn how to interact with <@${this.client.user.id}> and make sure you understand the chrlwv-verse better!`
       )
       .setThumbnail(
         this.client.user.avatarURL({ dynamic: true, size: 2048, format: "png" })
