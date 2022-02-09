@@ -12,19 +12,7 @@ All the sessions are running on `heroku-service` and it's well maintained with h
 > **Tip:** Always use the lastest release for better experience.
 ## Widgets
 
-<center>
-<a href="https://top.gg/bot/902937010103275581">
-  <img src="https://top.gg/api/widget/owner/902937010103275581.svg">
-</a>
-<a href="https://top.gg/bot/902937010103275581">
-  <img src="https://top.gg/api/widget/upvotes/902937010103275581.svg">
-</a>
-<a href="https://top.gg/bot/902937010103275581">
-  <img src="https://top.gg/api/widget/servers/902937010103275581.svg">
-</a>
-<br />
-<a href="https://chrlwv.tech" ><img src="https://media.discordapp.net/attachments/903053243167428608/917474800782442547/chrlwv.jpg?width=960&height=360" width="456"/><a/>
-<center/>
+<a href="https://chrlwv.tech" ><img style="border-radius: 34px;" src="https://i.imgur.com/CVYoM6s.png" width="456"/><a/>
 
 ## Available config VARS
 ```
