@@ -1,9 +1,9 @@
 require('dotenv').config();
 
-const Sentry = require("@sentry/node");
-
-const Bot = require("./src/struct/Bot");
+const Bot = require('./src/struct/Bot');
 const client = new Bot();
+
+const Sentry = require('@sentry/node');
 
 Sentry.init({
   dsn: process.env.SENTRY,
