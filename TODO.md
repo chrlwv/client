@@ -1,15 +1,12 @@
 |     | FEATURE                    | STATUS                                                             |
-| --- | -------------------------- | ------------------------------------------------------------------ |
-| 1   | Custom Commands            | upcoming update with better functionality                          |
-| 2   | Giveaways                  | wip, already done before                                           |
-| 3   | Search Engines             | in process                                                         |
-| 4   | Music                      | not yet                                                            |
-| 5   | Suggestions                | wip, already done for client's purposes, not done for public       |
-| 6   | Reaction Role              | not in plan { maybe in future }                                    |
-| 7   | Reminders / Timers         | not in plan { maybe in future }                                    |
-| 8   | Hypixel Statistics         | done { could be more implemented for better experience }           |
-| 9   | i18n {multilingual} system | wip, already done before                                           |
-| 10  | Starboard                  | not in plan { maybe in future }                                    |
-| 11  | Slash Commands             | removed { due to some guild errors, maybe new improvements later } |
-| 12  | Dashboard                  | removed { new OAuth2 with nextAuth.js }                            |
-| 13  | Tickets System             | wip, already done before                                           |
+|-----|----------------------------|--------------------------------------------------------------------|
+| 1   | Giveaways                  | plugin deleted due to package deletion                             |
+| 2   | Music                      | irresolute plugin                                                  |
+| 3   | Suggestions                | * almost as the report command for feedback but better             |
+| 4   | Reaction Role              | unfinished for client                                              |
+| 5   | Reminders / Timers         | unfinished for client                                              |
+| 6   | Hypixel Statistics         | api limitations { new commands are not implemented yet }           |
+| 7   | i18n {multilingual} system | plugin detached from production server                             |
+| 8   | Slash Commands             | unmaintainted { probably be done in future }                       |
+| 9   | Dashboard                  | unmaintainted { nextAuth.js new integration resolve}               |
+| 10  | Tickets System             | plugin in progress                                                 |

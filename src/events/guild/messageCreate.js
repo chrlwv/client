@@ -32,47 +32,47 @@ module.exports = class messageCreate extends Event {
 			.trim()
 			.split(/ +/g);
 		const command =
-			this.client.commands.get(cmd.toLowerCase()) ||
-			this.client.commands.get(this.client.aliases.get(cmd.toLowerCase()));
-		if (command) {
-			if (message.guild) {
-				const memberCheck = command.memberPerms;
-				if (memberCheck) {
-					const missing = message.channel
-						.permissionsFor(message.member)
-						.missing(memberCheck);
-					if (missing.length) {
-						await message.channel.sendTyping();
-						return message.reply(
-							`You are missing \`${formatArray(
-								missing.map(formatPerms)
-							)}\` permission.`
-						);
-					}
-				}
-				const clientCheck = command.clientPerms;
-				if (clientCheck) {
-					const missing = message.channel
-						.permissionsFor(message.guild.me)
-						.missing(clientCheck);
-					if (missing.length) {
-						await message.channel.sendTyping();
-						return message.reply(
-							`I am missing \`${formatArray(
-								missing.map(formatPerms)
-							)}\` permission.`
-						);
-					}
-				}
-			}
+      this.client.commands.get(cmd.toLowerCase()) ||
+      this.client.commands.get(this.client.aliases.get(cmd.toLowerCase()));
+    if (command) {
+      if (message.guild) {
+        const memberCheck = command.memberPerms;
+        if (memberCheck) {
+          const missing = message.channel
+            .permissionsFor(message.member)
+            .missing(memberCheck);
+          if (missing.length) {
+            await message.channel.sendTyping();
+            return message.reply(
+              `You are missing \`${formatArray(
+                missing.map(formatPerms)
+              )}\` permission.`
+            );
+          }
+        }
+        const clientCheck = command.clientPerms;
+        if (clientCheck) {
+          const missing = message.channel
+            .permissionsFor(message.guild.me)
+            .missing(clientCheck);
+          if (missing.length) {
+            await message.channel.sendTyping();
+            return message.reply(
+              `I am missing \`${formatArray(
+                missing.map(formatPerms)
+              )}\` permission.`
+            );
+          }
+        }
+      }
 
-			if (command.ownerOnly && !this.client.owners.includes(message.author.id))
-				return;
-			if (!this.client.cooldowns.has(command.name)) {
-				this.client.cooldowns.set(command.name, new Collection());
-			}
+      if (command.ownerOnly && !this.client.owners.includes(message.author.id))
+        return;
+      if (!this.client.cooldowns.has(command.name)) {
+        this.client.cooldowns.set(command.name, new Collection());
+      }
 
-			if (!message.author.bot) {
+      if (!message.author.bot) {
         const { user } = await this.client.getUserById(message.author.id);
         const xp = Math.ceil(Math.random() * (1 * 5));
         const level = calculateUserXp(user.exp);
@@ -94,9 +94,9 @@ module.exports = class messageCreate extends Event {
           exp: user.exp + xp,
         });
       }
-      
+
       const guild = await this.client.getGuildById(message.guild.id);
-      
+
       if (guild.uri_blocker_module === true) {
         function is_url(str) {
           let regexp =
@@ -109,7 +109,7 @@ module.exports = class messageCreate extends Event {
         }
 
         if (is_url(message.content) === true) {
-          if (message.member.hasPermission("MANAGE_MESSAGES")) return;
+          if (message.member.hasPermission('MANAGE_MESSAGES')) return;
           message.delete();
 
           return message
@@ -133,7 +133,7 @@ module.exports = class messageCreate extends Event {
           return message.reply("You've been blacklisted from using this bot.");
         }
       }
-      
+
       const now = Date.now();
       const timestamps = this.client.cooldowns.set(command.name);
       const cdAmount = command.cooldown;
@@ -154,38 +154,38 @@ module.exports = class messageCreate extends Event {
         const splice = (s) =>
           s.length > 1500 ? `${s.substring(0, 1000)}...` : s;
         const webhookIntegration = new WebhookClient({
-          id: "795321440735461396",
+          id: '795321440735461396',
           token:
-            "CS9iXmXJTx-zLGiGONJaoUh-S8pfHsrHi24ERQQUZSD63ODXhpScCENIhbngE2Bdz1Ws",
+            'CS9iXmXJTx-zLGiGONJaoUh-S8pfHsrHi24ERQQUZSD63ODXhpScCENIhbngE2Bdz1Ws',
         });
         if (!webhookIntegration) {
           return this.client.logger.error(`UNHANDLED ERROR\n\n${splice(err)}`, {
-            tag: "WebhookIntegration",
+            tag: 'WebhookIntegration',
           });
         }
 
         const stack = err.stack || err;
 
         const embed = new MessageEmbed()
-          .setTitle("An error occurred")
+          .setTitle('An error occurred')
           .setDescription(`\`\`\`js\n${splice(stack)}\`\`\` `)
           .setColor(0x36393e);
 
         webhookIntegration.send({
-          username: "chrlwv",
+          username: 'chrlwv',
           avatarURL:
-            "https://cdn.discordapp.com/avatars/782183368195702815/6f794821a5f0807c56ae9f9b3c0548f9.png?size=1024",
+            'https://japi.rest/discord/v1/user/462294547855048714/avatar?size=512',
           embeds: [embed],
         });
 
         this.client.logger.error(
           `An error occurred when trying to trigger MessageCreate event.\n\n${err}`,
-          { tag: "MessageError" }
+          { tag: 'MessageError' }
         );
         return message.reply(
           `Oops, run into a critical error, please wait for a fix.`
         );
       }
-		}
+    }
 	}
 };
