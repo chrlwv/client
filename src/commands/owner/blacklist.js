@@ -5,11 +5,11 @@ const ms = require("ms");
 module.exports = class Blacklist extends Command {
   constructor() {
     super({
-      name: "blacklist",
-      aliases: ["block", "white", "whitelist"],
-      description: "Blocklist command",
-      usage: "<user> <type> <reason>",
-      category: "<:charliewave_ownership:771637500967124994> Owner",
+      name: 'blacklist',
+      aliases: ['block', 'white', 'whitelist'],
+      description: 'Blocklist command',
+      usage: '<user> <type: view; add; remove> <reason>',
+      category: '<:charliewave_ownership:771637500967124994> Owner',
       ownerOnly: true,
       cooldown: 3000,
       memberPerms: [],
@@ -33,7 +33,7 @@ module.exports = class Blacklist extends Command {
 
     if (!type) {
       return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}blacklist <user> <type> <reason>\``
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}blacklist <user> <type: view; add; remove> <reason>\``
       );
     }
 

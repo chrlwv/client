@@ -3,16 +3,16 @@
 module.exports = class Add extends Command {
 	constructor() {
 		super({
-			name: "add",
-			aliases: ["set"],
-			description: "Add command",
-			usage: "<user> <type> <value>",
-			category: "<:charliewave_ownership:771637500967124994> Owner",
-			ownerOnly: true,
-			cooldown: 3000,
-			memberPerms: [],
-			clientPerms: [],
-		});
+      name: 'add',
+      aliases: ['set'],
+      description: 'Add command',
+      usage: '<user> <type: exp; coins; reputation> <value>',
+      category: '<:charliewave_ownership:771637500967124994> Owner',
+      ownerOnly: true,
+      cooldown: 3000,
+      memberPerms: [],
+      clientPerms: [],
+    });
 	}
 	async exec(message, args, data) {
 		const member =
@@ -29,7 +29,7 @@ module.exports = class Add extends Command {
 
      if (!value) {
        return message.reply(
-         `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}add <user> <type> <value>\``
+         `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}add <user> <type: exp; coins; reputation> <value>\``
        );
      }
 

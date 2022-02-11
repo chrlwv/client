@@ -1,18 +1,18 @@
 /** @format */
 
-const ms = require("ms");
-const { WebhookClient } = require("discord.js");
+const ms = require('ms');
+const { WebhookClient } = require('discord.js');
 
-const { embed } = require("../../utils/Utils");
+const { embed } = require('../../utils/Utils');
 
 module.exports = class Report extends Command {
   constructor() {
     super({
-      name: "report",
-      aliases: ["bug", "bugreport"],
-      description: "Gives you a chance to report bugs.",
-      usage: "<user>",
-      category: "<:charliewave_general:771633361340727336> Misc",
+      name: 'report',
+      aliases: ['bug', 'bugreport'],
+      description: 'Gives you a chance to report bugs.',
+      usage: '<user>',
+      category: '<:charliewave_supporter:771641583963340821> Core',
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -23,7 +23,7 @@ module.exports = class Report extends Command {
     const timeout = 1800000;
     const { user } = await this.client.getUserById(message.author.id);
     const report = user.report_cooldown;
-    const bug = args.join(" ");
+    const bug = args.join(' ');
 
     if (!bug) {
       return message.reply(
@@ -39,9 +39,9 @@ module.exports = class Report extends Command {
       );
     } else {
       const webhookClient = new WebhookClient({
-        id: "900345596131565568",
+        id: '900345596131565568',
         token:
-          "hTHmf_hJJPE6iaATkrfLGUVOgcvqMqa3T2jJzr76xFyvJzxyMtrzBEGO0HfJ1rznKdgb",
+          'hTHmf_hJJPE6iaATkrfLGUVOgcvqMqa3T2jJzr76xFyvJzxyMtrzBEGO0HfJ1rznKdgb',
       });
 
       let emb;
@@ -49,11 +49,11 @@ module.exports = class Report extends Command {
         .setColor(0x36393e)
         .addField(`Author:`, message.author.tag)
         .addField(`Bug Description:`, bug)
-        .setThumbnail("https://www.charliewave.me/favicon.ico");
+        .setThumbnail('https://www.charliewave.me/favicon.ico');
 
       webhookClient.send({
-        username: "chàrlie",
-        avatarURL: "https://www.charliewave.me/favicon.ico",
+        username: 'chàrlie',
+        avatarURL: 'https://www.charliewave.me/favicon.ico',
         embeds: [emb],
       });
 

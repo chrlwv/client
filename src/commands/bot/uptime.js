@@ -1,14 +1,14 @@
 /** @format */
 
-const { MessageActionRow, MessageButton } = require("discord.js");
+const { MessageActionRow, MessageButton } = require('discord.js');
 module.exports = class Uptime extends Command {
   constructor() {
     super({
-      name: "uptime",
-      aliases: ["uptime"],
-      description: "Displays bot uptime.",
-      usage: "",
-      category: "<:charliewave_general:771633361340727336> Misc",
+      name: 'uptime',
+      aliases: ['uptime'],
+      description: 'Displays bot uptime.',
+      usage: '',
+      category: '<:charliewave_supporter:771641583963340821> Core',
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -17,9 +17,9 @@ module.exports = class Uptime extends Command {
   }
   async exec(message) {
     const buttonSupport = new MessageButton()
-      .setURL("https://discord.gg/RPRfpnM6MZ")
-      .setLabel("Support")
-      .setStyle("LINK");
+      .setURL('https://discord.gg/RPRfpnM6MZ')
+      .setLabel('Support')
+      .setStyle('LINK');
 
     const row = new MessageActionRow().addComponents(buttonSupport);
 
@@ -29,7 +29,7 @@ module.exports = class Uptime extends Command {
       content: [
         `client uptime: ${this.constructor.uptime()}`,
         `client status: <:charliewave_online:771635233384693791> online.`,
-      ].join("\n"),
+      ].join('\n'),
     });
   }
 
@@ -42,18 +42,18 @@ module.exports = class Uptime extends Command {
     var mins = Math.floor(msec / 1000 / 60);
     msec -= mins * 1000 * 60;
     var secs = Math.floor(msec / 1000);
-    var timestr = "";
+    var timestr = '';
     if (days > 0) {
-      timestr += days + "d ";
+      timestr += days + 'd ';
     }
     if (hours > 0) {
-      timestr += hours + "h ";
+      timestr += hours + 'h ';
     }
     if (mins > 0) {
-      timestr += mins + "m ";
+      timestr += mins + 'm ';
     }
     if (secs > 0) {
-      timestr += secs + "s";
+      timestr += secs + 's';
     }
     return timestr;
   }
