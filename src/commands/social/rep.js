@@ -16,7 +16,7 @@ module.exports = class Reputation extends Command {
 			clientPerms: [],
 		});
 	}
-	async exec(message, args) {
+	async exec(message, args, data) {
 		const member =
 			message.mentions.members.first() ||
 			message.guild.members.cache.get(args[0]) ||
@@ -35,8 +35,10 @@ module.exports = class Reputation extends Command {
 		const { user: receiver } = await this.client.getUserById(member.id);
 		const { user: sender } = await this.client.getUserById(message.author.id);
 
-		if (!member) {
-			return message.reply("Please mention a user and make sure it's not you.");
+		if (!args[0]) {
+      return message.reply(
+        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}rep <user>\``
+      );
 		}
 
 		if (receiver.userId === sender.userId) {
