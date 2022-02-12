@@ -3,41 +3,42 @@
 const { Client, Collection, Intents } = require("discord.js");
 const { connect, connection: db } = require("mongoose");
 const { resolve } = require("path");
-const { sync } = require("glob");
+const { sync } = require('glob');
+const fs = require('fs');
 
-require("./Command");
-require("./Event");
+require('./Command');
+require('./Event');
 
 const yes = [
-  "yes",
-  "y",
-  "ye",
-  "yeah",
-  "yup",
-  "yea",
-  "ya",
-  "hai",
-  "da",
-  "dai",
-  "si",
-  "sí",
-  "oui",
-  "はい",
-  "correct",
-  "davai",
+  'yes',
+  'y',
+  'ye',
+  'yeah',
+  'yup',
+  'yea',
+  'ya',
+  'hai',
+  'da',
+  'dai',
+  'si',
+  'sí',
+  'oui',
+  'はい',
+  'correct',
+  'davai',
 ];
 const no = [
-  "no",
-  "n",
-  "nah",
-  "nope",
-  "nu",
-  "nop",
-  "iie",
-  "いいえ",
-  "non",
-  "fuck off",
-  "ne",
+  'no',
+  'n',
+  'nah',
+  'nope',
+  'nu',
+  'nop',
+  'iie',
+  'いいえ',
+  'non',
+  'fuck off',
+  'ne',
 ];
 
 module.exports = class Bot extends Client {
@@ -52,44 +53,44 @@ module.exports = class Bot extends Client {
     this.commands = new Collection();
     this.events = new Collection();
     this.aliases = new Collection();
-    this.owners = ["565960314970177556", "462294547855048714"];
-    this.openWeatherMapKey = "ed251da67188d62057cd640eda4fdc77";
-    this.hypixelKey = "733544fa-d61b-4d31-9531-5aaff48e9624";
-    this.logger = require("../utils/Logger");
+    this.owners = ['565960314970177556', '462294547855048714'];
+    this.openWeatherMapKey = 'ed251da67188d62057cd640eda4fdc77';
+    this.hypixelKey = '733544fa-d61b-4d31-9531-5aaff48e9624';
+    this.logger = require('../utils/Logger');
     this.games = new Collection();
 
     this.database = {};
-    this.guildsData = require("../models/Guilds");
+    this.guildsData = require('../models/Guilds');
     this.database.guilds = new Collection();
-    this.usersData = require("../models/Users");
+    this.usersData = require('../models/Users');
     this.database.users = new Collection();
-    this.warningsData = require("../models/Warnings");
+    this.warningsData = require('../models/Warnings');
     this.database.warnings = new Collection();
-    this.blacklistedData = require("../models/Blacklisted");
+    this.blacklistedData = require('../models/Blacklisted');
     this.database.blacklisted = new Collection();
 
-    db.on("connected", async () =>
+    db.on('connected', async () =>
       this.logger.log(
         `Successfully connected to the database! (Latency: ${Math.round(
           await this.databasePing()
         )}ms)`,
-        { tag: "Database" }
+        { tag: 'Database' }
       )
     );
-    db.on("disconnected", () =>
-      this.logger.error("Disconnected from the database!", { tag: "Database" })
+    db.on('disconnected', () =>
+      this.logger.error('Disconnected from the database!', { tag: 'Database' })
     );
-    db.on("error", (error) =>
+    db.on('error', (error) =>
       this.logger.error(`Unable to connect to the database!\nError: ${error}`, {
-        tag: "Database",
+        tag: 'Database',
       })
     );
-    db.on("reconnected", async () =>
+    db.on('reconnected', async () =>
       this.logger.log(
         `Reconnected to the database! (Latency: ${Math.round(
           await this.databasePing()
         )}ms)`,
-        { tag: "Database" }
+        { tag: 'Database' }
       )
     );
   }
@@ -130,7 +131,7 @@ module.exports = class Bot extends Client {
   }
 
   async loadCommands() {
-    const cmdFile = await sync(resolve("./src/commands/**/*.js"));
+    const cmdFile = await sync(resolve('./src/commands/**/*.js'));
     cmdFile.forEach((filepath) => {
       const File = require(filepath);
       if (!(File.prototype instanceof Command)) return;
@@ -144,7 +145,7 @@ module.exports = class Bot extends Client {
   }
 
   async loadEvents() {
-    const evtFile = await sync(resolve("./src/events/**/*.js"));
+    const evtFile = await sync(resolve('./src/events/**/*.js'));
     evtFile.forEach((filepath) => {
       const File = require(filepath);
       if (!(File.prototype instanceof Event)) return;
@@ -152,11 +153,11 @@ module.exports = class Bot extends Client {
       event.client = this;
       this.events.set(event.name, event);
       const emitter = event.emitter
-        ? typeof event.emitter === "string"
+        ? typeof event.emitter === 'string'
           ? this[event.emitter]
           : emitter
         : this;
-      emitter[event.type ? "once" : "on"](event.name, (...args) =>
+      emitter[event.type ? 'once' : 'on'](event.name, (...args) =>
         event.exec(...args)
       );
     });
@@ -183,7 +184,7 @@ module.exports = class Bot extends Client {
   }
 
   async updateUserById(userId, data) {
-    if (typeof data !== "object") {
+    if (typeof data !== 'object') {
       throw Error("'data' must be an object");
     }
 
@@ -210,7 +211,7 @@ module.exports = class Bot extends Client {
   }
 
   async updateGuildById(guildId, settings) {
-    if (typeof settings !== "object") {
+    if (typeof settings !== 'object') {
       throw Error("'settings' must be an object");
     }
 
@@ -233,8 +234,25 @@ module.exports = class Bot extends Client {
     await this.guildsData.findOneAndDelete({ guildId: guildId });
   }
 
+  async getGuildLang(guildId) {
+    try {
+      const guild = await this.getGuildById(guildId);
+
+      return require(`../locales/${guild?.locale || 'english'}`);
+    } catch (e) {
+      this.logger.log(e.stack || e, { tag: 'Locales' });
+    }
+  }
+
+  async getLanguages() {
+    return fs
+      .readdirSync('../../locales/')
+      .filter((f) => f.endsWith('.js'))
+      .map((la) => la.slice(0, -3));
+  }
+
   async formatNumber(n) {
-    return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
+    return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   }
 
   async greyScale(ctx, x, y, width, height) {
@@ -259,12 +277,12 @@ module.exports = class Bot extends Client {
     return ctx;
   }
 
-  async list(arr, conj = "and") {
+  async list(arr, conj = 'and') {
     const len = arr.length;
-    if (len === 0) return "";
+    if (len === 0) return '';
     if (len === 1) return arr[0];
-    return `${arr.slice(0, -1).join(", ")}${
-      len > 1 ? `${len > 2 ? "," : ""} ${conj} ` : ""
+    return `${arr.slice(0, -1).join(', ')}${
+      len > 1 ? `${len > 2 ? ',' : ''} ${conj} ` : ''
     }${arr.slice(-1)}`;
   }
 

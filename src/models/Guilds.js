@@ -18,5 +18,6 @@ module.exports = model(
       case: { type: Number, default: 1 },
     },
     ignored_channels: { type: Array, default: [] },
+    locale: { type: String, default: 'english' },
   })
 );
