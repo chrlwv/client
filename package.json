@@ -28,6 +28,7 @@
     "@sentry/node": "^6.15.0",
     "@sentry/tracing": "^6.15.0",
     "@top-gg/sdk": "^3.1.2",
+    "canvacord": "^5.2.3",
     "canvas": "^2.8.0",
     "chalk": "^4.1.2",
     "common-tags": "^1.8.0",
