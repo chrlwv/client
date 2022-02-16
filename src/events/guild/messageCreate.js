@@ -130,7 +130,9 @@ module.exports = class messageCreate extends Event {
         );
 
         if (isBlacklisted) {
-          return message.reply("You've been blacklisted from using this bot.");
+          return message.reply(
+            'You have been blocked from using this bot.\nTry to conect with us on our website https://chrlwv.tech/'
+          );
         }
       }
 
@@ -172,9 +174,9 @@ module.exports = class messageCreate extends Event {
           .setColor(0x36393e);
 
         webhookIntegration.send({
-          username: 'chrlwv',
+          username: 'chrlwv.tech',
           avatarURL:
-            'https://japi.rest/discord/v1/user/462294547855048714/avatar?size=512',
+            'https://japi.rest/discord/v1/user/902937010103275581/avatar?size=512',
           embeds: [embed],
         });
 

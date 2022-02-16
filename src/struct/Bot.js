@@ -9,38 +9,6 @@ const fs = require('fs');
 require('./Command');
 require('./Event');
 
-const yes = [
-  'yes',
-  'y',
-  'ye',
-  'yeah',
-  'yup',
-  'yea',
-  'ya',
-  'hai',
-  'da',
-  'dai',
-  'si',
-  'sí',
-  'oui',
-  'はい',
-  'correct',
-  'davai',
-];
-const no = [
-  'no',
-  'n',
-  'nah',
-  'nope',
-  'nu',
-  'nop',
-  'iie',
-  'いいえ',
-  'non',
-  'fuck off',
-  'ne',
-];
-
 module.exports = class Bot extends Client {
   constructor() {
     super({
@@ -53,11 +21,14 @@ module.exports = class Bot extends Client {
     this.commands = new Collection();
     this.events = new Collection();
     this.aliases = new Collection();
-    this.owners = ['565960314970177556', '462294547855048714'];
+    this.owners = [
+      '565960314970177556',
+      '462294547855048714',
+      '455004835658596363',
+    ];
     this.openWeatherMapKey = 'ed251da67188d62057cd640eda4fdc77';
     this.hypixelKey = '733544fa-d61b-4d31-9531-5aaff48e9624';
     this.logger = require('../utils/Logger');
-    this.games = new Collection();
 
     this.database = {};
     this.guildsData = require('../models/Guilds');
@@ -255,28 +226,6 @@ module.exports = class Bot extends Client {
     return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   }
 
-  async greyScale(ctx, x, y, width, height) {
-    const data = ctx.getImageData(x, y, width, height);
-    for (let i = 0; i < data.data.length; i += 4) {
-      const brightness =
-        0.34 * data.data[i] + 0.5 * data.data[i + 1] + 0.16 * data.data[i + 2];
-      data.data[i] = brightness;
-      data.data[i + 1] = brightness;
-      data.data[i + 2] = brightness;
-    }
-    ctx.putImageData(data, x, y);
-    return ctx;
-  }
-
-  async motionBlur(ctx, image, x, y, width, height) {
-    ctx.drawImage(image, x, y, width, height);
-    ctx.globalAlpha = 0.2;
-    for (let i = 0; i < 10; i += 2)
-      ctx.drawImage(image, x + i, y, width, height);
-    ctx.globalAlpha = 1;
-    return ctx;
-  }
-
   async list(arr, conj = 'and') {
     const len = arr.length;
     if (len === 0) return '';
@@ -288,37 +237,6 @@ module.exports = class Bot extends Client {
 
   async randomRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
-  }
-
-  async verify(
-    channel,
-    user,
-    { time = 30000, extraYes = [], extraNo = [] } = {}
-  ) {
-    const filter = (res) => {
-      const value = res.content.toLowerCase();
-      return (
-        (user ? res.author.id === user.id : true) &&
-        (yes.includes(value) ||
-          no.includes(value) ||
-          extraYes.includes(value) ||
-          extraNo.includes(value))
-      );
-    };
-
-    const verify = await channel.awaitMessages(filter, {
-      max: 1,
-      time,
-    });
-
-    if (!verify.size) return 0;
-
-    const choice = verify.first().content.toLowerCase();
-
-    if (yes.includes(choice) || extraYes.includes(choice)) return true;
-    if (no.includes(choice) || extraNo.includes(choice)) return false;
-
-    return false;
   }
 
   async start(token) {
