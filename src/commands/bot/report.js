@@ -47,13 +47,16 @@ module.exports = class Report extends Command {
       let emb;
       emb = embed()
         .setColor(0x36393e)
-        .addField(`Author:`, message.author.tag)
+        .addField(`Author:`, `${message.author.tag} (ID: ${message.author.id})`)
         .addField(`Bug Description:`, bug)
-        .setThumbnail('https://www.charliewave.me/favicon.ico');
+        .setThumbnail(
+          'https://japi.rest/discord/v1/user/902937010103275581/avatar?size=512'
+        );
 
       webhookClient.send({
-        username: 'chàrlie',
-        avatarURL: 'https://www.charliewave.me/favicon.ico',
+        username: 'chrlwv',
+        avatarURL:
+          'https://japi.rest/discord/v1/user/902937010103275581/avatar?size=512',
         embeds: [emb],
       });
 
