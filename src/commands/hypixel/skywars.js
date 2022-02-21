@@ -53,30 +53,31 @@ module.exports = class Skywars extends Command {
           emb = embed()
             .setColor(0x36393e)
             .setTitle(`${player.nickname}`)
+            .setURL(`https://hypixel.net/player/${player.nickname}`)
             .setThumbnail(
               `https://visage.surgeplay.com/head/512/${player.uuid}`
             )
             .setImage(`https://visage.surgeplay.com/full/512/${player.uuid}`)
-            .addField("**LEVEL:**", `${player.stats.skywars.level}`, true)
-            .addField("**HEADS:**", `${player.stats.skywars.heads}`, true)
-            .addField("**K/D RATIO:**", `${player.stats.skywars.KDRatio}`, true)
-            .addField("**W/L RATIO:**", `${player.stats.skywars.WLRatio}`, true)
-            .addField("**COINS:**", `${player.stats.skywars.coins}`, true)
+            .addField('**LEVEL:**', `${player.stats.skywars.level}`, true)
+            .addField('**HEADS:**', `${player.stats.skywars.heads}`, true)
+            .addField('**K/D RATIO:**', `${player.stats.skywars.KDRatio}`, true)
+            .addField('**W/L RATIO:**', `${player.stats.skywars.WLRatio}`, true)
+            .addField('**COINS:**', `${player.stats.skywars.coins}`, true)
             .addField(
-              "**TOTAL DEATHS:**",
+              '**TOTAL DEATHS:**',
               `${player.stats.skywars.deaths}`,
               true
             )
-            .addField("**TOTAL KILLS:**", `${player.stats.skywars.kills}`, true)
+            .addField('**TOTAL KILLS:**', `${player.stats.skywars.kills}`, true)
             .addField(
-              "**TOTAL RANKED WINS:**",
+              '**TOTAL RANKED WINS:**',
               `${player.stats.skywars.ranked.wins}`,
               true
             )
-            .addField("**TOTAL WINS:**", `${player.stats.skywars.wins}`, true)
-            .addField("**TOKENS:**", `${player.stats.skywars.tokens}`, true)
-            .addField("**PRESTIGE:**", `${player.stats.skywars.prestige}`, true)
-            .addField("**SOULS:**", `${player.stats.skywars.souls}`, true);
+            .addField('**TOTAL WINS:**', `${player.stats.skywars.wins}`, true)
+            .addField('**TOKENS:**', `${player.stats.skywars.tokens}`, true)
+            .addField('**PRESTIGE:**', `${player.stats.skywars.prestige}`, true)
+            .addField('**SOULS:**', `${player.stats.skywars.souls}`, true);
 
           return message.reply({ embeds: [emb], components: [row] });
         });

@@ -53,46 +53,47 @@ module.exports = class Bedwars extends Command {
           emb = embed()
             .setColor(0x36393e)
             .setTitle(`${player.nickname}`)
+            .setURL(`https://hypixel.net/player/${player.nickname}`)
             .setThumbnail(
               `https://visage.surgeplay.com/head/512/${player.uuid}`
             )
             .setImage(`https://visage.surgeplay.com/full/512/${player.uuid}`)
-            .addField("**LEVEL:**", `${player.stats.bedwars.level}`, true)
-            .addField("**KD RATIO:**", `${player.stats.bedwars.KDRatio}`, true)
+            .addField('**LEVEL:**', `${player.stats.bedwars.level}`, true)
+            .addField('**KD RATIO:**', `${player.stats.bedwars.KDRatio}`, true)
             .addField(
-              "**FINAL K/D RATIO:**",
+              '**FINAL K/D RATIO:**',
               `${player.stats.bedwars.finalKDRatio}`,
               true
             )
-            .addField("**W/L RATIO:**", `${player.stats.bedwars.WLRatio}`, true)
+            .addField('**W/L RATIO:**', `${player.stats.bedwars.WLRatio}`, true)
             .addField(
-              "**BROKEN BEDS:**",
+              '**BROKEN BEDS:**',
               `${player.stats.bedwars.beds.broken}`,
               true
             )
             .addField(
-              "**BEDS LOST:**",
+              '**BEDS LOST:**',
               `${player.stats.bedwars.beds.lost}`,
               true
             )
-            .addField("**COINS:**", `${player.stats.bedwars.coins}`, true)
+            .addField('**COINS:**', `${player.stats.bedwars.coins}`, true)
             .addField(
-              "**TOTAL DEATHS:**",
+              '**TOTAL DEATHS:**',
               `${player.stats.bedwars.deaths}`,
               true
             )
             .addField(
-              "**FINAL DEATHS:**",
+              '**FINAL DEATHS:**',
               `${player.stats.bedwars.finalDeaths}`,
               true
             )
-            .addField("**TOTAL KILLS:**", `${player.stats.bedwars.kills}`, true)
+            .addField('**TOTAL KILLS:**', `${player.stats.bedwars.kills}`, true)
             .addField(
-              "**WINSTREAK:**",
+              '**WINSTREAK:**',
               `${player.stats.bedwars.winstreak}`,
               true
             )
-            .addField("**TOTAL WINS:**", `${player.stats.bedwars.wins}`, true);
+            .addField('**TOTAL WINS:**', `${player.stats.bedwars.wins}`, true);
 
           return message.reply({ embeds: [emb], components: [row] });
         });

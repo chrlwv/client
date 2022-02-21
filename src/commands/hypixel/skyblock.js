@@ -55,6 +55,7 @@ module.exports = class Skyblock extends Command {
         emb = embed()
           .setColor(0x36393e)
           .setTitle(`${name}`)
+          .setURL(`https://sky.shiiyu.moe/stats/${playerUUIDData.id}`)
           .setThumbnail(
             `https://visage.surgeplay.com/head/512/${playerUUIDData.id}`
           )
