@@ -37,12 +37,17 @@ module.exports = class Spotify extends Command {
     member.presence.activities.forEach((activity) => {
       if (!activity || activity.name !== 'Spotify') return;
 
+      let coverImg = activity.assets.largeImageURL();
+
+      if (!activity.assets.largeImageURL())
+        coverImg = 'https://static.tumblr.com/jn9hrij/20Ul2zzsr/albumart.jpg';
+
       const card = new canvacord.Spotify()
         .setAuthor(activity.state.replace(/;/g, ','))
         .setAlbum(activity.assets.largeText)
         .setStartTimestamp(activity.timestamps.start)
         .setEndTimestamp(activity.timestamps.end)
-        .setImage(activity.assets.largeImageURL())
+        .setImage(coverImg)
         .setTitle(activity.details);
 
       card.build().then((buffer) => {
