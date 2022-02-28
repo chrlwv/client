@@ -205,23 +205,6 @@ module.exports = class Bot extends Client {
     await this.guildsData.findOneAndDelete({ guildId: guildId });
   }
 
-  async getGuildLang(guildId) {
-    try {
-      const guild = await this.getGuildById(guildId);
-
-      return require(`../locales/${guild?.locale || 'english'}`);
-    } catch (e) {
-      this.logger.log(e.stack || e, { tag: 'Locales' });
-    }
-  }
-
-  async getLanguages() {
-    return fs
-      .readdirSync('../../locales/')
-      .filter((f) => f.endsWith('.js'))
-      .map((la) => la.slice(0, -3));
-  }
-
   async formatNumber(n) {
     return n.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
   }
