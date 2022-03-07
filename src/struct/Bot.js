@@ -27,7 +27,7 @@ module.exports = class Bot extends Client {
       '455004835658596363',
     ];
     this.openWeatherMapKey = 'ed251da67188d62057cd640eda4fdc77';
-    this.hypixelKey = '733544fa-d61b-4d31-9531-5aaff48e9624';
+    this.hypixelKey = 'a6e5705b-beb3-40a8-acb9-46f85ad45c02';
     this.logger = require('../utils/Logger');
 
     this.database = {};
