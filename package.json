@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "1.9.4",
+  "version": "1.9.5",
   "description": "A multipurpose discord bot written in javascript, that can be used by users to enjoy discord community server by help of our bot.",
   "main": "index.js",
   "scripts": {
