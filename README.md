@@ -7,7 +7,7 @@ A multipurpose discord bot written in **javascript**, that can be used by users 
 
 Charliewave provides **new-feature** activities with hard worked **backend** whitch reflects a new and improved **frontend**, better **UI** presented to all **around-the-globe** users.
 
-All the sessions are running on `heroku-service` and it's well maintained with help by the *Client Developer <skillzl.me>*. In the near future we might use **Azure VM** to provide unlimited sessions for our client.
+All the sessions are maintained on `getporter.dev` with AWS Services provided by the *developer* <a href="https://skillzl.me" >sklz.<a/>
 
 > **Tip:** Always use the lastest release for better experience.
 ## Widgets
