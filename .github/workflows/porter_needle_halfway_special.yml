@@ -16,7 +16,7 @@ jobs:
       timeout-minutes: 20
       uses: porter-dev/porter-update-action@v0.1.0
       with:
-        app: chrlwv
+        app: needle-halfway-special
         cluster: "2052"
         host: https://dashboard.getporter.dev
         namespace: default
