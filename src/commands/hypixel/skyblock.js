@@ -152,7 +152,7 @@ module.exports = class Skyblock extends Command {
         );
         emb.addField(
           "**FAIRY SOULS:**",
-          `${profileData.members[id].fairy_souls_collected}/227`,
+          `${profileData.members[id].fairy_souls_collected}/238`,
           true
         );
         emb.addField(
