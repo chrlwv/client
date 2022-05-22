@@ -1,6 +1,7 @@
 /** @format */
 
 const { embed } = require("../../utils/Utils");
+const moment = require("moment");
 
 module.exports = class Whois extends Command {
 	constructor() {
@@ -31,31 +32,8 @@ module.exports = class Whois extends Command {
                 return message.reply('No user found.');
             }
 
-            const _createdAt = new Date(member.user.createdAt);
-		const _createdAt_Y = new Intl.DateTimeFormat("en", {
-			year: "numeric",
-		}).format(_createdAt);
-		const _createdAt_M = new Intl.DateTimeFormat("en", {
-			month: "short",
-		}).format(_createdAt);
-		const _createdAt_D = new Intl.DateTimeFormat("en", {
-			day: "2-digit",
-		}).format(_createdAt);
-
-		const TARGET_CREATED_AT = `${_createdAt_D} **${_createdAt_M.toUpperCase()}** ${_createdAt_Y}`;
-
+        const _createdAt = new Date(member.user.createdAt);
 		const _joinedAt = new Date(member.joinedAt);
-		const _joinedAt_Y = new Intl.DateTimeFormat("en", {
-			year: "numeric",
-		}).format(_joinedAt);
-		const _joinedAt_M = new Intl.DateTimeFormat("en", {
-			month: "short",
-		}).format(_joinedAt);
-		const _joinedAt_D = new Intl.DateTimeFormat("en", {
-			day: "2-digit",
-		}).format(_joinedAt);
-
-		const TARGET_JOINED_AT = `${_joinedAt_D} **${_joinedAt_M.toUpperCase()}** ${_joinedAt_Y}`;
 
 		const DISCORD_BADGES = {
 			DISCORD_EMPLOYEE: "<:charliewave_discordemployee:771642683558461460>",
@@ -186,13 +164,13 @@ module.exports = class Whois extends Command {
 
 		emb.addField(
 			`**CREATED ON:**`,
-			TARGET_CREATED_AT +
+			`<t:${Math.floor(_createdAt/1000) + 3600}:F>` +
 				`\n${this.constructor.daysAgo(member.user.createdAt).toFixed(0)} (days ago)`,
 			true
 		);
 		emb.addField(
 			`**JOINED AT:**`,
-			TARGET_JOINED_AT +
+			`<t:${Math.floor(_joinedAt/1000) + 3600}:F>` +
 				`\n${this.constructor.daysAgo(member.joinedAt).toFixed(0)} (days ago)`,
 			true
 		);

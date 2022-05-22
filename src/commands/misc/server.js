@@ -20,17 +20,6 @@ module.exports = class Server extends Command {
 	async exec(message) {
 		const { guild } = message;
         const _createdAt = new Date(message.guild.createdAt);
-		const _createdAt_Y = new Intl.DateTimeFormat("en", {
-			year: "numeric",
-		}).format(_createdAt);
-		const _createdAt_M = new Intl.DateTimeFormat("en", {
-			month: "short",
-		}).format(_createdAt);
-		const _createdAt_D = new Intl.DateTimeFormat("en", {
-			day: "2-digit",
-		}).format(_createdAt);
-
-		const GUILD_CREATED_AT = `${_createdAt_D} **${_createdAt_M.toUpperCase()}** ${_createdAt_Y}`;
 
         const guildEmojis = message.guild.emojis.cache.size
 			? message.guild.emojis.cache
@@ -131,7 +120,7 @@ module.exports = class Server extends Command {
 			)
 			.addField(
 				`**CREATED ON**:`,
-				GUILD_CREATED_AT +
+				`<t:${Math.floor(_createdAt/1000) + 3600}:F>` +
 					`\n${this.constructor.daysAgo(message.guild.createdAt).toFixed(0)} (days ago)`
 			)
 			.addField(
