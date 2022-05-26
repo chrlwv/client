@@ -48,24 +48,21 @@ module.exports = class Settings extends Command {
       )
       .addField(
         "**WELCOMER:**",
-        `welcome channel: ${
-          welcome_module !== null ? `<#${welcome_module}>` : "disabled"
-        } \nleave channel: ${
-          leave_module !== null ? `<#${leave_module}>` : "disabled"
-        }`,
-        true
+        `welcome: ${
+          welcome_module !== null ? `<#${welcome_module}>` : "none"
+        } \nleave: ${
+          leave_module !== null ? `<#${leave_module}>` : "none"
+        }`
       )
       .addField(
         "**SYSTEM:**",
-        `level-up alerts: ${level_module}\nuri blocker: ${uri_module}`,
-        true
+        `level-up alerts: ${level_module}\nuri blocker: ${uri_module}`
       )
       .addField(
         "**GUILD:**",
         `autorole: ${
-          auto_role_module !== null ? `${auto_role}` : "disabled"
-        }\ncase logger: ${case_logger}\nlogger channel: ${logger_channel}`,
-        true
+          auto_role_module !== null ? `${auto_role}` : "none"
+        }\ncase logger: ${case_logger}\nlogger channel: ${logger_channel}`
       )
       .setThumbnail(message.guild.iconURL({ dynamic: true, size: 2048 }));
     return message.reply({ embeds: [emb], components: [row] });
