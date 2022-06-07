@@ -7,8 +7,8 @@ module.exports = class Deployment extends Command {
   constructor() {
     super({
       name: 'deploy',
-      aliases: ['deployment', 'porter', 'aws'],
-      description: 'About client\'s porter deploy.',
+      aliases: ['deployment'],
+      description: 'About chrlwv-client deploy.',
       usage: '',
       category: '<:charliewave_supporter:771641583963340821> Core',
       ownerOnly: false,
@@ -51,9 +51,8 @@ module.exports = class Deployment extends Command {
         )}`
       )
       .setDescription(
-        `server uptime: ${this.constructor.uptime()}\n[porter.dev](https://getporter.dev)\n\`\`\`js\nchrlwv-cluster\nip-10-99-1-177.eu-central-1.compute.internal\nspecial-worker-6d85d48f55-dbg2j\n\`\`\`\n\`\`\`js\nMemoryPressure :: False\nDiskPressure :: False\nPIDPressure :: False\nReady :: True\n\`\`\``
+        `server uptime: ${this.constructor.uptime()}\n\`\`\`js\nchrlwv-cluster\neu-central-1\nspecial-worker-6********5-d***j\n\`\`\`\n\`\`\`js\nMemoryPressure :: False\nDiskPressure :: False\nPIDPressure :: False\nReady :: True\n\`\`\``
       )
-      .setThumbnail('https://getporter.dev/ptr.png');
     return message.reply({ embeds: [emb], components: [row] });
   }
 

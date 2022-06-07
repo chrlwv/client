@@ -63,7 +63,7 @@ module.exports = class Process extends Command {
           2
         )}\n\
                 **Discord.js:** v${discordVersion}\n\
-                **AWS Server:** eu-central-1\n\
+                **Server:** chrlwv-cluster\n\
 				**Developer:** skillzl#7600`,
         true
       )
