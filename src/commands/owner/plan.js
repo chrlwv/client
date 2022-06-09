@@ -39,9 +39,9 @@ module.exports = class Plan extends Command {
         `*the one and only leg day*\n\n10x3 - [romanian squats](https://thumbs.gfycat.com/DisfiguredScentedFoal-max-1mb.gif)\n10x4 - [normal squats](https://thumbs.gfycat.com/YellowishExhaustedDodo-size_restricted.gif)\n20x4 - [long rises](https://media0.giphy.com/media/ZgUWTHU1RzNHLyKBsv/giphy.gif?cid=790b7611a56f8dac863ed9fc0458b68b84a950b1e75aece3&rid=giphy.gif&ct=g)\n10x4 [squats with weights](https://hips.hearstapps.com/ame-prod-menshealth-assets.s3.amazonaws.com/main/assets/barbell-squat.gif?resize=480:*)`,
         true
       )
-      .setFooter(
-        "[] - except for these days, the rest of them are for restore"
-      );
+      .setFooter({
+        text: "[] - except for these days, the rest of them are for restore"
+      });
 
     return message.reply({ embeds: [emb] });
   }
