@@ -6,7 +6,7 @@ module.exports = model(
   'Guilds',
   new Schema({
     guildId: { type: String },
-    prefix: { type: String, default: '-' },
+    prefix: { type: String, default: '!' },
     level_msg_module: { type: Boolean, default: true },
     uri_blocker_module: { type: Boolean, default: false },
     auto_role_module: { type: String, default: null },
@@ -18,6 +18,5 @@ module.exports = model(
       case: { type: Number, default: 1 },
     },
     ignored_channels: { type: Array, default: [] },
-    locale: { type: String, default: 'english' },
   })
 );
