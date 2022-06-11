@@ -41,7 +41,7 @@ module.exports = class Withdraw extends Command {
 			return message.reply('Make sure you enter a valid number.');
 		}
 
-		if (message.content.includes("-")) {
+		if (amount.includes("-")) {
 			return message.reply('Make sure you enter a valid number.');
 		}
 

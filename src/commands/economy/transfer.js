@@ -62,7 +62,7 @@ module.exports = class Transfer extends Command {
 			return message.reply('Sorry, but you don\'t have that amount of coins.');
 		}
 
-		if (message.content.includes("-")) {
+		if (amount.includes("-")) {
 			return message.reply('Make sure you enter a valid number.');
 		}
 
