@@ -17,9 +17,15 @@ module.exports = class Ready extends Event {
       `Interacted with ${servers.toLocaleString()} guilds and ${users.toLocaleString()} users (only ${cachedUsers.toLocaleString()} cached).`,
       { tag: "Info" }
     );
+
+    this.client.dogstats.gauge('chrlwv.guilds', servers);
+    this.client.dogstats.gauge('chrlwv.users', users);
+    this.client.dogstats.gauge('chrlwv.cachedUsers', cachedUsers);
+
     this.client.logger.log(`Client: ${this.client.user.tag} is online.`, {
       tag: "Ready",
     });
+    
     this.client.user.setActivity(`@${this.client.user.username} help`, {
       type: "WATCHING",
     });

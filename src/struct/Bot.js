@@ -4,6 +4,7 @@ const { Client, Collection, Intents } = require("discord.js");
 const { connect, connection: db } = require("mongoose");
 const { resolve } = require("path");
 const { sync } = require('glob');
+const { StatsD } = require('hot-shots');
 const fs = require('fs');
 
 require('./Command');
@@ -25,6 +26,8 @@ module.exports = class Bot extends Client {
     this.openWeatherMapKey = 'ed251da67188d62057cd640eda4fdc77';
     this.hypixelKey = 'fd87b220-18c3-451e-be0c-8572e4186816';
     this.logger = require('../utils/Logger');
+
+    this.dogstats = new StatsD("localhost", 8125);
 
     this.database = {};
     this.guildsData = require('../models/Guilds');
