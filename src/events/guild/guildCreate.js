@@ -13,6 +13,5 @@ module.exports = class guildCreate extends Event {
                 tag: 'guildCreate' 
              }
            );
-        this.client.dogstats.increment('chrlwv.guildcreate');
     }
 }

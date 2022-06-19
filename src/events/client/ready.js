@@ -18,10 +18,6 @@ module.exports = class Ready extends Event {
       { tag: "Info" }
     );
 
-    this.client.dogstats.gauge('chrlwv.guilds', servers);
-    this.client.dogstats.gauge('chrlwv.users', users);
-    this.client.dogstats.gauge('chrlwv.cachedUsers', cachedUsers);
-
     this.client.logger.log(`Client: ${this.client.user.tag} is online.`, {
       tag: "Ready",
     });

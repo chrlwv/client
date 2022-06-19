@@ -15,6 +15,5 @@ module.exports = class guildDelete extends Event {
         tag: "guildDelete",
       }
     );
-    this.client.dogstats.increment('chrlwv.guilddelete');
   }
 };

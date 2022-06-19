@@ -1,3 +1,0 @@
-heroku/nodejs
-heroku/ruby
-https://github.com/DataDog/heroku-buildpack-datadog.git
