@@ -1,6 +1,6 @@
-/** @format */
-
-const { stripIndents } = require("common-tags");
+const {
+	stripIndents
+} = require("common-tags");
 
 module.exports = class Slots extends Command {
 	constructor() {
@@ -17,7 +17,9 @@ module.exports = class Slots extends Command {
 		});
 	}
 	async exec(message, args, data) {
-        const { user } = await this.client.getUserById(message.author.id);
+		const {
+			user
+		} = await this.client.getUserById(message.author.id);
 		const amount = args.slice(0).join(" ");
 		const coins_db = user.userCoins;
 
@@ -32,10 +34,10 @@ module.exports = class Slots extends Command {
 		];
 
 		if (!amount) {
-            return message.reply(
+			return message.reply(
 				`Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}slots <amount>\``
 			);
-        }
+		}
 
 		if (isNaN(amount)) return message.reply('Make sure you enter a valid number.');
 
@@ -51,13 +53,13 @@ module.exports = class Slots extends Command {
 
 		const random = 5 * amount;
 
-        const arr1 = this.constructor.shuffle(slots);
+		const arr1 = this.constructor.shuffle(slots);
 		const arr2 = this.constructor.shuffle(slots);
 		const arr3 = this.constructor.shuffle(slots);
 
 		const slotMsg = message.channel
 			.send(
-				stripIndents`
+				stripIndents `
 [ :: **SLOTS** :: ]
 ----------------
 ${arr1[2]} : ${arr2[0]} : ${arr3[2]}
@@ -76,7 +78,7 @@ ${arr1[0]} : ${arr2[2]} : ${arr3[0]}
 
 					setTimeout(
 						() =>
-							msg.edit(stripIndents`
+						msg.edit(stripIndents `
 [ :: **SLOTS** :: ]
 ----------------
 ${arr1[0]} : ${arr2[1]} : ${arr3[0]}
@@ -91,7 +93,7 @@ ${arr1[0]} : ${arr2[2]} : ${arr3[0]}
 
 					setTimeout(
 						() =>
-							msg.edit(stripIndents`
+						msg.edit(stripIndents `
 [ :: **SLOTS** :: ]
 ----------------
 ${arr1[0]} : ${arr2[1]} : ${arr3[0]}
@@ -117,7 +119,7 @@ ${arr1[0]} : ${arr2[2]} : ${arr3[0]}
 						});
 						return setTimeout(
 							() =>
-								msg.edit(stripIndents`
+							msg.edit(stripIndents `
 [ :: **SLOTS** :: ]
 ----------------
 ${arr1[2]} : ${arr2[0]} : ${arr3[2]}
@@ -137,7 +139,7 @@ ${message.author.tag} won ${random.toLocaleString()} :coin:. \`(bet: ${amount.to
 					});
 					return setTimeout(
 						() =>
-							msg.edit(stripIndents`
+						msg.edit(stripIndents `
 [ :: **SLOTS** :: ]
 ----------------
 ${arr1[2]} : ${arr2[0]} : ${arr3[2]}
@@ -152,17 +154,17 @@ ${message.author.tag} lost everything. \`(bet: ${amount.toLocaleString()})\``),
 					);
 				}
 			});
-	
+
 	}
 
-    static shuffle(array) {
-        const arr = array.slice(0);
-        for (let i = arr.length - 1; i >= 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            const temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-        }
-        return arr;
-    }
+	static shuffle(array) {
+		const arr = array.slice(0);
+		for (let i = arr.length - 1; i >= 0; i--) {
+			const j = Math.floor(Math.random() * (i + 1));
+			const temp = arr[i];
+			arr[i] = arr[j];
+			arr[j] = temp;
+		}
+		return arr;
+	}
 };

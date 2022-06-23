@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = class Year extends Command {
 	constructor() {
 		super({
@@ -7,7 +5,7 @@ module.exports = class Year extends Command {
 			aliases: ["year-progress"],
 			description: "Responds with the progress of the current year.",
 			usage: "",
-			category: "<:charliewave_general:771633361340727336> Misc",
+			category: "Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -21,7 +19,7 @@ module.exports = class Year extends Command {
 		const percent = (Math.abs(today - start) / Math.abs(end - start)) * 100;
 
 		return message.reply(
-			`<:charliewave_calendar:826015486705401886> The year \`${today
+			`<:calendar_dark:989567449554903071> The year \`${today
 				.getFullYear()
 				.toFixed()}\` is \`${percent}%\` complete!`
 		);

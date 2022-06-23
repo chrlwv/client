@@ -1,5 +1,3 @@
-/** @format */
-
 var NumAbbr = require("number-abbreviate");
 const Canvas = require("canvas");
 const fs = require("fs");
@@ -16,7 +14,7 @@ module.exports = class Rank extends Command {
 			aliases: ["level", "lvl"],
 			description: "Get your current level.",
 			usage: "<user>",
-			category: "<:charliewave_exp:771448234672521236> Levels",
+			category: "Levels",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -29,8 +27,8 @@ module.exports = class Rank extends Command {
 			message.guild.members.cache.get(args[0]) ||
 			message.guild.members.cache.find(
 				(m) =>
-					m.displayName.toLowerCase().includes(args[0]) ||
-					m.user.tag.toLowerCase().includes(args[0])
+				m.displayName.toLowerCase().includes(args[0]) ||
+				m.user.tag.toLowerCase().includes(args[0])
 			) ||
 			message.member;
 
@@ -40,7 +38,9 @@ module.exports = class Rank extends Command {
 			);
 		}
 
-		const { user } = await this.client.getUserById(member.id);
+		const {
+			user
+		} = await this.client.getUserById(member.id);
 
 		const level = calculateUserXp(user.exp);
 
@@ -116,7 +116,9 @@ module.exports = class Rank extends Command {
 		ctx.clip();
 
 		const avatar = await Canvas.loadImage(
-			member.user.displayAvatarURL({ format: "png" })
+			member.user.displayAvatarURL({
+				format: "png"
+			})
 		);
 		ctx.drawImage(avatar, 45, 10, 250, 250);
 

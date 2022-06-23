@@ -1,22 +1,21 @@
-/** @format */
-
-const { parse } = require("twemoji-parser");
+const {
+	parse
+} = require("twemoji-parser");
 const Discord = require("discord.js");
 
 module.exports = class Emoji extends Command {
 	constructor() {
 		super({
-      name: "emoji",
-      aliases: ["emojiadd"],
-      description: "Create an emoji from a different server.",
-      usage: "<emoji> <emoji_name>",
-      category:
-        "<:charliewave_advanced_moderator:857930973715103775> Moderator",
-      ownerOnly: false,
-      cooldown: 3000,
-      memberPerms: ["MANAGE_EMOJIS_AND_STICKERS"],
-      clientPerms: ["MANAGE_EMOJIS_AND_STICKERS"],
-    });
+			name: "emoji",
+			aliases: ["emojiadd"],
+			description: "Create an emoji from a different server.",
+			usage: "<emoji> <emoji_name>",
+			category: "Moderator",
+			ownerOnly: false,
+			cooldown: 3000,
+			memberPerms: ["MANAGE_EMOJIS_AND_STICKERS"],
+			clientPerms: ["MANAGE_EMOJIS_AND_STICKERS"],
+		});
 	}
 	async exec(message, args, data) {
 		const emoji = args[0];
@@ -41,7 +40,9 @@ module.exports = class Emoji extends Command {
 
 			return message.reply(`Successfully created \`${name}\` emoji.`);
 		} else {
-			let checkEmoji = parse(emoji, { assetType: "png" });
+			let checkEmoji = parse(emoji, {
+				assetType: "png"
+			});
 			if (!checkEmoji[0]) {
 				return message.channel.send("Invalid emoji assetType.");
 			}

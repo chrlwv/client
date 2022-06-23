@@ -1,7 +1,7 @@
-/** @format */
-
 var NumAbbr = require("number-abbreviate");
-const { embed } = require("../../utils/Utils");
+const {
+  embed
+} = require("../../utils/Utils");
 const HypixelAPIReborn = require("hypixel-api-reborn");
 
 var numAbbr = new NumAbbr();
@@ -13,7 +13,7 @@ module.exports = class Watchdog extends Command {
       aliases: ["wd"],
       description: "Hypixel Network watchdog anticheats systems statistics.",
       usage: "",
-      category: "<:charliewave_hypixel:771634768777445406> Hypixel",
+      category: "Hypixel",
       ownerOnly: false,
       cooldown: 20000,
       memberPerms: [],
@@ -49,7 +49,9 @@ module.exports = class Watchdog extends Command {
           true
         );
 
-      return message.reply({ embeds: [emb] });
+      return message.reply({
+        embeds: [emb]
+      });
     });
   }
 };

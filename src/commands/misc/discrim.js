@@ -1,14 +1,11 @@
-/** @format */
-
 module.exports = class Discriminator extends Command {
 	constructor() {
 		super({
 			name: "discrim",
 			aliases: ["discriminator"],
-			description:
-				"Searches for users with the specified discriminator. (or your own if not specified)",
+			description: "Searches for users with the specified discriminator. (or your own if not specified)",
 			usage: "<user>",
-			category: "<:charliewave_general:771633361340727336> Misc",
+			category: "Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

@@ -1,7 +1,10 @@
-/** @format */
-
-const { embed } = require("../../utils/Utils");
-const { MessageActionRow, MessageButton } = require("discord.js");
+const {
+  embed
+} = require("../../utils/Utils");
+const {
+  MessageActionRow,
+  MessageButton
+} = require("discord.js");
 
 module.exports = class Avatar extends Command {
   constructor() {
@@ -10,7 +13,7 @@ module.exports = class Avatar extends Command {
       aliases: ["av", "pic", "picture"],
       description: "Provide your pfp (profile pic.) or mentioned user.",
       usage: "<user>",
-      category: "<:charliewave_general:771633361340727336> Misc",
+      category: "Misc",
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -23,8 +26,8 @@ module.exports = class Avatar extends Command {
       message.guild.members.cache.get(args[0]) ||
       message.guild.members.cache.find(
         (m) =>
-          m.displayName.toLowerCase().includes(args[0]) ||
-          m.user.tag.toLowerCase().includes(args[0])
+        m.displayName.toLowerCase().includes(args[0]) ||
+        m.user.tag.toLowerCase().includes(args[0])
       ) ||
       message.member;
 
@@ -57,14 +60,13 @@ module.exports = class Avatar extends Command {
     emb = embed()
       .setColor(0x36393e)
       .setTitle(
-        `${member.user.tag} ${this.constructor.getTargetEmojiByStatus(
-          member.presence.status,
-          member.presence.clientStatus != undefined &&
-            member.presence.clientStatus.mobile
-        )}`
+        `${member.user.tag}`
       )
-      .setImage(`${webp}`);
-    return message.reply({ embeds: [emb], components: [row] });
+      .setImage(`${png}`);
+    return message.reply({
+      embeds: [emb],
+      components: [row]
+    });
   }
 
   static avatar(member, format) {
@@ -73,18 +75,5 @@ module.exports = class Avatar extends Command {
       size: 1024,
       format,
     });
-  }
-
-  static getTargetEmojiByStatus(status, mobile) {
-    switch (status) {
-      case "dnd":
-        return "<:charliewave_dnd:771635335486111744>";
-      case "idle":
-        return "<:charliewave_idle:771635289839501333>";
-      case "online":
-        return mobile === "online"
-          ? "<:charliewave_mobile:771635443698499584>"
-          : "<:charliewave_online:771635233384693791>";
-    }
   }
 };

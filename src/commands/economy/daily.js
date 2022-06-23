@@ -1,5 +1,3 @@
-/** @format */
-
 const ms = require("ms");
 
 module.exports = class Daily extends Command {
@@ -9,7 +7,7 @@ module.exports = class Daily extends Command {
 			aliases: ["bonus"],
 			description: "Get your daily bonus worth of coins.",
 			usage: "",
-			category: ":coin: Economy",
+			category: "Economy",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -17,13 +15,17 @@ module.exports = class Daily extends Command {
 		});
 	}
 	async exec(message, args) {
-		const { user } = await this.client.getUserById(message.author.id);
+		const {
+			user
+		} = await this.client.getUserById(message.author.id);
 		const timeout = 86400000;
 		const amount = Math.floor(Math.random() * 500) + 1;
 		const daily = user.daily_cooldown;
 
 		if (daily !== null && timeout - (Date.now() - daily) > 0) {
-			let time = ms(timeout - (Date.now() - daily), { long: true });
+			let time = ms(timeout - (Date.now() - daily), {
+				long: true
+			});
 
 			message.reply(`You've already collected your daily reward recently, \`${time}\` remaining.`);
 		} else {

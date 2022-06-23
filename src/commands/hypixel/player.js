@@ -1,18 +1,20 @@
-/** @format */
-
 const hypixel = require("hypixel-api-nodejs");
-const { MessageActionRow, MessageButton } = require("discord.js");
-const { embed } = require("../../utils/Utils");
+const {
+  MessageActionRow,
+  MessageButton
+} = require("discord.js");
+const {
+  embed
+} = require("../../utils/Utils");
 
 module.exports = class Player extends Command {
   constructor() {
     super({
       name: "player",
       aliases: ["hypixelprofile", "hypixelme"],
-      description:
-        "Featches hypixel skyblock informations for an argued minecraft username.",
+      description: "Featches hypixel skyblock informations for an argued minecraft username.",
       usage: "<username>",
-      category: "<:charliewave_hypixel:771634768777445406> Hypixel",
+      category: "Hypixel",
       ownerOnly: false,
       cooldown: 200,
       memberPerms: [],
@@ -117,7 +119,10 @@ module.exports = class Player extends Command {
         `Also, provide your Minecraft username.\n\`e.g. ${data.guild?.prefix}player Steve\``
       );
 
-    const tinodata = { rank: {}, user: {} };
+    const tinodata = {
+      rank: {},
+      user: {}
+    };
 
     hypixel
       .getPlayerByName(this.client.hypixelKey, `${args[0]}`)
@@ -193,10 +198,10 @@ module.exports = class Player extends Command {
 
             if (user.player.userLanguage)
               tinodata.user.language =
-                user.player.userLanguage.capitalizeFirst();
+              user.player.userLanguage.capitalizeFirst();
             else
               tinodata.user.language =
-                "<:charliewave_decline:771454968473190410>";
+              "<:none:989561119268020294>";
             if (
               user.player.mcVersionRp &&
               user.player.mcVersionRp != undefined &&
@@ -205,7 +210,7 @@ module.exports = class Player extends Command {
               tinodata.user.version = user.player.mcVersionRp;
             else
               tinodata.user.version =
-                "<:charliewave_decline:771454968473190410>";
+              "<:none:989561119268020294>";
             if (
               guild &&
               guild.guild &&
@@ -222,18 +227,18 @@ module.exports = class Player extends Command {
                 "+"
               )})`;
             else
-              tinodata.user.guild = "<:charliewave_decline:771454968473190410>";
+              tinodata.user.guild = "<:none:989561119268020294>";
             if (
               user.player.mostRecentGameType &&
               user.player.mostRecentGameType != undefined
             )
               tinodata.user.recentGameType =
-                user.player.mostRecentGameType.toCleanGameType();
+              user.player.mostRecentGameType.toCleanGameType();
 
             tinodata.user.level = Math.ceil(
               (Math.sqrt(user.player.networkExp + 15312.5) -
                 125 / Math.sqrt(2)) /
-                (25 * Math.sqrt(2))
+              (25 * Math.sqrt(2))
             );
 
             let lastLogin = new Date(user.player.lastLogin);
@@ -265,7 +270,7 @@ module.exports = class Player extends Command {
                 "**RECENT GAME:**",
                 `${
                   tinodata.user.recentGameType == undefined
-                    ? "<:charliewave_decline:771454968473190410>"
+                    ? "<:none:989561119268020294>"
                     : tinodata.user.recentGameType
                 }`,
                 true
@@ -337,7 +342,10 @@ module.exports = class Player extends Command {
                 }
               );
             }
-            return message.reply({ embeds: [emb], components: [row] });
+            return message.reply({
+              embeds: [emb],
+              components: [row]
+            });
           });
       });
   }

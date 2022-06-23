@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = class Withdraw extends Command {
 	constructor() {
 		super({
@@ -7,7 +5,7 @@ module.exports = class Withdraw extends Command {
 			aliases: ["atm"],
 			description: "Withdraw coins from bank.",
 			usage: "<amount>",
-			category: ":coin: Economy",
+			category: "Economy",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -15,7 +13,9 @@ module.exports = class Withdraw extends Command {
 		});
 	}
 	async exec(message, args, data) {
-		const { user } = await this.client.getUserById(message.author.id);
+		const {
+			user
+		} = await this.client.getUserById(message.author.id);
 
 		const coinsBank = user.bank;
 		let amount = args.slice(0).join(" ");

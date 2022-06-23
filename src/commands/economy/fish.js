@@ -1,7 +1,7 @@
-/** @format */
-
 const fishJson = require("../../data/fish.json");
-const { stripIndent } = require("common-tags");
+const {
+	stripIndent
+} = require("common-tags");
 const ms = require("ms");
 
 module.exports = class Fish extends Command {
@@ -11,7 +11,7 @@ module.exports = class Fish extends Command {
 			aliases: [],
 			description: "Play at fishing minigame to warn XP and coins.",
 			usage: "",
-			category: ":coin: Economy",
+			category: "Economy",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -19,9 +19,9 @@ module.exports = class Fish extends Command {
 		});
 	}
 	async exec(message, args) {
-        const timeout = 600000;
+		const timeout = 600000;
 
-        const fishID = Math.floor(Math.random() * 10) + 1;
+		const fishID = Math.floor(Math.random() * 10) + 1;
 		let rarity;
 		if (fishID < 5) rarity = "junk";
 		else if (fishID < 8) rarity = "common";
@@ -31,18 +31,22 @@ module.exports = class Fish extends Command {
 		const fish = fishJson[rarity];
 		const worth = this.constructor.randomRange(fish.min, fish.max);
 
-		const { user } = await this.client.getUserById(message.author.id);
+		const {
+			user
+		} = await this.client.getUserById(message.author.id);
 		const fishcooldown = user.fish_cooldown;
 
 		if (fishcooldown !== null && timeout - (Date.now() - fishcooldown) > 0) {
-			let time = ms(timeout - (Date.now() - fishcooldown), { long: true });
+			let time = ms(timeout - (Date.now() - fishcooldown), {
+				long: true
+			});
 
 			message.channel.send(`You've already fished recently, \`${time}\` remaining.`);
 		} else {
 			const xp = Math.floor(Math.random() * 10) + 1;
 
 			if (!args[0]) {
-				message.channel.send(stripIndent`
+				message.channel.send(stripIndent `
 [ :: **FISH MINIGAME** :: ]
 ----------------------------
 Fisherman:  
@@ -64,10 +68,10 @@ Exp earned:
 				});
 			}
 		}
-	
+
 	}
 
-    static randomRange(min, max) {
-        return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
+	static randomRange(min, max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
 };

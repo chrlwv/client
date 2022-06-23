@@ -1,6 +1,6 @@
-/** @format */
-
-const { embed } = require("../../utils/Utils");
+const {
+  embed
+} = require("../../utils/Utils");
 
 module.exports = class Kick extends Command {
   constructor() {
@@ -9,8 +9,7 @@ module.exports = class Kick extends Command {
       aliases: [],
       description: "Kick a user from the current guild.",
       usage: "<user> <reason>",
-      category:
-        "<:charliewave_advanced_moderator:857930973715103775> Moderator",
+      category: "Moderator",
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: ["KICK_MEMBERS"],
@@ -23,8 +22,8 @@ module.exports = class Kick extends Command {
       message.guild.members.cache.get(args[0]) ||
       message.guild.members.cache.find(
         (m) =>
-          m.displayName.toLowerCase().includes(args[0]) ||
-          m.user.tag.toLowerCase().includes(args[0])
+        m.displayName.toLowerCase().includes(args[0]) ||
+        m.user.tag.toLowerCase().includes(args[0])
       );
 
     const guildSettings = await this.client.getGuildById(message.guild.id);
@@ -47,9 +46,11 @@ module.exports = class Kick extends Command {
       return message.reply("I am not able to ban this user.");
     }
 
-    await message.guild.members.kick(member, { reason: reason });
+    await message.guild.members.kick(member, {
+      reason: reason
+    });
 
-    
+
     this.client.users.fetch(member.user.id, false).then((user) => {
       user.send(
         `You were kicked from \`${message.guild.name}\` guild by ${message.author.tag}, reason: ${reason}`
@@ -62,7 +63,7 @@ module.exports = class Kick extends Command {
 
     if (guildSettings.client_logging.enable === true) {
       await this.client.updateGuildById(member.guild.id, {
-        "client_logging.case": guildSettings.client_logging.case + 1,
+        "client_logging.case": guildSettings.client_logging.case+1,
       });
 
       if (guildSettings.client_logging.channel) {
@@ -87,7 +88,10 @@ module.exports = class Kick extends Command {
 
         this.client.channels.cache
           .get(guildSettings.client_logging.channel)
-          .send({ conent: "guildKickAdd", embeds: [emb] });
+          .send({
+            conent: "guildKickAdd",
+            embeds: [emb]
+          });
       }
     }
   }

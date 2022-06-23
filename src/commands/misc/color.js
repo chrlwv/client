@@ -1,6 +1,6 @@
-/** @format */
-
-const { embed } = require("../../utils/Utils");
+const {
+	embed
+} = require("../../utils/Utils");
 
 module.exports = class Color extends Command {
 	constructor() {
@@ -9,7 +9,7 @@ module.exports = class Color extends Command {
 			aliases: ["randomcolor"],
 			description: "Raffle a rancom color.",
 			usage: "",
-			category: "<:charliewave_general:771633361340727336> Misc",
+			category: "Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -19,15 +19,18 @@ module.exports = class Color extends Command {
 	async exec(message) {
 		const color = Math.floor(Math.random() * 16777215).toString(16);
 		const preview = `https://singlecolorimage.com/get/${color}/512x512`;
-        
-        let emb;
+
+		let emb;
 		emb = embed()
-            .setThumbnail(preview)
+			.setThumbnail(preview)
 			.setFooter({
 				text: `#${color}`
 			})
-            .setColor(`#${color}`);
+			.setColor(`#${color}`);
 
-        return message.reply({ content: "Here is your random color.", embeds: [emb] });
+		return message.reply({
+			content: "Here is your random color.",
+			embeds: [emb]
+		});
 	}
 };

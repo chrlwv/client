@@ -1,19 +1,16 @@
-/** @format */
-
 module.exports = class Unlock extends Command {
 	constructor() {
 		super({
-      name: "unlock",
-      aliases: ["unlockchannel"],
-      description: "Unlock a channel.",
-      usage: "<channel> <reason>",
-      category:
-        "<:charliewave_advanced_moderator:857930973715103775> Moderator",
-      ownerOnly: false,
-      cooldown: 3000,
-      memberPerms: ["MANAGE_ROLES"],
-      clientPerms: ["MANAGE_ROLES"],
-    });
+			name: "unlock",
+			aliases: ["unlockchannel"],
+			description: "Unlock a channel.",
+			usage: "<channel> <reason>",
+			category: "Moderator",
+			ownerOnly: false,
+			cooldown: 3000,
+			memberPerms: ["MANAGE_ROLES"],
+			clientPerms: ["MANAGE_ROLES"],
+		});
 	}
 	async exec(message) {
 		let channelData = message.mentions.channels.first() || message.channel;

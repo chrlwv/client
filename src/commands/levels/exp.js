@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = class Experience extends Command {
 	constructor() {
 		super({
@@ -7,7 +5,7 @@ module.exports = class Experience extends Command {
 			aliases: ["xp", "experience"],
 			description: "Shows you how many experience points did a user earned.",
 			usage: "<user>",
-			category: "<:charliewave_exp:771448234672521236> Levels",
+			category: "Levels",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -20,8 +18,8 @@ module.exports = class Experience extends Command {
 			message.guild.members.cache.get(args[0]) ||
 			message.guild.members.cache.find(
 				(m) =>
-					m.displayName.toLowerCase().includes(args[0]) ||
-					m.user.tag.toLowerCase().includes(args[0])
+				m.displayName.toLowerCase().includes(args[0]) ||
+				m.user.tag.toLowerCase().includes(args[0])
 			) ||
 			message.member;
 
@@ -31,7 +29,9 @@ module.exports = class Experience extends Command {
 			);
 		}
 
-		const { user } = await this.client.getUserById(member.id);
+		const {
+			user
+		} = await this.client.getUserById(member.id);
 
 		message.reply(
 			`${

@@ -1,10 +1,10 @@
-/** @format */
-
 const Canvas = require("canvas");
 const moment = require("moment");
 const fs = require("fs");
 const path = require("path");
-const { MessageAttachment } = require("discord.js");
+const {
+	MessageAttachment
+} = require("discord.js");
 
 require("moment-duration-format");
 
@@ -15,7 +15,7 @@ module.exports = class Throw extends Command {
 			aliases: ["garbage"],
 			description: "Create a new canva with Throw Meme style.",
 			usage: "<user>",
-			category: "<:charliewave_fun:771633587246202910> Fun",
+			category: "Fun",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -23,24 +23,24 @@ module.exports = class Throw extends Command {
 		});
 	}
 	async exec(message, args, data) {
-        const member =
+		const member =
 			message.mentions.members.first() ||
 			message.guild.members.cache.get(args[0]) ||
 			message.guild.members.cache.find(
 				(m) =>
-					m.displayName.toLowerCase().includes(args[0]) ||
-					m.user.tag.toLowerCase().includes(args[0])
+				m.displayName.toLowerCase().includes(args[0]) ||
+				m.user.tag.toLowerCase().includes(args[0])
 			);
 
-            if (!member) {
-                return message.reply(
-                    `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}throw <user>\``
-                );
-            }
+		if (!member) {
+			return message.reply(
+				`Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}throw <user>\``
+			);
+		}
 
-            if (member.user.id === message.author.id) {
-                return message.reply('You cannot throw yourself.')
-            }
+		if (member.user.id === message.author.id) {
+			return message.reply('You cannot throw yourself.')
+		}
 
 		const canvas = Canvas.createCanvas(630, 680);
 		const ctx = canvas.getContext("2d");
@@ -53,13 +53,17 @@ module.exports = class Throw extends Command {
 		ctx.drawImage(bg, 0, 0, canvas.width, canvas.height);
 
 		const AuthorAvatar = await Canvas.loadImage(
-			message.author.displayAvatarURL({ format: "png" })
+			message.author.displayAvatarURL({
+				format: "png"
+			})
 		);
 		ctx.drawImage(AuthorAvatar, 68, 160, 70, 70);
 		ctx.drawImage(AuthorAvatar, 410, 60, 160, 160);
 
 		const MemberAvatar = await Canvas.loadImage(
-			member.user.displayAvatarURL({ format: "png" })
+			member.user.displayAvatarURL({
+				format: "png"
+			})
 		);
 		ctx.drawImage(MemberAvatar, 112.4, 222.3, 40, 40);
 		ctx.drawImage(MemberAvatar, 518.7, 205, 92, 93);
@@ -85,19 +89,19 @@ module.exports = class Throw extends Command {
 			"throw.png"
 		);
 
-        message.reply({
-            conent: "throw canva",
-            files: [attachment],
-        });
-		
+		message.reply({
+			conent: "throw canva",
+			files: [attachment],
+		});
+
 	}
 
-    static applyText(canvas, text) {
-        const ctx = canvas.getContext("2d");
-        let fontSize = 39;
-        do {
-            ctx.font = `${(fontSize -= 7)}px sans-serif`;
-        } while (ctx.measureText(text).width > canvas.width - 300);
-        return ctx.font;
-    }
+	static applyText(canvas, text) {
+		const ctx = canvas.getContext("2d");
+		let fontSize = 39;
+		do {
+			ctx.font = `${(fontSize -= 7)}px sans-serif`;
+		} while (ctx.measureText(text).width > canvas.width - 300);
+		return ctx.font;
+	}
 };

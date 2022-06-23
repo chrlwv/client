@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = class Nuke extends Command {
   constructor() {
     super({
@@ -7,8 +5,7 @@ module.exports = class Nuke extends Command {
       aliases: ["nukechnl", "nukechannel"],
       description: "Nukes the channel.",
       usage: "",
-      category:
-        "<:charliewave_advanced_moderator:857930973715103775> Moderator",
+      category: "Moderator",
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: ["MANAGE_ROLES"],
@@ -16,9 +13,11 @@ module.exports = class Nuke extends Command {
     });
   }
   async exec(message) {
-    await message.channel.clone().then((ch) =>{
-		ch.setParent(message.channel.parent.id);ch.setPosition(message.channel.position);
-        ch.send('This channel got nuked.');
-	}); message.channel.delete();
+    await message.channel.clone().then((ch) => {
+      ch.setParent(message.channel.parent.id);
+      ch.setPosition(message.channel.position);
+      ch.send('This channel got nuked.');
+    });
+    message.channel.delete();
   }
 };

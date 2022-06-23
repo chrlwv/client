@@ -1,5 +1,3 @@
-/** @format */
-
 const figlet = require("figlet");
 
 module.exports = class Ascii extends Command {
@@ -9,7 +7,7 @@ module.exports = class Ascii extends Command {
 			aliases: ["figlet", "ascii-figlet", "asciifiglet"],
 			description: "Transform text to ascii.",
 			usage: "<text>",
-			category: "<:charliewave_fun:771633587246202910> Fun",
+			category: "Fun",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = class Transfer extends Command {
 	constructor() {
 		super({
@@ -7,7 +5,7 @@ module.exports = class Transfer extends Command {
 			aliases: ["pay"],
 			description: "Transfer coins to another user.",
 			usage: "<user> <amount>",
-			category: ":coin: Economy",
+			category: "Economy",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -20,11 +18,11 @@ module.exports = class Transfer extends Command {
 			message.guild.members.cache.get(args[0]) ||
 			message.guild.members.cache.find(
 				(m) =>
-					m.displayName.toLowerCase().includes(args[0]) ||
-					m.user.tag.toLowerCase().includes(args[0])
+				m.displayName.toLowerCase().includes(args[0]) ||
+				m.user.tag.toLowerCase().includes(args[0])
 			);
-	
-			const amount = Number(args[1]);
+
+		const amount = Number(args[1]);
 
 		if (!member) {
 			return message.reply(
@@ -33,10 +31,10 @@ module.exports = class Transfer extends Command {
 		}
 
 		if (member.user.bot) {
-            return message.reply(
-                "There is no data available for Discord Applications."
-            );
-        }
+			return message.reply(
+				"There is no data available for Discord Applications."
+			);
+		}
 
 		if (!amount) {
 			return message.reply(
@@ -44,13 +42,17 @@ module.exports = class Transfer extends Command {
 			);
 		}
 
-        if (isNaN(amount)) {
-            return message.reply('Make sure you enter a valid number.')
-        }
+		if (isNaN(amount)) {
+			return message.reply('Make sure you enter a valid number.')
+		}
 
 		const fee = Math.round(args[1] - args[1] * 0.729);
-		const { user: receiver } = await this.client.getUserById(member.id);
-		const { user: sender } = await this.client.getUserById(message.author.id);
+		const {
+			user: receiver
+		} = await this.client.getUserById(member.id);
+		const {
+			user: sender
+		} = await this.client.getUserById(message.author.id);
 
 		const coinsGiven = amount - fee;
 

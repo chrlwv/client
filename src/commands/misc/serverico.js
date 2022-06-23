@@ -1,7 +1,10 @@
-/** @format */
-
-const { embed } = require("../../utils/Utils");
-const { MessageActionRow, MessageButton } = require("discord.js");
+const {
+  embed
+} = require("../../utils/Utils");
+const {
+  MessageActionRow,
+  MessageButton
+} = require("discord.js");
 
 module.exports = class ServerIco extends Command {
   constructor() {
@@ -10,7 +13,7 @@ module.exports = class ServerIco extends Command {
       aliases: ["serverpic", "svpic"],
       description: "Provide the server icon image.",
       usage: "",
-      category: "<:charliewave_general:771633361340727336> Misc",
+      category: "Misc",
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -50,8 +53,11 @@ module.exports = class ServerIco extends Command {
       emb = embed()
         .setColor(0x36393e)
         .setTitle(message.guild.name)
-        .setImage(`${webp}`);
-      return message.reply({ embeds: [emb], components: [row] });
+        .setImage(`${png}`);
+      return message.reply({
+        embeds: [emb],
+        components: [row]
+      });
     }
   }
 

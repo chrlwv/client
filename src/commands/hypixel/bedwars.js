@@ -1,7 +1,10 @@
-/** @format */
-
-const { embed } = require("../../utils/Utils");
-const { MessageActionRow, MessageButton } = require("discord.js");
+const {
+  embed
+} = require("../../utils/Utils");
+const {
+  MessageActionRow,
+  MessageButton
+} = require("discord.js");
 const fetch = require("cross-fetch");
 const HypixelAPIReborn = require("hypixel-api-reborn");
 
@@ -12,7 +15,7 @@ module.exports = class Bedwars extends Command {
       aliases: ["bw"],
       description: "Hypixel Network Bedwars statistics.",
       usage: "<username>",
-      category: "<:charliewave_hypixel:771634768777445406> Hypixel",
+      category: "Hypixel",
       ownerOnly: false,
       cooldown: 20000,
       memberPerms: [],
@@ -27,7 +30,9 @@ module.exports = class Bedwars extends Command {
 
     fetch(`https://api.minetools.eu/uuid/${args[0]}`)
       .then((result) => result.json())
-      .then(async ({ status }) => {
+      .then(async ({
+        status
+      }) => {
         if (status === "ERR") {
           return message.reply("Could not fetch provided Mineacraft username.");
         }
@@ -95,7 +100,10 @@ module.exports = class Bedwars extends Command {
             )
             .addField('**TOTAL WINS:**', `${player.stats.bedwars.wins}`, true);
 
-          return message.reply({ embeds: [emb], components: [row] });
+          return message.reply({
+            embeds: [emb],
+            components: [row]
+          });
         });
       });
   }

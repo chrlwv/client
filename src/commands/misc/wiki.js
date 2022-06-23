@@ -1,8 +1,11 @@
-/** @format */
-
 const wiki = require("wikijs").default();
-const { MessageActionRow, MessageButton } = require("discord.js");
-const { embed } = require("../../utils/Utils");
+const {
+  MessageActionRow,
+  MessageButton
+} = require("discord.js");
+const {
+  embed
+} = require("../../utils/Utils");
 
 module.exports = class Wikipedia extends Command {
   constructor() {
@@ -11,7 +14,7 @@ module.exports = class Wikipedia extends Command {
       aliases: ["wikipedia"],
       description: "Search queries on Wikipedia website.",
       usage: "<query>",
-      category: "<:charliewave_general:771633361340727336> Misc",
+      category: "Misc",
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -54,6 +57,9 @@ module.exports = class Wikipedia extends Command {
       .setDescription(
         `${description.slice(0, 2045)}${description.length > 2048 ? "..." : ""}`
       );
-    return message.reply({ embeds: [emb], components: [row] });
+    return message.reply({
+      embeds: [emb],
+      components: [row]
+    });
   }
 };

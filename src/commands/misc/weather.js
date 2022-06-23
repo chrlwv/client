@@ -1,7 +1,7 @@
-/** @format */
-
 const fetch = require("node-fetch");
-const { embed } = require("../../utils/Utils");
+const {
+	embed
+} = require("../../utils/Utils");
 
 module.exports = class Weather extends Command {
 	constructor() {
@@ -10,7 +10,7 @@ module.exports = class Weather extends Command {
 			aliases: ["meteo"],
 			description: "Meteo informations about a submitted location.",
 			usage: "<location>",
-			category: "<:charliewave_general:771633361340727336> Misc",
+			category: "Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -36,8 +36,7 @@ module.exports = class Weather extends Command {
 		}
 
 		if (dataWeather.cod === "404") {
-			return message.reply(`\`openWeatherMap 404 ERROR:\` Location ${query} cannot be found.`
-			);
+			return message.reply(`\`openWeatherMap 404 ERROR:\` Location ${query} cannot be found.`);
 		}
 
 		const main = dataWeather.weather[0].main;
@@ -48,9 +47,9 @@ module.exports = class Weather extends Command {
 		const windSpeed = dataWeather.wind.speed;
 		const country = dataWeather.sys.country;
 
-        let emb;
+		let emb;
 		emb = embed()
-            .setColor(0x36393e)
+			.setColor(0x36393e)
 			.addField(`**MAIN:**`, main, true)
 			.addField(`**CURRENT:**`, desc, true)
 			.addField(`**TEMPERATURE:**`, `${temp}°C`, true)
@@ -68,6 +67,8 @@ module.exports = class Weather extends Command {
 			.setDescription(dataWeather.name)
 			.setThumbnail(`https://openweathermap.org/img/wn/${icon}@2x.png`);
 
-        return message.reply({ embeds: [emb] });
+		return message.reply({
+			embeds: [emb]
+		});
 	}
 };

@@ -1,7 +1,9 @@
-/** @format */
-
-const { embed } = require("../../utils/Utils");
-const { stripIndents } = require("common-tags");
+const {
+	embed
+} = require("../../utils/Utils");
+const {
+	stripIndents
+} = require("common-tags");
 
 module.exports = class Server extends Command {
 	constructor() {
@@ -10,7 +12,7 @@ module.exports = class Server extends Command {
 			aliases: ["serverinfo", "si", "sinfo", "guild", "ginfo", "guildinfo", "gi"],
 			description: "Guild informations and statistics.",
 			usage: "",
-			category: "<:charliewave_general:771633361340727336> Misc",
+			category: "Misc",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -18,19 +20,21 @@ module.exports = class Server extends Command {
 		});
 	}
 	async exec(message) {
-		const { guild } = message;
-        const _createdAt = new Date(message.guild.createdAt);
+		const {
+			guild
+		} = message;
+		const _createdAt = new Date(message.guild.createdAt);
 
-        const guildEmojis = message.guild.emojis.cache.size
-			? message.guild.emojis.cache
-					.map(
-						(emoji) =>
-							`<${emoji.animated == true ? "a" : ""}:${emoji.name}:${emoji.id}>`
-					)
-					.join(" ")
-					.substring(0, 1024)
-					.replace(/\s\S+[^>]$/, "")
-			: "<:charliewave_decline:771454968473190410>";
+		const guildEmojis = message.guild.emojis.cache.size ?
+			message.guild.emojis.cache
+			.map(
+				(emoji) =>
+				`<${emoji.animated == true ? "a" : ""}:${emoji.name}:${emoji.id}>`
+			)
+			.join(" ")
+			.substring(0, 1024)
+			.replace(/\s\S+[^>]$/, "") :
+			"<:none:989561119268020294>";
 
 		const guildRoles = message.guild.roles.cache
 			.map((role) => role.toString())
@@ -45,34 +49,38 @@ module.exports = class Server extends Command {
 			bots: message.guild.members.cache.filter(member => member.user.bot).size,
 		};
 
-        const owner = await message.guild.fetchOwner();
+		const owner = await message.guild.fetchOwner();
 
-        const guildLevel = {
-            NONE: "0",
-            TIER_1: "1",
-            TIER_2: "2",
-            TIER_3: "3"
-        }
+		const guildLevel = {
+			NONE: "0",
+			TIER_1: "1",
+			TIER_2: "2",
+			TIER_3: "3"
+		}
 
 		const mfaLeveled = {
-			NONE: "<:charliewave_decline:771454968473190410>",
+			NONE: "<:none:989561119268020294>",
 			ELEVATED: "Elevated"
 		}
 
 		const verificationLevel = {
-			NONE: "<:charliewave_decline:771454968473190410>",
-			LOW: "Low",
-			MEDIUM: "Medium",
-			HIGH: "High", 
-			VERY_HIGH: "Very High"
+			NONE: "<:off_mod:989562450384932904> None",
+			LOW: "<:low_mod:989562583222734998> Low",
+			MEDIUM: "<:medium_mod:989562618639442000> Medium",
+			HIGH: "<:high_mod:989562664726454292> High",
+			VERY_HIGH: "<:highest_mod:989562693121871953> Very High"
 		}
 
-        let emb;
+		let emb;
 		emb = embed()
-        .setColor(0x36393e)
-        .setTitle(`${message.guild.name}`)
+			.setColor(0x36393e)
+			.setTitle(`${message.guild.name}`)
 			.setThumbnail(
-				message.guild.iconURL({ dynamic: true, size: 2048, format: "png" })
+				message.guild.iconURL({
+					dynamic: true,
+					size: 2048,
+					format: "png"
+				})
 			)
 			.setDescription(
 				`${
@@ -83,15 +91,15 @@ module.exports = class Server extends Command {
 			)
 			.addField(
 				`**OWNERSHIP:**`,
-				`<:charliewave_ownership:771637500967124994> ${
+				`<:owner:989561605241057280> ${
 					owner
 				}`,
 				true
 			)
 			.addField(
 				`**PARTNERED:**`,
-				stripIndents`\
-                ${guild.partnered ? '<:charliewave_approve:771455713494040586>' : '<:charliewave_decline:771454968473190410>'}`,
+				stripIndents `\
+                ${guild.partnered ? '<:on_switch:989561075299151922>' : '<:off_switch:989561108220235846>'}`,
 				true
 			)
 			.addField(
@@ -107,29 +115,29 @@ module.exports = class Server extends Command {
 			.addField(
 				`**BOOSTS:**`,
 				message.guild.premiumSubscriptionCount +
-					` (Level: ${guildLevel[message.guild.premiumTier]})` ||
-					"<:charliewave_decline:771454968473190410>",
+				` (Level: ${guildLevel[message.guild.premiumTier]})` ||
+				"<:none:989561119268020294>",
 				true
 			)
 			.addField(
 				`**AFK CHANNEL:**`,
-				message.guild.afkChannel
-					? `<:charliewave_text:771637634572222475> ${message.guild.afkChannel.name}`
-					: "<:charliewave_decline:771454968473190410>",
+				message.guild.afkChannel ?
+				`<:text:989563445122850906> ${message.guild.afkChannel.name}` :
+				"<:none:989561119268020294>",
 				true
 			)
 			.addField(
 				`**CREATED ON**:`,
 				`<t:${Math.floor(_createdAt/1000) + 3600}:F>` +
-					`\n${this.constructor.daysAgo(message.guild.createdAt).toFixed(0)} (days ago)`
+				`\n${this.constructor.daysAgo(message.guild.createdAt).toFixed(0)} (days ago)`
 			)
 			.addField(
 				`**MEMBERS (${message.guild.memberCount}):**`,
-				stripIndents`\
-              <:charliewave_online:771635233384693791> ${members.online} : \
-              <:charliewave_dnd:771635335486111744> ${members.dnd} : \
-              <:charliewave_idle:771635289839501333> ${members.idle} : \
-              <:charliewave_bot:771636943632859136> ${members.bots}`,
+				stripIndents `\
+				<:online_badge:989563871847129128> ${members.online} : \
+				<:dnd_badge:989563909969182781> ${members.dnd} : \
+				<:idle_badge:989563953573138462> ${members.idle} : \
+				<:bot_badge:989563823058984960> ${members.bots}`,
 				true
 			)
 			.addField(
@@ -141,29 +149,29 @@ module.exports = class Server extends Command {
 				guildRoles
 			);
 
-            const inviteBanner = guild.bannerURL({
-                size: 2048,
-                format: "png",
-              });
+		const inviteBanner = guild.bannerURL({
+			size: 2048,
+			format: "png",
+		});
 
-              if (inviteBanner !== null) {
-                emb.setImage(inviteBanner);
-              }
-            
+		if (inviteBanner !== null) {
+			emb.setImage(inviteBanner);
+		}
 
-
-            return message.reply({ embeds: [emb] }); 
+		return message.reply({
+			embeds: [emb]
+		});
 	}
-    static daysAgo(time) {
-        var today = new Date();
-        var createdOn = new Date(time);
-        var msInDay = 24 * 60 * 60 * 1000;
+	static daysAgo(time) {
+		var today = new Date();
+		var createdOn = new Date(time);
+		var msInDay = 24 * 60 * 60 * 1000;
 
-        createdOn.setHours(0, 0, 0, 0);
-        today.setHours(0, 0, 0, 0);
+		createdOn.setHours(0, 0, 0, 0);
+		today.setHours(0, 0, 0, 0);
 
-        var diff = (+today - +createdOn) / msInDay;
+		var diff = (+today - +createdOn) / msInDay;
 
-        return diff;
-    }
+		return diff;
+	}
 };

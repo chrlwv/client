@@ -1,9 +1,12 @@
-/** @format */
-
 var NumAbbr = require("number-abbreviate");
 const fetch = require("cross-fetch");
-const { MessageActionRow, MessageButton } = require("discord.js");
-const { embed } = require("../../utils/Utils");
+const {
+  MessageActionRow,
+  MessageButton
+} = require("discord.js");
+const {
+  embed
+} = require("../../utils/Utils");
 
 var numAbbr = new NumAbbr();
 
@@ -12,10 +15,9 @@ module.exports = class Skyblock extends Command {
     super({
       name: "skyblock",
       aliases: ["sb"],
-      description:
-        "Featches hypixel skyblock informations for an argued minecraft username.",
+      description: "Featches hypixel skyblock informations for an argued minecraft username.",
       usage: "<username>",
-      category: "<:charliewave_hypixel:771634768777445406> Hypixel",
+      category: "Hypixel",
       ownerOnly: false,
       cooldown: 20000,
       memberPerms: [],
@@ -32,7 +34,11 @@ module.exports = class Skyblock extends Command {
     try {
       fetch(`https://api.minetools.eu/uuid/${args[0]}`)
         .then((result) => result.json())
-        .then(async ({ id, name, status }) => {
+        .then(async ({
+          id,
+          name,
+          status
+        }) => {
           const fetchProf = await fetch(
             `https://api.slothpixel.me/api/skyblock/profile/${args[0]}`
           );
@@ -75,46 +81,46 @@ module.exports = class Skyblock extends Command {
             emb.addField(
               "**ARMOR:**",
               profileData.members[id].armor[3].name
-                .replace(/§/g, "")
-                .replace(/\d+/, "")
-                .replace("d", "")
-                .replace("f", "")
-                .replace(/6/g, "") +
+              .replace(/§/g, "")
+              .replace(/\d+/, "")
+              .replace("d", "")
+              .replace("f", "")
+              .replace(/6/g, "") +
               `\n` +
               profileData.members[id].armor[2].name
-                .replace(/§/g, "")
-                .replace(/\d+/, "")
-                .replace("d", "")
-                .replace("f", "")
-                .replace(/6/g, "") +
+              .replace(/§/g, "")
+              .replace(/\d+/, "")
+              .replace("d", "")
+              .replace("f", "")
+              .replace(/6/g, "") +
               `\n` +
               profileData.members[id].armor[1].name
-                .replace(/§/g, "")
-                .replace(/\d+/, "")
-                .replace("d", "")
-                .replace("f", "")
-                .replace(/6/g, "") +
+              .replace(/§/g, "")
+              .replace(/\d+/, "")
+              .replace("d", "")
+              .replace("f", "")
+              .replace(/6/g, "") +
               `\n` +
               profileData.members[id].armor[0].name
-                .replace(/§/g, "")
-                .replace(/\d+/, "")
-                .replace("d", "")
-                .replace("f", "")
-                .replace(/6/g, "")
+              .replace(/§/g, "")
+              .replace(/\d+/, "")
+              .replace("d", "")
+              .replace("f", "")
+              .replace(/6/g, "")
             );
           emb.addField(
             "**STATS:**",
-            `<:Health_icon:852570156261834762> ${profileData.members[
+            `<:health:989568608256557087> ${profileData.members[
               id
-            ].attributes.health.toLocaleString()} | <:Absorption_icon:852570156110184489> ${profileData.members[
+            ].attributes.health.toLocaleString()} | <:defense:989569398656356473> ${profileData.members[
               id
-            ].attributes.effective_health.toLocaleString()} \n<:Defense_icon:852570156211503109> ${profileData.members[
+            ].attributes.defense.toLocaleString()} \n<:pet_luck:989570156286050395> ${profileData.members[
               id
-            ].attributes.defense.toLocaleString()} | <:Strength_icon:852570155966791692> ${profileData.members[
+            ].attributes.pet_luck.toLocaleString()} | <:strenght:989569403223949433> ${profileData.members[
               id
-            ].attributes.strength.toLocaleString()}\n<:Speed_icon:852570156198133790> ${profileData.members[
+            ].attributes.strength.toLocaleString()}\n<:speed:989569401579790386> ${profileData.members[
               id
-            ].attributes.speed.toLocaleString()}% | <:Intelligence_icon:852570156239683594> ${profileData.members[
+            ].attributes.speed.toLocaleString()}% | <:intelligence:989569400208257034> ${profileData.members[
               id
             ].attributes.intelligence.toLocaleString()}`,
             true
@@ -192,10 +198,15 @@ module.exports = class Skyblock extends Command {
             )}`,
             true
           );
-          return message.reply({ embeds: [emb], components: [row] });
+          return message.reply({
+            embeds: [emb],
+            components: [row]
+          });
         });
     } catch (err) {
-      this.logger.error(`Error: ${err.message}`, { tag: 'SkyblockAPIError' })
+      this.logger.error(`Error: ${err.message}`, {
+        tag: 'SkyblockAPIError'
+      })
     }
   }
 };

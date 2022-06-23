@@ -1,6 +1,6 @@
-/** @format */
-
-const { embed } = require("../../utils/Utils");
+const {
+  embed
+} = require("../../utils/Utils");
 
 module.exports = class Unban extends Command {
   constructor() {
@@ -9,8 +9,7 @@ module.exports = class Unban extends Command {
       aliases: [],
       description: "Unban a user from the current guild.",
       usage: "<user_id> <reason>",
-      category:
-        "<:charliewave_advanced_moderator:857930973715103775> Moderator",
+      category: "Moderator",
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: ["BAN_MEMBERS"],
@@ -39,7 +38,7 @@ module.exports = class Unban extends Command {
 
     if (guildSettings.client_logging.enable === true) {
       await this.client.updateGuildById(message.guild.id, {
-        "client_logging.case": guildSettings.client_logging.case + 1,
+        "client_logging.case": guildSettings.client_logging.case+1,
       });
 
       if (guildSettings.client_logging.channel) {
@@ -64,7 +63,10 @@ module.exports = class Unban extends Command {
 
         this.client.channels.cache
           .get(guildSettings.client_logging.channel)
-          .send({ conent: "guildUnBanAdd", embeds: [emb] });
+          .send({
+            conent: "guildUnBanAdd",
+            embeds: [emb]
+          });
       }
     }
   }

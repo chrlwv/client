@@ -1,18 +1,20 @@
-/** @format */
-
 Fetch = require("node-fetch").default;
-const { MessageActionRow, MessageButton } = require("discord.js");
-const { embed } = require("../../utils/Utils");
+const {
+  MessageActionRow,
+  MessageButton
+} = require("discord.js");
+const {
+  embed
+} = require("../../utils/Utils");
 
 module.exports = class Minecraft extends Command {
   constructor() {
     super({
       name: "minecraft",
       aliases: ["mc", "mcserv", "minecraftserver", "mcserver"],
-      description:
-        "Fetches public informations about a third-party rminecraft server.",
+      description: "Fetches public informations about a third-party rminecraft server.",
       usage: "<ip_address>",
-      category: "<:charliewave_general:771633361340727336> Misc",
+      category: "Misc",
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -55,7 +57,7 @@ module.exports = class Minecraft extends Command {
       )
       .addField(
         `**VERSION:**`,
-        json.version || "<:charliewave_decline:771454968473190410>",
+        json.version || "<:none:989561119268020294>",
         true
       );
 
@@ -64,6 +66,9 @@ module.exports = class Minecraft extends Command {
     if (json.motd && json.motd.clean && json.motd.clean.length > 1) {
       emb.addField(`**MOTD:**`, `${serverMotd}`);
     }
-    return message.reply({ embeds: [emb], components: [row] });
+    return message.reply({
+      embeds: [emb],
+      components: [row]
+    });
   }
 };

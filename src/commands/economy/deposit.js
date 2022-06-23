@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = class Deposit extends Command {
 	constructor() {
 		super({
@@ -7,7 +5,7 @@ module.exports = class Deposit extends Command {
 			aliases: ["bank"],
 			description: "Deposit coins to bank.",
 			usage: "<amount>",
-			category: ":coin: Economy",
+			category: "Economy",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -15,7 +13,9 @@ module.exports = class Deposit extends Command {
 		});
 	}
 	async exec(message, args, data) {
-		const { user } = await this.client.getUserById(message.author.id);
+		const {
+			user
+		} = await this.client.getUserById(message.author.id);
 
 		const coinsPurse = user.coins;
 		let amount = args.slice(0).join(" ");
@@ -37,10 +37,10 @@ module.exports = class Deposit extends Command {
 
 		amount = Number(args[0]);
 
-    if (typeof amount !== "number" || isNaN(amount)) {
-      return message.reply("Make sure you enter a valid number.");
-    }
-		
+		if (typeof amount !== "number" || isNaN(amount)) {
+			return message.reply("Make sure you enter a valid number.");
+		}
+
 		if (message.content.includes("-")) {
 			return message.reply('Make sure you enter a valid number.');
 		}
