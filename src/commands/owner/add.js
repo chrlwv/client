@@ -1,45 +1,45 @@
-/** @format */
-
 module.exports = class Add extends Command {
 	constructor() {
 		super({
-      name: 'add',
-      aliases: ['set'],
-      description: 'Add command',
-      usage: '<user> <type: exp; coins; reputation> <value>',
-      category: '<:charliewave_ownership:771637500967124994> Owner',
-      ownerOnly: true,
-      cooldown: 3000,
-      memberPerms: [],
-      clientPerms: [],
-    });
+			name: 'add',
+			aliases: ['set'],
+			description: 'Add command',
+			usage: '<user> <type: exp; coins; reputation> <value>',
+			category: 'Owner',
+			ownerOnly: true,
+			cooldown: 3000,
+			memberPerms: [],
+			clientPerms: [],
+		});
 	}
 	async exec(message, args, data) {
 		const member =
-      message.mentions.members.first() ||
-      message.guild.members.cache.get(args[0]) ||
-      message.guild.members.cache.find(
-        (m) =>
-          m.displayName.toLowerCase().includes(args[0]) ||
-          m.user.tag.toLowerCase().includes(args[0])
-      );
+			message.mentions.members.first() ||
+			message.guild.members.cache.get(args[0]) ||
+			message.guild.members.cache.find(
+				(m) =>
+				m.displayName.toLowerCase().includes(args[0]) ||
+				m.user.tag.toLowerCase().includes(args[0])
+			);
 
-     const value = args[2];
-     const type = args[1];
+		const value = args[2];
+		const type = args[1];
 
-     if (!value) {
-       return message.reply(
-         `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}add <user> <type: exp; coins; reputation> <value>\``
-       );
-     }
+		if (!value) {
+			return message.reply(
+				`Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}add <user> <type: exp; coins; reputation> <value>\``
+			);
+		}
 
-     if (member.bot) {
-       return message.reply("You cannot give value for Discord applications.");
-     }
+		if (member.bot) {
+			return message.reply("You cannot give value for Discord applications.");
+		}
 
 		switch (type) {
 			case "exp": {
-				const { user } = await this.client.getUserById(member.id);
+				const {
+					user
+				} = await this.client.getUserById(member.id);
 
 				await this.client.updateUserById(member.id, {
 					exp: user.exp + Number(value),
@@ -50,7 +50,9 @@ module.exports = class Add extends Command {
 				);
 			}
 			case "coins": {
-				const { user } = await this.client.getUserById(member.id);
+				const {
+					user
+				} = await this.client.getUserById(member.id);
 
 				await this.client.updateUserById(member.id, {
 					bank: user.bank + Number(value),
@@ -60,7 +62,9 @@ module.exports = class Add extends Command {
 				);
 			}
 			case "reputation": {
-				const { user } = await this.client.getUserById(member.id);
+				const {
+					user
+				} = await this.client.getUserById(member.id);
 
 				await this.client.updateUserById(member.id, {
 					reputation: user.reputation + Number(value),

@@ -1,7 +1,8 @@
-/** @format */
 const fs = require("fs");
 
-const { stripIndents } = require("common-tags");
+const {
+  stripIndents
+} = require("common-tags");
 
 module.exports = class Obsidian extends Command {
   constructor() {
@@ -10,7 +11,7 @@ module.exports = class Obsidian extends Command {
       aliases: ["todo"],
       description: "Obsidian integration command",
       usage: "",
-      category: "<:charliewave_ownership:771637500967124994> Owner",
+      category: "Owner",
       ownerOnly: true,
       cooldown: 3000,
       memberPerms: [],
@@ -24,7 +25,7 @@ module.exports = class Obsidian extends Command {
       if (err) throw err;
 
       try {
-        message.reply(stripIndents`\`\`\`\n${splice(data)}\n\`\`\``);
+        message.reply(stripIndents `\`\`\`\n${splice(data)}\n\`\`\``);
       } catch (err) {
         console.log(err.message);
       }

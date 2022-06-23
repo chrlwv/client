@@ -1,5 +1,3 @@
-/** @format */
-
 const ms = require("ms");
 
 module.exports = class Blacklist extends Command {
@@ -9,7 +7,7 @@ module.exports = class Blacklist extends Command {
       aliases: ['block', 'white', 'whitelist'],
       description: 'Blocklist command',
       usage: '<user> <type: view; add; remove> <reason>',
-      category: '<:charliewave_ownership:771637500967124994> Owner',
+      category: 'Owner',
       ownerOnly: true,
       cooldown: 3000,
       memberPerms: [],
@@ -22,8 +20,8 @@ module.exports = class Blacklist extends Command {
       message.guild.members.cache.get(args[0]) ||
       message.guild.members.cache.find(
         (m) =>
-          m.displayName.toLowerCase().includes(args[0]) ||
-          m.user.tag.toLowerCase().includes(args[0])
+        m.displayName.toLowerCase().includes(args[0]) ||
+        m.user.tag.toLowerCase().includes(args[0])
       );
 
     let reason = args.slice(2).join(" ");
@@ -58,7 +56,9 @@ module.exports = class Blacklist extends Command {
           return message.reply("This user is not blacklisted.");
         }
 
-        let blockTime = ms(Date.now() - blockedData.date, { long: true });
+        let blockTime = ms(Date.now() - blockedData.date, {
+          long: true
+        });
 
         return message.reply(
           `${member.user.tag} has been blacklisted ${blockTime} ago, reason: ${blockedData.reason}.`
@@ -101,7 +101,7 @@ module.exports = class Blacklist extends Command {
     return message.reply(
       `${message.author.tag} ${type === "add" ? "blocked" : "unblocked"} ${
         member.user.tag
-      } from using chrlwv, reason: ${reason}`
+      } from using ${this.client.user.tag}, reason: ${reason}`
     );
   }
 };

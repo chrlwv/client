@@ -21,6 +21,5 @@ MONGO={mongoDb.connectionUri}
 HYPIXEL={hypixel.apiKey}
 WEATHER={openweathermap.apiKey}
 OWNER={owner.Id}
-SENTRY={sentry.connectionUri}
 ```
     
