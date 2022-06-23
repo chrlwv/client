@@ -1,5 +1,3 @@
-/** @format */
-
 const {
   Client,
   Collection,

@@ -9,7 +9,7 @@ module.exports = class Slots extends Command {
 			aliases: ["slot", "casino"],
 			description: "Try out the slots and make some changes to your account, by winning coins and experience.",
 			usage: "<amount>",
-			category: ":coin: Economy",
+			category: "Economy",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
