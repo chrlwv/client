@@ -1,9 +1,11 @@
-/** @format */
-
 const Discord = require("discord.js");
 const fs = require("fs");
 const path = require("path");
-const { createCanvas, loadImage, Canvas } = require("canvas");
+const {
+	createCanvas,
+	loadImage,
+	Canvas
+} = require("canvas");
 
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 const splice = (s) => (s.length > 40 ? `${s.substring(0, 50)}\n...` : s);
@@ -13,10 +15,9 @@ module.exports = class Profile extends Command {
 		super({
 			name: "profile",
 			aliases: ["me"],
-			description:
-				"Create the canva profile statistics for the exp & coins ecosystem.",
+			description: "Create the canva profile statistics for the exp & coins ecosystem.",
 			usage: "<user>",
-			category: "<:charliewave_rep:778610398928568330> Social",
+			category: "Social",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -29,13 +30,21 @@ module.exports = class Profile extends Command {
 			message.guild.members.cache.get(args[0]) ||
 			message.guild.members.cache.find(
 				(m) =>
-					m.displayName.toLowerCase().includes(args[0]) ||
-					m.user.tag.toLowerCase().includes(args[0])
+				m.displayName.toLowerCase().includes(args[0]) ||
+				m.user.tag.toLowerCase().includes(args[0])
 			) ||
 			message.member;
 
-		const { user } = await this.client.getUserById(member.id);
-		const { coins, bank, exp, about, reputation } = user;
+		const {
+			user
+		} = await this.client.getUserById(member.id);
+		const {
+			coins,
+			bank,
+			exp,
+			about,
+			reputation
+		} = user;
 		const level = calculateUserXp(exp);
 		const coins_total = coins + bank;
 
@@ -58,7 +67,9 @@ module.exports = class Profile extends Command {
 		ctx.drawImage(background, 0, 0, 2000, 2000);
 
 		const avatar = await loadImage(
-			member.user.displayAvatarURL({ format: "png" })
+			member.user.displayAvatarURL({
+				format: "png"
+			})
 		);
 
 		ctx.drawImage(avatar, 117, 420, 550, 550);

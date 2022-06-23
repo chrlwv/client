@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = class About extends Command {
 	constructor() {
 		super({
@@ -7,7 +5,7 @@ module.exports = class About extends Command {
 			aliases: ["aboutme", "bio", "setbio"],
 			description: "Customize your profile, by setting a new about me text.",
 			usage: "<text>",
-			category: "<:charliewave_rep:778610398928568330> Social",
+			category: "Social",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],

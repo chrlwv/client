@@ -1,5 +1,3 @@
-/** @format */
-
 const ms = require("ms");
 
 module.exports = class Reputation extends Command {
@@ -9,7 +7,7 @@ module.exports = class Reputation extends Command {
 			aliases: ["reputation"],
 			description: "Give a reputation point to a mentioned user.",
 			usage: "<user>",
-			category: "<:charliewave_rep:778610398928568330> Social",
+			category: "Social",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: [],
@@ -22,23 +20,29 @@ module.exports = class Reputation extends Command {
 			message.guild.members.cache.get(args[0]) ||
 			message.guild.members.cache.find(
 				(m) =>
-					m.displayName.toLowerCase().includes(args[0]) ||
-					m.user.tag.toLowerCase().includes(args[0])
+				m.displayName.toLowerCase().includes(args[0]) ||
+				m.user.tag.toLowerCase().includes(args[0])
 			) ||
 			message.member;
 
 		const timeout = 86400000;
 		const amount = 1;
-		const { user } = await this.client.getUserById(message.author.id);
+		const {
+			user
+		} = await this.client.getUserById(message.author.id);
 		const rep = user.rep_cooldown;
 
-		const { user: receiver } = await this.client.getUserById(member.id);
-		const { user: sender } = await this.client.getUserById(message.author.id);
+		const {
+			user: receiver
+		} = await this.client.getUserById(member.id);
+		const {
+			user: sender
+		} = await this.client.getUserById(message.author.id);
 
 		if (!args[0]) {
-      return message.reply(
-        `Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}rep <user>\``
-      );
+			return message.reply(
+				`Inaccurate use of syntax.\n\`e.g. ${data.guild?.prefix}rep <user>\``
+			);
 		}
 
 		if (receiver.userId === sender.userId) {
@@ -48,7 +52,9 @@ module.exports = class Reputation extends Command {
 		}
 
 		if (rep !== null && timeout - (Date.now() - rep) > 0) {
-			let time = ms(timeout - (Date.now() - rep), { long: true });
+			let time = ms(timeout - (Date.now() - rep), {
+				long: true
+			});
 
 			message.reply(
 				`You've already used the rep command recently, \`${time}\` remaining.`
