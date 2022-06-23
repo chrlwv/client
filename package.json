@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "version": "1.9.5",
+  "version": "1.9.6",
   "description": "A multipurpose discord bot written in javascript, that can be used by users to enjoy discord community server by help of our bot.",
   "main": "index.js",
   "scripts": {
@@ -25,8 +25,6 @@
   },
   "homepage": "https://github.com/chrlwv/client#readme",
   "dependencies": {
-    "@sentry/node": "^6.15.0",
-    "@sentry/tracing": "^6.15.0",
     "@top-gg/sdk": "^3.1.2",
     "canvacord": "^5.2.3",
     "canvas": "^2.8.0",

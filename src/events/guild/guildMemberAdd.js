@@ -1,7 +1,10 @@
-/** @format */
-
-const { MessageAttachment } = require("discord.js");
-const { createCanvas, loadImage } = require("canvas");
+const {
+  MessageAttachment
+} = require("discord.js");
+const {
+  createCanvas,
+  loadImage
+} = require("canvas");
 const fs = require("fs");
 const path = require("path");
 
@@ -76,7 +79,10 @@ module.exports = class guildMemberAdd extends Event {
 
       this.client.channels.cache
         .get(welcomeChannel)
-        .send({ conent: "guildMemberAdd", files: [attachment] });
+        .send({
+          conent: "guildMemberAdd",
+          files: [attachment]
+        });
     }
 
     if (autoRole) {

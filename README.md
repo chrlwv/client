@@ -18,4 +18,9 @@ All the sessions are maintained on `private server` with aws integration provide
 ```
 TOKEN={discord.application.token}
 MONGO={mongoDb.connectionUri}
+HYPIXEL={hypixel.apiKey}
+WEATHER={openweathermap.apiKey}
+OWNER={owner.Id}
+SENTRY={sentry.connectionUri}
 ```
+    

@@ -1,9 +1,20 @@
 /** @format */
 
-const { Client, Collection, Intents } = require("discord.js");
-const { connect, connection: db } = require("mongoose");
-const { resolve } = require("path");
-const { sync } = require('glob');
+const {
+  Client,
+  Collection,
+  Intents
+} = require("discord.js");
+const {
+  connect,
+  connection: db
+} = require("mongoose");
+const {
+  resolve
+} = require("path");
+const {
+  sync
+} = require('glob');
 const fs = require('fs');
 
 require('./Command');
@@ -21,17 +32,15 @@ module.exports = class Bot extends Client {
     this.commands = new Collection();
     this.events = new Collection();
     this.aliases = new Collection();
-    this.owners = ['565960314970177556'];
-    this.openWeatherMapKey = 'ed251da67188d62057cd640eda4fdc77';
-    this.hypixelKey = 'fd87b220-18c3-451e-be0c-8572e4186816';
+    this.owners = process.env.OWNER;
+    this.openWeatherMapKey = process.env.WEATHER;
+    this.hypixelKey = process.env.HYPIXEL;
     this.logger = require('../utils/Logger');
     this.database = {};
     this.guildsData = require('../models/Guilds');
     this.database.guilds = new Collection();
     this.usersData = require('../models/Users');
     this.database.users = new Collection();
-    this.warningsData = require('../models/Warnings');
-    this.database.warnings = new Collection();
     this.blacklistedData = require('../models/Blacklisted');
     this.database.blacklisted = new Collection();
 
@@ -39,12 +48,14 @@ module.exports = class Bot extends Client {
       this.logger.log(
         `Successfully connected to the database! (Latency: ${Math.round(
           await this.databasePing()
-        )}ms)`,
-        { tag: 'Database' }
-      )
-    );
+        )}ms)`, {
+          tag: 'Database'
+        }
+      ));
     db.on('disconnected', () =>
-      this.logger.error('Disconnected from the database!', { tag: 'Database' })
+      this.logger.error('Disconnected from the database!', {
+        tag: 'Database'
+      })
     );
     db.on('error', (error) =>
       this.logger.error(`Unable to connect to the database!\nError: ${error}`, {
@@ -55,26 +66,34 @@ module.exports = class Bot extends Client {
       this.logger.log(
         `Reconnected to the database! (Latency: ${Math.round(
           await this.databasePing()
-        )}ms)`,
-        { tag: 'Database' }
-      )
-    );
+        )}ms)`, {
+          tag: 'Database'
+        }
+      ));
   }
 
-  async findGuild({ guildID: guildId }, check) {
+  async findGuild({
+    guildID: guildId
+  }, check) {
     if (this.database.guilds.get(guildId)) {
-      return check
-        ? this.database.guilds.get(guildId).toJSON()
-        : this.database.guilds.get(guildId);
+      return check ?
+        this.database.guilds.get(guildId).toJSON() :
+        this.database.guilds.get(guildId);
     } else {
-      let guildData = check
-        ? await this.guildsData.findOne({ guildID: guildId }).lean()
-        : await this.guildsData.findOne({ guildID: guildId });
+      let guildData = check ?
+        await this.guildsData.findOne({
+          guildID: guildId
+        }).lean() :
+        await this.guildsData.findOne({
+          guildID: guildId
+        });
       if (guildData) {
         if (!check) this.database.guilds.set(guildId, guildData);
         return guildData;
       } else {
-        guildData = new this.guildsData({ guildID: guildId });
+        guildData = new this.guildsData({
+          guildID: guildId
+        });
         await guildData.save();
         this.database.guilds.set(guildId, guildData);
         return check ? guildData.toJSON() : guildData;
@@ -91,7 +110,9 @@ module.exports = class Bot extends Client {
 
   async databasePing() {
     const cNano = process.hrtime();
-    await db.db.command({ ping: 1 });
+    await db.db.command({
+      ping: 1
+    });
     const time = process.hrtime(cNano);
     return (time[0] * 1e9 + time[1]) * 1e-6;
   }
@@ -118,11 +139,11 @@ module.exports = class Bot extends Client {
       const event = new File();
       event.client = this;
       this.events.set(event.name, event);
-      const emitter = event.emitter
-        ? typeof event.emitter === 'string'
-          ? this[event.emitter]
-          : emitter
-        : this;
+      const emitter = event.emitter ?
+        typeof event.emitter === 'string' ?
+        this[event.emitter] :
+        emitter :
+        this;
       emitter[event.type ? 'once' : 'on'](event.name, (...args) =>
         event.exec(...args)
       );
@@ -130,21 +151,23 @@ module.exports = class Bot extends Client {
   }
 
   async getUserById(userId) {
-    let user = await this.usersData.findOne({ userId: userId });
-    const warnings = await this.warningsData.find({ userId: userId });
+    let user = await this.usersData.findOne({
+      userId: userId
+    });
 
     if (!user) {
       user = await this.addUser(userId);
     }
 
     return {
-      user,
-      warnings: warnings,
+      user
     };
   }
 
   async addUser(userId) {
-    const user = new this.usersData({ userId: userId });
+    const user = new this.usersData({
+      userId: userId
+    });
     await user.save();
     return user;
   }
@@ -160,15 +183,21 @@ module.exports = class Bot extends Client {
       await addUser(userId);
     }
 
-    await this.usersData.findOneAndUpdate({ userId: userId }, data);
+    await this.usersData.findOneAndUpdate({
+      userId: userId
+    }, data);
   }
 
   async removeUser(userId) {
-    await this.usersData.findOneAndDelete({ userId: userId });
+    await this.usersData.findOneAndDelete({
+      userId: userId
+    });
   }
 
   async getGuildById(guildId) {
-    let guild = await this.guildsData.findOne({ guildId: guildId });
+    let guild = await this.guildsData.findOne({
+      guildId: guildId
+    });
 
     if (!guild) {
       guild = await this.addGuild(guildId);
@@ -187,17 +216,23 @@ module.exports = class Bot extends Client {
       await this.addGuild(guildId);
     }
 
-    await this.guildsData.findOneAndUpdate({ guildId: guildId }, settings);
+    await this.guildsData.findOneAndUpdate({
+      guildId: guildId
+    }, settings);
   }
 
   async addGuild(guildId) {
-    const guild = new this.guildsData({ guildId: guildId });
+    const guild = new this.guildsData({
+      guildId: guildId
+    });
     await guild.save();
     return guild;
   }
 
   async removeGuild(guildId) {
-    await this.guildsData.findOneAndDelete({ guildId: guildId });
+    await this.guildsData.findOneAndDelete({
+      guildId: guildId
+    });
   }
 
   async formatNumber(n) {

@@ -6,6 +6,6 @@ global.Event = module.exports = class Event {
     }
 
     async exec(...args) {
-        throw new Error(`${this.name} does not provide exec method !`);
+        throw new Error(`${this.name} does not provide exec method.`);
     }
 }

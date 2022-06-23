@@ -1,4 +1,6 @@
-const { Permissions } = require("discord.js");
+const {
+    Permissions
+} = require("discord.js");
 
 global.Command = module.exports = class Command {
     constructor(options) {
@@ -15,6 +17,6 @@ global.Command = module.exports = class Command {
     }
 
     async exec(...args) {
-        throw new Error(`${this.name} does not provide exec method !`);
+        throw new Error(`${this.name} does not provide exec method.`);
     }
 }

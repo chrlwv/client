@@ -1,17 +1,22 @@
-/** @format */
-
-const { formatArray, formatPerms } = require("../../utils/Utils");
-const { Collection, WebhookClient, MessageEmbed } = require("discord.js");
+const {
+  formatArray,
+  formatPerms
+} = require("../../utils/Utils");
+const {
+  Collection,
+  WebhookClient,
+  MessageEmbed
+} = require("discord.js");
 const calculateUserXp = (xp) => Math.floor(0.1 * Math.sqrt(xp));
 
 module.exports = class messageCreate extends Event {
-	constructor() {
-		super({
-			name: "messageCreate",
-			once: false,
-		});
-	}
-	async exec(message) {
+  constructor() {
+    super({
+      name: "messageCreate",
+      once: false,
+    });
+  }
+  async exec(message) {
     const mentionRegPrefix = RegExp(`^<@!?${this.client.user.id}> `);
 
     const guild = await this.client.getGuildById(message.guild.id);
@@ -19,19 +24,21 @@ module.exports = class messageCreate extends Event {
     const ignored_channels_const = guild?.ignored_channels;
     if (ignored_channels_const.includes(message.channel.id)) return;
 
-		if (message.author.bot || !message.guild) return;
-		const data = {};
-		if (message.guild)
-			data.guild = await this.client.findGuild({ guildID: message.guild.id });
-		const prefix = message.content.match(mentionRegPrefix)
-			? message.content.match(mentionRegPrefix)[0]
-			: data.guild?.prefix;
-		if (!message.content.startsWith(prefix)) return;
-		const [cmd, ...args] = message.content
-			.slice(prefix.length)
-			.trim()
-			.split(/ +/g);
-		const command =
+    if (message.author.bot || !message.guild) return;
+    const data = {};
+    if (message.guild)
+      data.guild = await this.client.findGuild({
+        guildID: message.guild.id
+      });
+    const prefix = message.content.match(mentionRegPrefix) ?
+      message.content.match(mentionRegPrefix)[0] :
+      data.guild?.prefix;
+    if (!message.content.startsWith(prefix)) return;
+    const [cmd, ...args] = message.content
+      .slice(prefix.length)
+      .trim()
+      .split(/ +/g);
+    const command =
       this.client.commands.get(cmd.toLowerCase()) ||
       this.client.commands.get(this.client.aliases.get(cmd.toLowerCase()));
     if (command) {
@@ -73,7 +80,9 @@ module.exports = class messageCreate extends Event {
       }
 
       if (!message.author.bot) {
-        const { user } = await this.client.getUserById(message.author.id);
+        const {
+          user
+        } = await this.client.getUserById(message.author.id);
         const xp = Math.ceil(Math.random() * (1 * 5));
         const level = calculateUserXp(user.exp);
         const newLevel = calculateUserXp(user.exp + xp);
@@ -157,8 +166,7 @@ module.exports = class messageCreate extends Event {
           s.length > 1500 ? `${s.substring(0, 1000)}...` : s;
         const webhookIntegration = new WebhookClient({
           id: '795321440735461396',
-          token:
-            'CS9iXmXJTx-zLGiGONJaoUh-S8pfHsrHi24ERQQUZSD63ODXhpScCENIhbngE2Bdz1Ws',
+          token: 'CS9iXmXJTx-zLGiGONJaoUh-S8pfHsrHi24ERQQUZSD63ODXhpScCENIhbngE2Bdz1Ws',
         });
         if (!webhookIntegration) {
           return this.client.logger.error(`UNHANDLED ERROR\n\n${splice(err)}`, {
@@ -175,19 +183,19 @@ module.exports = class messageCreate extends Event {
 
         webhookIntegration.send({
           username: 'chrlwv.tech',
-          avatarURL:
-            'https://japi.rest/discord/v1/user/902937010103275581/avatar?size=512',
+          avatarURL: 'https://japi.rest/discord/v1/user/902937010103275581/avatar?size=512',
           embeds: [embed],
         });
 
         this.client.logger.error(
-          `An error occurred when trying to trigger MessageCreate event.\n\n${err}`,
-          { tag: 'MessageError' }
+          `An error occurred when trying to trigger MessageCreate event.\n\n${err}`, {
+            tag: 'MessageError'
+          }
         );
         return message.reply(
           `Oops, run into a critical error, please wait for a fix.`
         );
       }
     }
-	}
+  }
 };

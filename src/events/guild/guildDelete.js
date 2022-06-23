@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = class guildDelete extends Event {
   constructor() {
     super({
@@ -10,8 +8,7 @@ module.exports = class guildDelete extends Event {
   async exec(guild) {
     await this.client.removeGuild(guild.id);
     this.client.logger.log(
-      `${guild.name}(${guild.id}) removed me from their guild!`,
-      {
+      `${guild.name}(${guild.id}) removed me from their guild!`, {
         tag: "guildDelete",
       }
     );

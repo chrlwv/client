@@ -1,6 +1,10 @@
-/** @format */
-const { MessageAttachment } = require("discord.js");
-const { createCanvas, loadImage } = require("canvas");
+const {
+  MessageAttachment
+} = require("discord.js");
+const {
+  createCanvas,
+  loadImage
+} = require("canvas");
 const fs = require("fs");
 const path = require("path");
 
@@ -74,7 +78,10 @@ module.exports = class guildMemberRemove extends Event {
 
       this.client.channels.cache
         .get(leaveChannel)
-        .send({ conent: "guildMemberRemove", files: [attachment] });
+        .send({
+          conent: "guildMemberRemove",
+          files: [attachment]
+        });
 
       await this.client.removeUser(member.user.id, member.guild.id);
     }
