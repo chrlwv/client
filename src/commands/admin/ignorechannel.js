@@ -1,4 +1,3 @@
-/** @format */
 const guildsData = require("../../models/Guilds");
 
 module.exports = class IgnoreChannel extends Command {
@@ -8,7 +7,7 @@ module.exports = class IgnoreChannel extends Command {
       aliases: ["ignorech", "ignorec", "ignoredchannels"],
       description: "Add or remove a channel from the ignore channel list.",
       usage: "<option> <channel>",
-      category: "<:charliewave_settings:771462923855069204> Admin",
+      category: "Admin",
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: ["MANAGE_GUILD"],
@@ -77,11 +76,15 @@ async function updateGuildById(guildId, settings) {
     await this.client.addGuild(guildId);
   }
 
-  await guildsData.findOneAndUpdate({ guildId: guildId }, settings);
+  await guildsData.findOneAndUpdate({
+    guildId: guildId
+  }, settings);
 }
 
 async function getGuildById(guildId) {
-  let guild = await guildsData.findOne({ guildId: guildId });
+  let guild = await guildsData.findOne({
+    guildId: guildId
+  });
 
   if (!guild) {
     guild = await this.client.addGuild(guildId);

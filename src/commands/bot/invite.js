@@ -1,7 +1,10 @@
-/** @format */
-
-const { embed } = require('../../utils/Utils');
-const { MessageActionRow, MessageButton } = require('discord.js');
+const {
+  embed
+} = require('../../utils/Utils');
+const {
+  MessageActionRow,
+  MessageButton
+} = require('discord.js');
 
 module.exports = class Invite extends Command {
   constructor() {
@@ -10,7 +13,7 @@ module.exports = class Invite extends Command {
       aliases: ['invitebot', 'botinvite', 'inv'],
       description: 'Get the invite link for Charliewave.',
       usage: '',
-      category: '<:charliewave_supporter:771641583963340821> Core',
+      category: 'Core',
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -45,31 +48,21 @@ module.exports = class Invite extends Command {
     emb = embed()
       .setColor(0x36393e)
       .setTitle(
-        `${this.client.user.tag} ${this.constructor.getTargetEmojiByStatus(
-          this.client.presence.status,
-          this.client.presence.clientStatus != undefined &&
-            this.client.presence.clientStatus.mobile
-        )}`
+        `${this.client.user.tag}`
       )
       .setDescription(
         `Click on the bottom \`Invite button\` to invite ${this.client.user.username} on your own server.`
       )
       .setThumbnail(
-        this.client.user.avatarURL({ dynamic: true, size: 2048, format: 'png' })
+        this.client.user.avatarURL({
+          dynamic: true,
+          size: 2048,
+          format: 'png'
+        })
       );
-    return message.reply({ embeds: [emb], components: [row] });
-  }
-
-  static getTargetEmojiByStatus(status, mobile) {
-    switch (status) {
-      case 'dnd':
-        return '<:charliewave_dnd:771635335486111744>';
-      case 'idle':
-        return '<:charliewave_idle:771635289839501333>';
-      case 'online':
-        return mobile === 'online'
-          ? '<:charliewave_mobile:771635443698499584>'
-          : '<:charliewave_online:771635233384693791>';
-    }
+    return message.reply({
+      embeds: [emb],
+      components: [row]
+    });
   }
 };

@@ -1,12 +1,14 @@
-/** @format */
-
-const { embed } = require('../../utils/Utils');
+const {
+  embed
+} = require('../../utils/Utils');
 const {
   MessageActionRow,
   MessageButton,
   version: discordVersion,
 } = require('discord.js');
-const { stripIndents } = require('common-tags');
+const {
+  stripIndents
+} = require('common-tags');
 
 module.exports = class Process extends Command {
   constructor() {
@@ -15,7 +17,7 @@ module.exports = class Process extends Command {
       aliases: ['stats', 'status'],
       description: 'Displays bot stats.',
       usage: '',
-      category: '<:charliewave_supporter:771641583963340821> Core',
+      category: 'Core',
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -50,15 +52,11 @@ module.exports = class Process extends Command {
     emb = embed()
       .setColor(0x36393e)
       .setTitle(
-        `${this.client.user.tag} ${this.constructor.getTargetEmojiByStatus(
-          this.client.presence.status,
-          this.client.presence.clientStatus != undefined &&
-            this.client.presence.clientStatus.mobile
-        )}`
+        `${this.client.user.tag}`
       )
       .addField(
-        '<:charliewave_settings:771462923855069204> **SYSTEM:**',
-        stripIndents`**Memory:**: ${this.constructor.formatBytes(
+        '<:system:989572478017884190> **SYSTEM:**',
+        stripIndents `**Memory:**: ${this.constructor.formatBytes(
           process.memoryUsage().heapUsed,
           2
         )}\n\
@@ -68,30 +66,24 @@ module.exports = class Process extends Command {
         true
       )
       .addField(
-        '<:charliewave_supporter:771641583963340821> **INTENTS:**',
-        stripIndents`**Users:**: ${this.client.users.cache.size.toLocaleString()}\n\
+        '<:intents:989572418228064317> **INTENTS:**',
+        stripIndents `**Users:**: ${this.client.users.cache.size.toLocaleString()}\n\
                 **Guilds:** ${this.client.guilds.cache.size.toLocaleString()}\n\
                 **Channels:** ${this.client.channels.cache.size.toLocaleString()}\n\
             **Commands:** ${this.client.commands.size.toLocaleString()}`,
         true
       )
       .setThumbnail(
-        this.client.user.avatarURL({ dynamic: true, size: 2048, format: 'png' })
+        this.client.user.avatarURL({
+          dynamic: true,
+          size: 2048,
+          format: 'png'
+        })
       );
-    return message.reply({ embeds: [emb], components: [row] });
-  }
-
-  static getTargetEmojiByStatus(status, mobile) {
-    switch (status) {
-      case 'dnd':
-        return '<:charliewave_dnd:771635335486111744>';
-      case 'idle':
-        return '<:charliewave_idle:771635289839501333>';
-      case 'online':
-        return mobile === 'online'
-          ? '<:charliewave_mobile:771635443698499584>'
-          : '<:charliewave_online:771635233384693791>';
-    }
+    return message.reply({
+      embeds: [emb],
+      components: [row]
+    });
   }
 
   static formatBytes(a, b) {

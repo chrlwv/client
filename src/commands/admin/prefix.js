@@ -1,5 +1,3 @@
-/** @format */
-
 module.exports = class Prefix extends Command {
 	constructor() {
 		super({
@@ -7,7 +5,7 @@ module.exports = class Prefix extends Command {
 			aliases: ["pref", "setpref", "setprefix"],
 			description: "Change the guild's prefix.",
 			usage: "<prefix>",
-			category: "<:charliewave_settings:771462923855069204> Admin",
+			category: "Admin",
 			ownerOnly: false,
 			cooldown: 3000,
 			memberPerms: ["MANAGE_GUILD"],

@@ -1,16 +1,17 @@
-/** @format */
-
-const { embed, removeDuplicates, formatPerms } = require('../../utils/Utils');
+const {
+  embed,
+  removeDuplicates,
+  formatPerms
+} = require('../../utils/Utils');
 
 module.exports = class Help extends Command {
   constructor() {
     super({
       name: 'help',
       aliases: ['?', 'commands'],
-      description:
-        'Generating help commands tab. (specify a command name for more informations for the selected item)',
+      description: 'Generating help commands tab. (specify a command name for more informations for the selected item)',
       usage: '<command>',
-      category: '<:charliewave_supporter:771641583963340821> Core',
+      category: 'Core',
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -29,7 +30,9 @@ module.exports = class Help extends Command {
         .setFooter({
           text: `To get info of each command type ${data.guild?.prefix}help [command]`
         })
-        .setThumbnail(message.guild.iconURL({ dynamic: true }));
+        .setThumbnail(message.guild.iconURL({
+          dynamic: true
+        }));
       const categories = removeDuplicates(
         this.client.commands.map((cmd) => cmd.category)
       );
@@ -42,11 +45,15 @@ module.exports = class Help extends Command {
             .join(' ')}`
         );
       }
-      return message.channel.send({ embeds: [emb] });
+      return message.channel.send({
+        embeds: [emb]
+      });
     } else {
       emb = embed()
         .setColor(0x36393e)
-        .setThumbnail(message.guild.iconURL({ dynamic: true }))
+        .setThumbnail(message.guild.iconURL({
+          dynamic: true
+        }))
         .setDescription(
           [
             `**Aliases:** ${
@@ -70,7 +77,9 @@ module.exports = class Help extends Command {
             }`.trim()}\``,
           ].join('\n')
         );
-      return message.channel.send({ embeds: [emb] });
+      return message.channel.send({
+        embeds: [emb]
+      });
     }
   }
 };

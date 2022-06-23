@@ -1,9 +1,10 @@
-/** @format */
-
 const ms = require('ms');
-const { WebhookClient } = require('discord.js');
-
-const { embed } = require('../../utils/Utils');
+const {
+  WebhookClient
+} = require('discord.js');
+const {
+  embed
+} = require('../../utils/Utils');
 
 module.exports = class Report extends Command {
   constructor() {
@@ -12,7 +13,7 @@ module.exports = class Report extends Command {
       aliases: ['bug', 'bugreport'],
       description: 'Gives you a chance to report bugs.',
       usage: '<user>',
-      category: '<:charliewave_supporter:771641583963340821> Core',
+      category: 'Core',
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -21,7 +22,9 @@ module.exports = class Report extends Command {
   }
   async exec(message, args, data) {
     const timeout = 1800000;
-    const { user } = await this.client.getUserById(message.author.id);
+    const {
+      user
+    } = await this.client.getUserById(message.author.id);
     const report = user.report_cooldown;
     const bug = args.join(' ');
 
@@ -32,7 +35,9 @@ module.exports = class Report extends Command {
     }
 
     if (report !== null && timeout - (Date.now() - report) > 0) {
-      let time = ms(timeout - (Date.now() - report), { long: true });
+      let time = ms(timeout - (Date.now() - report), {
+        long: true
+      });
 
       message.reply(
         `You've already used the report command recently, \`${time}\` remaining.`
@@ -40,8 +45,7 @@ module.exports = class Report extends Command {
     } else {
       const webhookClient = new WebhookClient({
         id: '900345596131565568',
-        token:
-          'hTHmf_hJJPE6iaATkrfLGUVOgcvqMqa3T2jJzr76xFyvJzxyMtrzBEGO0HfJ1rznKdgb',
+        token: 'hTHmf_hJJPE6iaATkrfLGUVOgcvqMqa3T2jJzr76xFyvJzxyMtrzBEGO0HfJ1rznKdgb',
       });
 
       let emb;
@@ -55,8 +59,7 @@ module.exports = class Report extends Command {
 
       webhookClient.send({
         username: 'chrlwv',
-        avatarURL:
-          'https://japi.rest/discord/v1/user/902937010103275581/avatar?size=512',
+        avatarURL: 'https://japi.rest/discord/v1/user/902937010103275581/avatar?size=512',
         embeds: [emb],
       });
 

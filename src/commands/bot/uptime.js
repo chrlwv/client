@@ -1,6 +1,7 @@
-/** @format */
-
-const { MessageActionRow, MessageButton } = require('discord.js');
+const {
+  MessageActionRow,
+  MessageButton
+} = require('discord.js');
 module.exports = class Uptime extends Command {
   constructor() {
     super({
@@ -8,7 +9,7 @@ module.exports = class Uptime extends Command {
       aliases: ['uptime'],
       description: 'Displays bot uptime.',
       usage: '',
-      category: '<:charliewave_supporter:771641583963340821> Core',
+      category: 'Core',
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: [],
@@ -27,8 +28,8 @@ module.exports = class Uptime extends Command {
       components: [row],
       ephemeral: true,
       content: [
-        `client uptime: ${this.constructor.uptime()}`,
-        `client status: <:charliewave_online:771635233384693791> online.`,
+        `cluster uptime: ${this.constructor.uptime()}`,
+        `status: <:intents:989572418228064317> ws intents working`,
       ].join('\n'),
     });
   }

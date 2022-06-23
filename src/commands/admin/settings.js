@@ -1,7 +1,10 @@
-/** @format */
-
-const { embed } = require("../../utils/Utils");
-const { MessageActionRow, MessageButton } = require("discord.js");
+const {
+  embed
+} = require("../../utils/Utils");
+const {
+  MessageActionRow,
+  MessageButton
+} = require("discord.js");
 
 module.exports = class Settings extends Command {
   constructor() {
@@ -10,7 +13,7 @@ module.exports = class Settings extends Command {
       aliases: ["conf", "config", "servconfig", "servconf", "cfg"],
       description: "Define per-guild settings.",
       usage: "",
-      category: "<:charliewave_settings:771462923855069204> Admin",
+      category: "Admin",
       ownerOnly: false,
       cooldown: 3000,
       memberPerms: ["MANAGE_GUILD"],
@@ -44,7 +47,10 @@ module.exports = class Settings extends Command {
       .setColor(0x36393e)
       .setAuthor(
         `${message.guild.name}`,
-        message.guild.iconURL({ dynamic: true, size: 2048 })
+        message.guild.iconURL({
+          dynamic: true,
+          size: 2048
+        })
       )
       .addField(
         "**WELCOMER:**",
@@ -64,7 +70,13 @@ module.exports = class Settings extends Command {
           auto_role_module !== null ? `${auto_role}` : "none"
         }\ncase logger: ${case_logger}\nlogger channel: ${logger_channel}`
       )
-      .setThumbnail(message.guild.iconURL({ dynamic: true, size: 2048 }));
-    return message.reply({ embeds: [emb], components: [row] });
+      .setThumbnail(message.guild.iconURL({
+        dynamic: true,
+        size: 2048
+      }));
+    return message.reply({
+      embeds: [emb],
+      components: [row]
+    });
   }
 };
