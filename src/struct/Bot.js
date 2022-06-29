@@ -148,6 +148,12 @@ module.exports = class Bot extends Client {
     });
   }
 
+  async loadPlayer() {
+    const player = require("../player/index.js");
+
+    return player(this);
+}
+
   async getUserById(userId) {
     let user = await this.usersData.findOne({
       userId: userId
@@ -254,6 +260,7 @@ module.exports = class Bot extends Client {
     await this.loadCommands();
     await this.loadEvents();
     await this.loadDatabase();
+    await this.loadPlayer()
     return super.login(token);
   }
 };
