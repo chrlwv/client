@@ -28,7 +28,7 @@ module.exports = class Loop extends Command {
 
         let members = channel.members.filter((m) => !m.user.bot);
 
-        if (members.size > 1 && !message.member.permissions.has("MANAGE_GUILD")) {
+        if (members.size > 1 && !message.member.permissions.has("MANAGE_GUILD")  && !this.client.owners.includes(message.author.id)) {
             return message.reply('You must have \`MANAGE_GUILD\` permission or be alone in the voice channel to use this command!');
         }
 

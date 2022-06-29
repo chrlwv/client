@@ -24,14 +24,14 @@ module.exports = class Skip extends Command {
 
         let members = channel.members.filter((m) => !m.user.bot);
 
-        if (members.size > 1 && !message.member.permissions.has("MANAGE_GUILD")) {
+        if (members.size > 1 && !message.member.permissions.has("MANAGE_GUILD") && !this.client.owners.includes(message.author.id)) {
             let required = members.size === 2 ? 2 : Math.ceil(members.size / 2);
 
-            if (queue.skipVotes.includes(message.user.id)) {
+            if (queue.skipVotes.includes(message.author.id)) {
                 return message.reply('You\'ve already voted to skip the current track!');
             }
 
-            queue.skipVotes.push(message.user.id);
+            queue.skipVotes.push(message.author.id);
             message.reply(`You voted to skip the current track! **${queue.skipVotes.length}/${required}**`);
 
             if (!number && queue.skipVotes.length >= required) {

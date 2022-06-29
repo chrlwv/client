@@ -23,7 +23,8 @@ module.exports = class Shuffle extends Command {
 
             if (
                 members.size > 1 &&
-                !message.member.permissions.has("MANAGE_GUILD")
+                !message.member.permissions.has("MANAGE_GUILD") &&
+                !this.client.owners.includes(message.author.id)
             ) {
                 return message.reply('You must have \`MANAGE_GUILD\` permission or be alone in the voice channel to use this command!');
             }
