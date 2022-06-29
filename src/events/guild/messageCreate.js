@@ -91,7 +91,7 @@ module.exports = class messageCreate extends Event {
         if (newLevel > level) {
           if (guild.level_msg_module === true) {
             const msg = await message.reply(
-              `<:charliewave_party:781439232895483904> Congratulations, you leveled up to level \`${newLevel}\`!`
+              `<a:cheer:991753457813954600> Congratulations, you leveled up to level \`${newLevel}\`!`
             );
             setTimeout(() => {
               msg?.delete();
