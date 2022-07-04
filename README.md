@@ -32,7 +32,6 @@ All the sessions are maintained on `heroku` by <a  href="https://skillzl.me" >sk
 ## Available config VARS
 
 ```
-
 TOKEN={discord.application.token}
 
 MONGO={mongoDb.connectionUri}
@@ -43,6 +42,9 @@ WEATHER={openweathermap.apiKey}
 
 OWNER={owner.Id}
 
+ERROR_WEBHOOK_ID={webhook.Id}
+
+ERROR_WEBHOOK_TOKEN={webhook.token}
 ```
 
 Disclaimer (if self-hosted)

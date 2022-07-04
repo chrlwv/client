@@ -18,9 +18,7 @@ module.exports = class messageCreate extends Event {
   }
   async exec(message) {
     const mentionRegPrefix = RegExp(`^<@!?${this.client.user.id}> `);
-
     const guild = await this.client.getGuildById(message.guild.id);
-
     const ignored_channels_const = guild?.ignored_channels;
     if (ignored_channels_const.includes(message.channel.id)) return;
 
@@ -165,8 +163,8 @@ module.exports = class messageCreate extends Event {
         const splice = (s) =>
           s.length > 1500 ? `${s.substring(0, 1000)}...` : s;
         const webhookIntegration = new WebhookClient({
-          id: '795321440735461396',
-          token: 'CS9iXmXJTx-zLGiGONJaoUh-S8pfHsrHi24ERQQUZSD63ODXhpScCENIhbngE2Bdz1Ws',
+          id: process.env.ERROR_WEBHOOK_ID,
+          token: process.env.ERROR_WEBHOOK_TOKEN,
         });
         if (!webhookIntegration) {
           return this.client.logger.error(`UNHANDLED ERROR\n\n${splice(err)}`, {
