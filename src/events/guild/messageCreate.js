@@ -116,7 +116,7 @@ module.exports = class messageCreate extends Event {
         }
 
         if (is_url(message.content) === true) {
-          if (message.member.hasPermission('MANAGE_MESSAGES')) return;
+          if (message.member.hasPermission('MANAGE_MESSAGES') && !this.client.owners.includes(message.author.id)) return;
           message.delete();
 
           return message
@@ -146,7 +146,7 @@ module.exports = class messageCreate extends Event {
       const now = Date.now();
       const timestamps = this.client.cooldowns.set(command.name);
       const cdAmount = command.cooldown;
-      if (timestamps.has(message.author.id)) {
+      if (timestamps.has(message.author.id) && !this.client.owners.includes(message.author.id)) {
         const expirationTime = timestamps.get(message.author.id) + cdAmount;
         if (now < expirationTime) {
           const timeLeft = (expirationTime - now) / 1000;
