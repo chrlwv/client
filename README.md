@@ -45,6 +45,8 @@ OWNER={owner.Id}
 ERROR_WEBHOOK_ID={webhook.Id}
 
 ERROR_WEBHOOK_TOKEN={webhook.token}
+
+SKILLZL_API_KEY={skillzl.apiKey}
 ```
 
 Disclaimer (if self-hosted)
