@@ -1,7 +1,4 @@
 const fetch = require("node-fetch");
-const {
-    embed
-} = require("../../utils/Utils");
 
 module.exports = class Test extends Command {
     constructor() {
@@ -22,15 +19,14 @@ module.exports = class Test extends Command {
         const url = `http://api.skillzl.me/pussy?key=${process.env.SKILLZL_API_KEY}`;
         const result = await fetch(url).then((res) => res.json());
 
-        let emb;
-        emb = embed()
-            .setColor(0x36393e)
-            .setTitle(`pussy 🌸`)
-            .setURL(result.url)
-            .setImage(result.url);
+        if (!process.env.SKILLZL_API_KEY || process.env.SKILLZL_API_KEY === "") {
+            return message.reply('You have not provided `SKILLZL_API_KEY` therefor NSFW commands will not work.');
+        }
 
         return message.reply({
-            embeds: [emb]
+            content: `result.url: *${result.url}*\nresult.code: ${result.code}\nresult.key: \`${result.key}\``,
         });
+
+        message.reply('test: <:on_switch:989561075299151922> passed')
     };
 };

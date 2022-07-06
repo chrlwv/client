@@ -42,6 +42,12 @@ module.exports = class Bot extends Client {
     this.blacklistedData = require('../models/Blacklisted');
     this.database.blacklisted = new Collection();
 
+    if (!process.env.SKILLZL_API_KEY || process.env.SKILLZL_API_KEY === "") {
+      this.logger.error('You have not provided SKILLZL_API_KEY therefor NSFW commands will not work.', {
+        tag: 'Api'
+      })
+    }
+
     db.on('connected', async () =>
       this.logger.log(
         `Successfully connected to the database! (Latency: ${Math.round(
