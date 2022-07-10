@@ -51,13 +51,5 @@ module.exports = model(
       type: Array,
       default: []
     },
-    transcript_channel: {
-      type: String,
-      default: null
-    },
-    tickets_parent: {
-      type: String,
-      default: null
-    },
   })
 );
