@@ -7,6 +7,7 @@ const {
 } = require("canvas");
 const fs = require("fs");
 const path = require("path");
+const tickets = require("../../models/Tickets");
 
 module.exports = class guildMemberRemove extends Event {
   constructor() {
@@ -18,6 +19,11 @@ module.exports = class guildMemberRemove extends Event {
   async exec(member) {
     const mongoGuild = await this.client.getGuildById(member.guild.id);
     const leaveChannel = mongoGuild?.leave_event_module;
+    const data = await this.client.getGuild({ guildId: member.guild.id });
+    const ticket = await tickets.findOne({
+      guildId: member.guild.id,
+      userId: member.user.id,
+    });
 
     const applyText = (canvas, text) => {
       const ctx = canvas.getContext("2d");
@@ -84,6 +90,14 @@ module.exports = class guildMemberRemove extends Event {
         });
 
       await this.client.removeUser(member.user.id, member.guild.id);
+
+      if (ticket) {
+        let channel = await member.guild.channels.fetch(ticket.ticketId);
+        if (channel) {
+          await channel.delete();
+        }
+        await ticket.delete();
+      }
     }
   }
 };
