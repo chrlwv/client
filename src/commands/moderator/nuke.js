@@ -14,7 +14,6 @@ module.exports = class Nuke extends Command {
   }
   async exec(message) {
     await message.channel.clone().then((ch) => {
-      ch.setParent(message.channel.parent.id);
       ch.setPosition(message.channel.position);
       ch.send('This channel got nuked.');
     });
