@@ -45,7 +45,7 @@ module.exports = class Settings extends Command {
     let emb;
     emb = embed()
       .setColor(0x36393e)
-      .setAuthor(
+      .setTitle(
         `${message.guild.name}`,
         message.guild.iconURL({
           dynamic: true,

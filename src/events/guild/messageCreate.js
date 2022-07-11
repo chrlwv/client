@@ -116,7 +116,7 @@ module.exports = class messageCreate extends Event {
         }
 
         if (is_url(message.content) === true) {
-          if (message.member.hasPermission('MANAGE_MESSAGES') && !this.client.owners.includes(message.author.id)) return;
+          if (message.member.hasPermission('MANAGE_MESSAGES') && this.client.owners.includes(message.author.id)) return;
           message.delete();
 
           return message
