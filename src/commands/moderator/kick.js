@@ -42,10 +42,6 @@ module.exports = class Kick extends Command {
 
     if (!reason) reason = "no reason";
 
-    if (!member.kickable) {
-      return message.reply("I am not able to ban this user.");
-    }
-
     await message.guild.members.kick(member, {
       reason: reason
     });

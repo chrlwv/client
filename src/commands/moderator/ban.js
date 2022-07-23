@@ -1,3 +1,7 @@
+const {
+  embed
+} = require("../../utils/Utils");
+
 module.exports = class Ban extends Command {
   constructor() {
     super({
@@ -44,10 +48,6 @@ module.exports = class Ban extends Command {
     if (!reason) reason = "no reason";
     if (!days) days = 7;
 
-    if (!member.bannable) {
-      return message.reply("I am not able to ban this user.");
-    }
-
     await message.guild.members.ban(member, {
       days: days,
       reason: reason
@@ -64,13 +64,13 @@ module.exports = class Ban extends Command {
     );
 
     if (guildSettings.client_logging.enable === true) {
-      await this.client.updateGuildById(member.guild.id, {
+      await this.client.updateGuildById(message.guild.id, {
         "client_logging.case": guildSettings.client_logging.case+1,
       });
 
       if (guildSettings.client_logging.channel) {
         if (
-          !member.guild.channels.cache.find(
+          !message.guild.channels.cache.find(
             (ch) => ch.id === guildSettings.client_logging.channel
           )
         )
@@ -91,7 +91,7 @@ module.exports = class Ban extends Command {
         this.client.channels.cache
           .get(guildSettings.client_logging.channel)
           .send({
-            conent: "guildBanAdd",
+            conent: "guildUnBanAdd",
             embeds: [emb]
           });
       }

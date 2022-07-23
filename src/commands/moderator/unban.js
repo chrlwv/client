@@ -31,43 +31,9 @@ module.exports = class Unban extends Command {
     if (!reason) reason = "no reason";
 
     const bannedUser = await message.guild.members.unban(member, reason);
-
+    
     message.channel.send(
       `Successfully unbanned ${bannedUser.tag}, reason: ${reason}`
     );
-
-    if (guildSettings.client_logging.enable === true) {
-      await this.client.updateGuildById(message.guild.id, {
-        "client_logging.case": guildSettings.client_logging.case+1,
-      });
-
-      if (guildSettings.client_logging.channel) {
-        if (
-          !message.guild.channels.cache.find(
-            (ch) => ch.id === guildSettings.client_logging.channel
-          )
-        )
-          return;
-
-        let emb;
-        emb = embed()
-          .setColor(0x36393e)
-          .setTitle(
-            `ACTION: \`UNBAN\` CASE: \`${guildSettings.client_logging.case}\``
-          )
-          .setDescription(
-            `\`\`\`js\nUser: ${bannedUser.tag} (ID: ${member})\nModerator: ${message.author.tag} (${message.author.id})\nReason: ${reason}\n\`\`\``
-          )
-          .setThumbnail(member.displayAvatarURL)
-          .setTimestamp();
-
-        this.client.channels.cache
-          .get(guildSettings.client_logging.channel)
-          .send({
-            conent: "guildUnBanAdd",
-            embeds: [emb]
-          });
-      }
-    }
   }
 };
