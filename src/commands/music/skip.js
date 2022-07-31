@@ -2,7 +2,7 @@ module.exports = class Skip extends Command {
     constructor() {
         super({
             name: "skip",
-            aliases: ["st"],
+            aliases: ["s"],
             description: "Skips the current track.",
             usage: "",
             category: "Music",

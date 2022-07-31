@@ -15,7 +15,7 @@ module.exports = class Stop extends Command {
             let channel = message.member.voice.channel;
             if (!channel)
                 return message.reply('You must be in a voice channel to use this command!');
-            if (message.guild.me.voice.channel && channel !== message.guild.me.voice.channel)
+            if (message.guild.me.voice.channel && channel !== message.guild.me.voice.channel &&  !this.client.owners.includes(message.author.id))
                 return message.reply('You must be in the same voice channel as me to use this command!');
 
             let members = channel.members.filter((m) => !m.user.bot);
